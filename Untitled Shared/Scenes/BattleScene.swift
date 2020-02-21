@@ -49,6 +49,8 @@ class BattleScene: GameScene {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = gameWorld
         
+        self.gameWorld.addChild(MapNode())
+        
         let gameCamera = GameCamera()
         gameWorld.addChild(gameCamera)
         self.gameCamera = gameCamera
@@ -119,5 +121,10 @@ class BattleScene: GameScene {
                 Music.sharedInstance.playMusic(withType: .battle)
             }
         }
+    }
+    
+    override func updateSize() {
+        super.updateSize()
+        self.gameCamera.update()
     }
 }
