@@ -10,22 +10,37 @@ import SpriteKit
 
 class TiledMap: SKNode, XMLParserDelegate {
     
-    static let tileWidth: CGFloat = 64;
-    static let tileHeight: CGFloat = 64;
+    static var width: CGFloat = 64
+    static var height: CGFloat = 64
+    static var tileWidth: CGFloat = 32
+    static var tileHeight: CGFloat = 32
     
-    static var currentSize = CGSize(width: 512, height: 512)
+    static var size: CGSize {
+        get {
+            return CGSize(width: TiledMap.width * TiledMap.tileWidth,
+                          height: TiledMap.height * TiledMap.tileHeight)
+        }
+    }
     
+    var layerName = ""
     
+    var tilesets = [Tileset]()
     
     init(fileNamed filename: String, x: CGFloat, y: CGFloat) {
         super.init()
         self.addChild(SKLabelNode(text: "\(Int(x)) \(Int(y))"))
-        self.position.x = TiledMap.currentSize.width * x
-        self.position.y = TiledMap.currentSize.height * y
-//        guard let url = Bundle.main.url(forResource: filename, withExtension: "tmx") else { return }
-//        guard let parser = XMLParser(contentsOf: url) else { return }
-//        parser.delegate = self
-//        parser.parse()
+        self.position.x = TiledMap.size.width * x
+        self.position.y = TiledMap.size.height * y
+        guard let url = Bundle.main.url(forResource: filename, withExtension: "tmx") else {
+            //print("Bundle.main.url(forResource: \(filename), withExtension: \"tmx\"))")
+            return
+        }
+        guard let parser = XMLParser(contentsOf: url) else {
+            //print("XMLParser(contentsOf: \(url)")
+            return
+        }
+        parser.delegate = self
+        parser.parse()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,10 +48,100 @@ class TiledMap: SKNode, XMLParserDelegate {
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        print("\(parser.description)")
-        print("\(elementName)")
-        print("\(namespaceURI ?? "nil")")
-        print("\(qName ?? "nil")")
-        print("\(attributeDict.description)")
+
+        switch elementName {
+        case "map":
+            TiledMap.width = CGFloat(Int(attributeDict["width"]!)!)
+            TiledMap.height = CGFloat(Int(attributeDict["height"]!)!)
+            TiledMap.tileWidth = CGFloat(Int(attributeDict["tilewidth"]!)!)
+            TiledMap.tileHeight = CGFloat(Int(attributeDict["tileheight"]!)!)
+            break
+        case "tileset":
+            
+            let name = (attributeDict["name"]!)
+            let tileWidth = Int(attributeDict["tilewidth"]!)!
+            let tileHeight = Int(attributeDict["tileheight"]!)!
+            
+            let tileset = Tileset(imageNamed: name)
+            tileset.load(tileWidth: tileWidth, tileHeight: tileHeight)
+            
+            self.tilesets.append(tileset)
+            break
+        case "image":
+            break
+        case "terraintypes":
+            break
+        case "terrain":
+            break
+        case "tile":
+            break
+        case "layer":
+            self.layerName = attributeDict["name"]!
+            break
+        case "data":
+            break
+        case "object":
+            
+            let height = Int(attributeDict["height"]!)!
+            let name = attributeDict["name"] ?? ""
+            let _ = Int(attributeDict["id"]!)!
+            let width = Int(attributeDict["width"]!)!
+            let x = Int(attributeDict["x"]!)!
+            let type = attributeDict["type"]!
+            let y = Int(attributeDict["y"]!)!
+            
+            switch type {
+            default:
+                print("Tipo de objeto desconhecido: \(type)")
+                break
+            }
+            break
+        default:
+            print("elementName: \(elementName)")
+            print("attributeDict: \(attributeDict)\n")
+            break
+        }
+        
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let string = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if string.isEmpty == false {
+            self.loadLayer(data: string.components(separatedBy: ","))
+        }
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        parser.delegate = nil
+    }
+    
+    func loadLayer(data: [String]) {
+        var i = data.makeIterator()
+        for y in 0..<Int(TiledMap.height) {
+            for x in 0..<Int(TiledMap.width) {
+                if let id = Int(i.next()?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? "") {
+                    if id != 0 {
+                        switch(id) {
+                        default:
+                            var tilecount = 0
+                            
+                            for tileset in self.tilesets {
+                                
+                                let lastTilecount = tilecount
+                                tilecount = tilecount + tileset.tileTextures.count
+                                
+                                if id > lastTilecount && id <= tilecount {
+                                    let texture = tileset.tileTextures[id - lastTilecount - 1]
+                                    self.addChild(TiledTile(texture: texture, x: x, y: y))
+                                    break
+                                }
+                            }
+                            
+                            break
+                        }
+                    }
+                }
+            }
+        }
     }
 }

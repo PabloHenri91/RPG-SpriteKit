@@ -46,8 +46,8 @@ class BattleScene: GameScene {
         
         self.loadGameWorld()
         self.loadGameCamera(gameWorld: self.gameWorld)
-        self.loadPlayer(gameWorld: self.gameWorld)
         self.loadMapManager(gameWorld: self.gameWorld)
+        self.loadPlayer(gameWorld: self.gameWorld)
         self.nextState = .battle
     }
     

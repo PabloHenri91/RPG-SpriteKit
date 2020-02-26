@@ -35,15 +35,15 @@ class MapManager: SKNode {
         for y in [self.playerRegion.y - 1, self.playerRegion.y, self.playerRegion.y + 1] {
             for x in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
                 let filename = "\(self.mapType)"
-                let chunk = TiledMap(fileNamed: "\(filename)\(x)_\(y)", x: x, y: y)
+                let chunk = TiledMap(fileNamed: "\(filename)_\(Int(x))_\(Int(y))", x: x, y: y)
                 self.chunks.append(chunk)
             }
         }
         
-        self.addChunks();
+        self.addTiledMaps();
     }
     
-    func addChunks() {
+    func addTiledMaps() {
         for chunk in self.chunks {
             if chunk.parent == nil {
                 self.addChild(chunk)
@@ -69,8 +69,8 @@ class MapManager: SKNode {
     }
     
     func updatePlayerRegion(position: CGPoint) {
-        self.playerRegion.x = position.x / TiledMap.currentSize.width
-        self.playerRegion.y = position.y / TiledMap.currentSize.height
+        self.playerRegion.x = position.x / TiledMap.size.width
+        self.playerRegion.y = position.y / TiledMap.size.height
     }
     
     func loadMap() {
@@ -117,7 +117,7 @@ class MapManager: SKNode {
         self.chunks[3] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 0);
         self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 1);
 
-        self.addChunks();
+        self.addTiledMaps();
     }
     
     func loadS() {
@@ -137,7 +137,7 @@ class MapManager: SKNode {
         self.chunks[7] = TiledMap(fileNamed: "\(self.mapType)", x: loadedRegion.x + 0, y: loadedRegion.y + 1);
         self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", x: loadedRegion.x + 1, y: loadedRegion.y + 1);
 
-        self.addChunks();
+        self.addTiledMaps();
     }
     
     func loadD() {
