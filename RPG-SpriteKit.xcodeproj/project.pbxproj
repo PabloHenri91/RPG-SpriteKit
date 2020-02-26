@@ -106,6 +106,10 @@
 		84B7EEEE23FDD29A00DD1CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */; };
 		D915DF5E24002C8B003CBBF3 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D915DF5D24002C8B003CBBF3 /* MapManager.swift */; };
 		D915DF5F24002CB2003CBBF3 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D915DF5D24002C8B003CBBF3 /* MapManager.swift */; };
+		D9A9CDDA2406C93A00C9CBE0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD82406C93900C9CBE0 /* Player.swift */; };
+		D9A9CDDB2406C93A00C9CBE0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD82406C93900C9CBE0 /* Player.swift */; };
+		D9A9CDDC2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
+		D9A9CDDD2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +171,8 @@
 		84B7EEE423FDD29A00DD1CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84B7EEE623FDD29A00DD1CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D915DF5D24002C8B003CBBF3 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
+		D9A9CDD82406C93900C9CBE0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCharacter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +390,8 @@
 		D915DF5C24002C39003CBBF3 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */,
+				D9A9CDD82406C93900C9CBE0 /* Player.swift */,
 				D915DF5D24002C8B003CBBF3 /* MapManager.swift */,
 			);
 			path = Nodes;
@@ -498,7 +506,9 @@
 				8404E82023FDE01C000112AF /* GameCamera.swift in Sources */,
 				6E42AD6423FE14FB007F503B /* BattleScene.swift in Sources */,
 				84035285240032A10070E585 /* TiledMap.swift in Sources */,
+				D9A9CDDA2406C93A00C9CBE0 /* Player.swift in Sources */,
 				8404E84923FDE021000112AF /* SKTAudio.swift in Sources */,
+				D9A9CDDC2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */,
 				8404E81A23FDE01C000112AF /* Event.swift in Sources */,
 				6E42AD6A23FE1AE0007F503B /* CreditsScene.swift in Sources */,
 				8404E84123FDE021000112AF /* SKAction+SpecialEffects.swift in Sources */,
@@ -550,7 +560,9 @@
 				8404E82123FDE01C000112AF /* GameCamera.swift in Sources */,
 				6E42AD6523FE14FB007F503B /* BattleScene.swift in Sources */,
 				84035286240032A10070E585 /* TiledMap.swift in Sources */,
+				D9A9CDDB2406C93A00C9CBE0 /* Player.swift in Sources */,
 				8404E84A23FDE021000112AF /* SKTAudio.swift in Sources */,
+				D9A9CDDD2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */,
 				8404E81B23FDE01C000112AF /* Event.swift in Sources */,
 				6E42AD6B23FE1AE0007F503B /* CreditsScene.swift in Sources */,
 				8404E84223FDE021000112AF /* SKAction+SpecialEffects.swift in Sources */,

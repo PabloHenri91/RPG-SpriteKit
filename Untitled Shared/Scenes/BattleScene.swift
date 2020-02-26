@@ -12,6 +12,7 @@ class BattleScene: GameScene {
     
     weak var gameWorld: GameWorld!
     weak var gameCamera: GameCamera!
+    weak var player: Player!
     
     enum state: String {
         
@@ -45,8 +46,8 @@ class BattleScene: GameScene {
         
         self.loadGameWorld()
         self.loadGameCamera(gameWorld: self.gameWorld)
+        self.loadPlayer(gameWorld: self.gameWorld)
         self.loadMapManager(gameWorld: self.gameWorld)
-        
         self.nextState = .battle
     }
     
@@ -66,13 +67,24 @@ class BattleScene: GameScene {
         self.gameCamera = gameCamera
     }
     
+    func loadPlayer(gameWorld: GameWorld) {
+        let player = Player()
+        gameWorld.addChild(player)
+        self.player = player;
+    }
+    
     func loadMapManager(gameWorld: GameWorld) {
         let mapManager = MapManager()
         gameWorld.addChild(mapManager)
         mapManager.reload()
     }
     
+    override func touchDown(touch: UITouch) {
+        self.player.touchDown(touch: touch)
+    }
+    
     override func update(_ currentTime: TimeInterval) {
+        self.player.update()
         super.update(currentTime)
         if self.state == self.nextState {
             switch self.state {

@@ -10,7 +10,12 @@ import SpriteKit
 
 class TiledMap: SKNode, XMLParserDelegate {
     
+    static let tileWidth: CGFloat = 64;
+    static let tileHeight: CGFloat = 64;
+    
     static var currentSize = CGSize(width: 512, height: 512)
+    
+    
     
     init(fileNamed filename: String, x: CGFloat, y: CGFloat) {
         super.init()

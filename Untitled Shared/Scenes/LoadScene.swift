@@ -35,6 +35,8 @@ class LoadScene: GameScene {
         self.backgroundColor = GameColors.backgroundColor
         
         self.addChild(Label(text: "TOUCH TO START", x: 187, y: 620, horizontalAlignment: .center, verticalAlignment: .center))
+        
+        self.view?.presentScene(BattleScene())
     }
     
     override func touchUp(touch: UITouch) {
