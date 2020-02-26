@@ -12,6 +12,7 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        GameScene.viewBoundsSize = self.view.bounds.size
         (self.view as? SKView)?.presentScene(LoadScene())
     }
     
