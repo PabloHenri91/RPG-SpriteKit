@@ -43,24 +43,33 @@ class BattleScene: GameScene {
         
         self.backgroundColor = GameColors.backgroundColor
         
-        let gameWorld = GameWorld()
-        self.gameWorld = gameWorld
+        self.loadGameWorld()
+        self.loadGameCamera(gameWorld: self.gameWorld)
+        self.loadMapManager(gameWorld: self.gameWorld)
+        
+        self.nextState = .battle
+    }
+    
+    func loadGameWorld() {
+        let gameWorld = GameWorld(physicsWorld: self.physicsWorld)
         self.addChild(gameWorld)
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
-        self.physicsWorld.contactDelegate = gameWorld
-        
-        self.gameWorld.addChild(MapNode())
-        
+        self.gameWorld = gameWorld
+    }
+    
+    func loadGameCamera(gameWorld: GameWorld) {
         let gameCamera = GameCamera()
         gameWorld.addChild(gameCamera)
-        self.gameCamera = gameCamera
-        
         let gameCameraNode = SKNode()
         gameWorld.addChild(gameCameraNode)
         gameCamera.node = gameCameraNode
         gameCamera.update()
-        
-        self.nextState = .battle
+        self.gameCamera = gameCamera
+    }
+    
+    func loadMapManager(gameWorld: GameWorld) {
+        let mapManager = MapManager()
+        gameWorld.addChild(mapManager)
+        mapManager.reload()
     }
     
     override func update(_ currentTime: TimeInterval) {
