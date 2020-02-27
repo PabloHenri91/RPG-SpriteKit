@@ -37,8 +37,26 @@ class BaseCharacter: SKSpriteNode {
     var moveD = false
     var moveW = false
     
+    init(textureName: String = "Player0") {
+        
+        let texture = SKTexture(imageNamed: textureName)
+        texture.filteringMode = GameScene.defaultFilteringMode
+        
+        super.init(texture: texture, color: SKColor.white, size: texture.size())
+        
+        self.position = CGPoint(x: TiledMap.tileWidth/2, y:TiledMap.tileHeight/2)
+        
+        self.zPosition = 5
+        
+        //self.loadTextures(name: textureName)
+        self.loadActions()
+    }
+    
     init() {
-        super.init(texture: nil, color: .white, size: CGSize(width: 64, height: 64))
+        super.init(texture: nil, color: .white, size: CGSize(width: TiledMap.tileWidth, height: TiledMap.tileHeight))
+        
+        self.position = CGPoint(x: TiledMap.tileWidth/2, y: TiledMap.tileHeight/2)
+        
         self.loadActions()
     }
     

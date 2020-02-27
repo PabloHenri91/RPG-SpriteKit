@@ -51,16 +51,16 @@ class TiledMap: SKNode, XMLParserDelegate {
 
         switch elementName {
         case "map":
-            TiledMap.width = CGFloat(Int(attributeDict["width"]!)!)
-            TiledMap.height = CGFloat(Int(attributeDict["height"]!)!)
-            TiledMap.tileWidth = CGFloat(Int(attributeDict["tilewidth"]!)!)
-            TiledMap.tileHeight = CGFloat(Int(attributeDict["tileheight"]!)!)
+            TiledMap.width = CGFloat(Int(attributeDict["width"] ?? "") ?? -1)
+            TiledMap.height = CGFloat(Int(attributeDict["height"] ?? "") ?? -1)
+            TiledMap.tileWidth = CGFloat(Int(attributeDict["tilewidth"] ?? "") ?? -1)
+            TiledMap.tileHeight = CGFloat(Int(attributeDict["tileheight"] ?? "") ?? -1)
             break
         case "tileset":
             
-            let name = (attributeDict["name"]!)
-            let tileWidth = Int(attributeDict["tilewidth"]!)!
-            let tileHeight = Int(attributeDict["tileheight"]!)!
+            let name = (attributeDict["name"] ?? "")
+            let tileWidth = Int(attributeDict["tilewidth"] ?? "") ?? -1
+            let tileHeight = Int(attributeDict["tileheight"] ?? "") ?? -1
             
             let tileset = Tileset(imageNamed: name)
             tileset.load(tileWidth: tileWidth, tileHeight: tileHeight)
@@ -76,19 +76,19 @@ class TiledMap: SKNode, XMLParserDelegate {
         case "tile":
             break
         case "layer":
-            self.layerName = attributeDict["name"]!
+            self.layerName = attributeDict["name"] ?? ""
             break
         case "data":
             break
         case "object":
             
-            let height = Int(attributeDict["height"]!)!
+            let height = Int(attributeDict["height"] ?? "") ?? -1
             let name = attributeDict["name"] ?? ""
-            let _ = Int(attributeDict["id"]!)!
-            let width = Int(attributeDict["width"]!)!
-            let x = Int(attributeDict["x"]!)!
-            let type = attributeDict["type"]!
-            let y = Int(attributeDict["y"]!)!
+            let id = Int(attributeDict["id"] ?? "") ?? -1
+            let width = Int(attributeDict["width"] ?? "") ?? -1
+            let x = Int(attributeDict["x"] ?? "") ?? -1
+            let type = attributeDict["type"] ?? ""
+            let y = Int(attributeDict["y"] ?? "") ?? -1
             
             switch type {
             default:
@@ -119,27 +119,22 @@ class TiledMap: SKNode, XMLParserDelegate {
         var i = data.makeIterator()
         for y in 0..<Int(TiledMap.height) {
             for x in 0..<Int(TiledMap.width) {
-                if let id = Int(i.next()?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? "") {
-                    if id != 0 {
-                        switch(id) {
-                        default:
-                            var tilecount = 0
-                            
-                            for tileset in self.tilesets {
-                                
-                                let lastTilecount = tilecount
-                                tilecount = tilecount + tileset.tileTextures.count
-                                
-                                if id > lastTilecount && id <= tilecount {
-                                    let texture = tileset.tileTextures[id - lastTilecount - 1]
-                                    self.addChild(TiledTile(texture: texture, x: x, y: y))
-                                    break
-                                }
-                            }
-                            
+                guard let id = Int(i.next()?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? "") else { continue }
+                guard id != 0 else { continue }
+                switch(id) {
+                default:
+                    var tilecount = 0
+                    for tileset in self.tilesets {
+                        let lastTilecount = tilecount
+                        tilecount = tilecount + tileset.tileTextures.count
+                        
+                        if id > lastTilecount && id <= tilecount {
+                            let texture = tileset.tileTextures[id - lastTilecount - 1]
+                            self.addChild(TiledTile(texture: texture, x: x, y: y))
                             break
                         }
                     }
+                    break
                 }
             }
         }

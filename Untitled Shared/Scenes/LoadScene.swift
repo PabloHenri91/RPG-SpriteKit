@@ -14,7 +14,7 @@ class LoadScene: GameScene {
     weak var gameCamera: GameCamera!
     
     init() {
-        GameScene.defaultSize = CGSize(width: 1920, height: 1080)
+        GameScene.defaultSize = CGSize(width: 1920 / 4, height: 1080 / 4)
         GameScene.defaultFilteringMode = .nearest
         super.init()
     }

@@ -9,6 +9,15 @@
 import SpriteKit
 
 class Player: BaseCharacter {
+    
+    override init() {
+        super.init(textureName: "Player0")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func update() {
         self.move()
     }
@@ -26,7 +35,7 @@ class Player: BaseCharacter {
             } else {
                 let delta = destination - self.position
                 
-                if abs(delta.x) > 32 {
+                if abs(delta.x) > TiledMap.tileWidth {
                     if delta.x > 0 {
                         self.moveD = true
                     } else {
@@ -34,7 +43,7 @@ class Player: BaseCharacter {
                     }
                 }
                 
-                if abs(delta.y) > 32 {
+                if abs(delta.y) > TiledMap.tileHeight {
                     if delta.y > 0 {
                         self.moveW = true
                     } else {
