@@ -45,23 +45,13 @@ class BaseCharacter: SKSpriteNode {
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         
         self.position = CGPoint(x: TiledMap.tileWidth/2, y:TiledMap.tileHeight/2)
-        
-        self.zPosition = 5
-        
-        //self.loadTextures(name: textureName)
-        self.loadActions()
-    }
-    
-    init() {
-        super.init(texture: nil, color: .white, size: CGSize(width: TiledMap.tileWidth, height: TiledMap.tileHeight))
-        
-        self.position = CGPoint(x: TiledMap.tileWidth/2, y: TiledMap.tileHeight/2)
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.loadActions()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     func update() {
