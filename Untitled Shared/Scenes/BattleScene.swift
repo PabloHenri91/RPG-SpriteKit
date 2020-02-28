@@ -13,6 +13,7 @@ class BattleScene: GameScene {
     weak var gameWorld: GameWorld!
     weak var gameCamera: GameCamera!
     weak var player: Player!
+    weak var statusBar: StatusBar!
     
     enum state: String {
         
@@ -48,6 +49,7 @@ class BattleScene: GameScene {
         self.loadGameCamera(gameWorld: self.gameWorld)
         self.loadMapManager(gameWorld: self.gameWorld)
         self.loadPlayer(gameWorld: self.gameWorld)
+        self.loadStatusBar()
         self.nextState = .battle
     }
     
@@ -71,6 +73,12 @@ class BattleScene: GameScene {
         let player = Player()
         gameWorld.addChild(player)
         self.player = player;
+    }
+    
+    func loadStatusBar() {
+        let statusBar = StatusBar()
+        self.addChild(statusBar)
+        self.statusBar = statusBar
     }
     
     func loadMapManager(gameWorld: GameWorld) {
