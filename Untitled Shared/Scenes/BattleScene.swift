@@ -46,9 +46,9 @@ class BattleScene: GameScene {
         self.backgroundColor = GameColors.backgroundColor
         
         self.loadGameWorld()
-        self.loadGameCamera(gameWorld: self.gameWorld)
         self.loadMapManager(gameWorld: self.gameWorld)
         self.loadPlayer(gameWorld: self.gameWorld)
+        self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
         self.loadStatusBar()
         self.nextState = .battle
     }
@@ -59,11 +59,9 @@ class BattleScene: GameScene {
         self.gameWorld = gameWorld
     }
     
-    func loadGameCamera(gameWorld: GameWorld) {
+    func loadGameCamera(gameWorld: GameWorld, gameCameraNode:SKNode = SKNode()) {
         let gameCamera = GameCamera()
         gameWorld.addChild(gameCamera)
-        let gameCameraNode = SKNode()
-        gameWorld.addChild(gameCameraNode)
         gameCamera.node = gameCameraNode
         gameCamera.update()
         self.gameCamera = gameCamera
@@ -99,6 +97,7 @@ class BattleScene: GameScene {
             case .loading:
                 break
             case .battle:
+                self.gameCamera.update(useLerp: true)
                 break
             case .battleEnd:
                 break

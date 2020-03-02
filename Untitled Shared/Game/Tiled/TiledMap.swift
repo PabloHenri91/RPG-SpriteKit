@@ -32,11 +32,11 @@ class TiledMap: SKNode, XMLParserDelegate {
         self.position.x = TiledMap.size.width * x
         self.position.y = TiledMap.size.height * y
         guard let url = Bundle.main.url(forResource: filename, withExtension: "tmx") else {
-            //print("Bundle.main.url(forResource: \(filename), withExtension: \"tmx\"))")
+            // print("Bundle.main.url(forResource: \(filename), withExtension: \"tmx\"))")
             return
         }
         guard let parser = XMLParser(contentsOf: url) else {
-            //print("XMLParser(contentsOf: \(url)")
+            // print("XMLParser(contentsOf: \(url)")
             return
         }
         parser.delegate = self
