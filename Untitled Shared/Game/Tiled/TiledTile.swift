@@ -11,7 +11,7 @@ import SpriteKit
 class TiledTile: SKSpriteNode {
 
     init(texture: SKTexture, x: Int, y: Int) {
-        super.init(texture: texture, color: SKColor.white, size: texture.size())
+        super.init(texture: texture, color: .white, size: texture.size())
         self.position = TiledTile.position(x: x, y: y)
     }
         

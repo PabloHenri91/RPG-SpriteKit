@@ -31,12 +31,10 @@ class TiledMap: SKNode, XMLParserDelegate {
         self.addChild(SKLabelNode(text: "\(Int(x)) \(Int(y))"))
         self.position.x = TiledMap.size.width * x
         self.position.y = TiledMap.size.height * y
-        guard let url = Bundle.main.url(forResource: filename, withExtension: "tmx") else {
-            // print("Bundle.main.url(forResource: \(filename), withExtension: \"tmx\"))")
+        guard let url = self.url(forResource: filename) else {
             return
         }
         guard let parser = XMLParser(contentsOf: url) else {
-            // print("XMLParser(contentsOf: \(url)")
             return
         }
         parser.delegate = self
@@ -45,6 +43,14 @@ class TiledMap: SKNode, XMLParserDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func url(forResource name: String?) -> URL? {
+        var url = Bundle.main.url(forResource: name, withExtension: "tmx")
+        if url == nil {
+            url = Bundle.main.url(forResource: "default", withExtension: "tmx")
+        }
+        return url
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
