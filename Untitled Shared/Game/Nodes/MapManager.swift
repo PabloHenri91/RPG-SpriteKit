@@ -69,8 +69,11 @@ class MapManager: SKNode {
     }
     
     func updatePlayerRegion(position: CGPoint) {
-        self.playerRegion.x = position.x / TiledMap.size.width
-        self.playerRegion.y = position.y / TiledMap.size.height
+        guard let tiledMap = TiledMap.current else {
+            return
+        }
+        self.playerRegion.x = position.x / tiledMap.size.width
+        self.playerRegion.y = position.y / tiledMap.size.height
     }
     
     func loadMap() {

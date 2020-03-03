@@ -44,14 +44,20 @@ class BaseCharacter: SKSpriteNode {
     var moveD = false
     var moveW = false
     
+    var tileWidth: CGFloat = 0
+    var tileHeight: CGFloat = 0
+    
     init(textureName: String = "Player0") {
         
-        let texture = SKTexture(imageNamed: textureName)
-        texture.filteringMode = GameScene.defaultFilteringMode
+        let texture = SKTexture(imageNamed: textureName, filteringMode: GameScene.defaultFilteringMode)
         
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         
-        self.position = CGPoint(x: TiledMap.tileWidth/2, y:TiledMap.tileHeight/2)
+        if let tiledMap = TiledMap.current {
+            self.tileWidth = tiledMap.tileWidth
+            self.tileHeight = tiledMap.tileHeight
+        }
+        self.position = CGPoint(x: self.tileWidth/2, y:self.tileHeight/2)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         
         self.loadActions()
@@ -68,13 +74,13 @@ class BaseCharacter: SKSpriteNode {
     func loadActions() {
         
         let speed: Double = 128
-        let distance: Double = Double(TiledMap.tileWidth)
+        let distance: Double = Double(self.tileWidth)
         
         let moveActionDuration: TimeInterval = distance/speed
         
         self.actionMoveA = SKAction.group([
             SKAction.sequence([
-                SKAction.moveBy(x: -1 * TiledMap.tileWidth, y: 0, duration: moveActionDuration),
+                SKAction.moveBy(x: -1 * self.tileWidth, y: 0, duration: moveActionDuration),
                 SKAction.run { [weak self] in
                     self?.isMoving = false
                 }
@@ -83,7 +89,7 @@ class BaseCharacter: SKSpriteNode {
         
         self.actionMoveS = SKAction.group([
             SKAction.sequence([
-                SKAction.moveBy(x: 0, y: -1 * TiledMap.tileHeight, duration: moveActionDuration),
+                SKAction.moveBy(x: 0, y: -1 * self.tileHeight, duration: moveActionDuration),
                 SKAction.run { [weak self] in
                     self?.isMoving = false
                 }
@@ -92,7 +98,7 @@ class BaseCharacter: SKSpriteNode {
         
         self.actionMoveD = SKAction.group([
             SKAction.sequence([
-                SKAction.moveBy(x: 1 * TiledMap.tileWidth, y: 0, duration: moveActionDuration),
+                SKAction.moveBy(x: 1 * self.tileWidth, y: 0, duration: moveActionDuration),
                 SKAction.run { [weak self] in
                     self?.isMoving = false
                 }
@@ -101,7 +107,7 @@ class BaseCharacter: SKSpriteNode {
         
         self.actionMoveW = SKAction.group([
             SKAction.sequence([
-                SKAction.moveBy(x: 0, y: 1 * TiledMap.tileHeight, duration: moveActionDuration),
+                SKAction.moveBy(x: 0, y: 1 * self.tileHeight, duration: moveActionDuration),
                 SKAction.run { [weak self] in
                     self?.isMoving = false
                 }
@@ -137,25 +143,25 @@ class BaseCharacter: SKSpriteNode {
                     
                     let delta = node.position - self.position
                     
-                    if delta.x > TiledMap.tileWidth/2 {
+                    if delta.x > self.tileWidth/2 {
                         if moveDirectionX > 0 {
                             moveDirectionX = 0
                         }
                     }
                     
-                    if delta.x < -TiledMap.tileWidth/2 {
+                    if delta.x < -self.tileWidth/2 {
                         if moveDirectionX < 0 {
                             moveDirectionX = 0
                         }
                     }
                     
-                    if delta.y > TiledMap.tileHeight/2 {
+                    if delta.y > self.tileHeight/2 {
                         if moveDirectionY > 0 {
                             moveDirectionY = 0
                         }
                     }
                     
-                    if delta.y < -TiledMap.tileHeight/2 {
+                    if delta.y < -self.tileHeight/2 {
                         if moveDirectionY < 0 {
                             moveDirectionY = 0
                         }
