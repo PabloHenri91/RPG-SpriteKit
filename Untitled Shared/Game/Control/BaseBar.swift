@@ -16,11 +16,13 @@ enum BarType {
 class BaseBar: SKSpriteNode {
 
     let bar: SKSpriteNode
+    let barMaxWidth: CGFloat
     
     init(imageNamed: String) {
         let backgroundTexture = SKTexture(imageNamed: "statusBarItemBackground")
         let texture = SKTexture(imageNamed: imageNamed)
         self.bar = SKSpriteNode(texture: texture, color: .white, size: texture.size())
+        self.barMaxWidth = self.bar.size.width
         super.init(texture: backgroundTexture, color: .white, size: backgroundTexture.size())
         self.anchorPoint = CGPoint(x: 0, y: 1)
         
@@ -33,8 +35,10 @@ class BaseBar: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(with value: Float) {
-        self.bar.size.width += CGFloat(value)
+    func update(with value: CGFloat, from maxValue: CGFloat) {
+        let maxBarWidth = self.barMaxWidth
+        let factor = (value / maxValue)
+        self.bar.size.width = (factor * maxBarWidth)
     }
     
 }

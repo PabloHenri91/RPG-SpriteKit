@@ -12,10 +12,10 @@ class BaseCharacter: SKSpriteNode {
     
     var statusBar: StatusBar!
     
-    var maxHealth: Float = 0
-    var maxMana: Float = 0
-    var mana: Float = 0
-    var health: Float = 0
+    var maxHealth: CGFloat = 0
+    var maxMana: CGFloat = 0
+    var mana: CGFloat = 0
+    var health: CGFloat = 0
     
     var level = 1
     
@@ -211,12 +211,18 @@ class BaseCharacter: SKSpriteNode {
         print("died")
     }
     
-    func updateHealth(with value: Float) {
+    func updateMana(with value: CGFloat) {
+        self.mana += value
+        self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
+    }
+    
+    func updateHealth(with value: CGFloat) {
         self.health += value
+        
+        self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
         
         if health <= 0 {
             return self.die()
         }
-        self.statusBar.healthBar.update(with: value)
     }
 }

@@ -12,11 +12,11 @@ class Player: BaseCharacter {
 
     init() {
         super.init(textureName: "Player0")
-        self.maxMana = 100
-        self.mana = 100
+        self.maxMana = 300
+        self.mana = 300
         
-        self.maxHealth = 100
-        self.health = 100
+        self.maxHealth = 500
+        self.health = 500
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -90,6 +90,6 @@ class Player: BaseCharacter {
     }
     
     override func keyDown(with event: NSEvent) {
-        self.updateHealth(with: -10)
+        self.updateHealth(with: -20)
     }
 }
