@@ -8,13 +8,10 @@
 
 import SpriteKit
 
-class ManaBar: SKSpriteNode {
-    
+class ManaBar: BaseBar {
     init() {
-        let texture = SKTexture(imageNamed: "statusBarItemBackground")
-        super.init(texture: texture, color: .white, size: texture.size())
+        super.init(imageNamed: "manaBar")
         self.position = CGPoint(x: 28, y: -13)
-        self.anchorPoint = CGPoint(x: 0, y: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

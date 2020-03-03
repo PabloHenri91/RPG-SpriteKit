@@ -9,9 +9,14 @@
 import SpriteKit
 
 class Player: BaseCharacter {
-    
+
     init() {
         super.init(textureName: "Player0")
+        self.maxMana = 100
+        self.mana = 100
+        
+        self.maxHealth = 100
+        self.health = 100
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,5 +79,9 @@ class Player: BaseCharacter {
                 self.destination = touchLocation
             }
         }
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        self.updateHealth(with: -10)
     }
 }

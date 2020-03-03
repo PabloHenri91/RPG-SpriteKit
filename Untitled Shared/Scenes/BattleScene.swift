@@ -47,9 +47,9 @@ class BattleScene: GameScene {
         
         self.loadGameWorld()
         self.loadMapManager(gameWorld: self.gameWorld)
-        self.loadPlayer(gameWorld: self.gameWorld)
-        self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
         self.loadStatusBar()
+        self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)
+        self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
         self.nextState = .battle
     }
     
@@ -67,8 +67,9 @@ class BattleScene: GameScene {
         self.gameCamera = gameCamera
     }
     
-    func loadPlayer(gameWorld: GameWorld) {
+    func loadPlayer(gameWorld: GameWorld, statusBar: StatusBar) {
         let player = Player()
+        player.statusBar = statusBar
         gameWorld.addChild(player)
         self.player = player;
     }
@@ -154,5 +155,9 @@ class BattleScene: GameScene {
     override func updateSize() {
         super.updateSize()
         self.gameCamera.update()
+    }
+    
+    override func keyDown(with event: NSEvent) {
+        self.player.keyDown(with: event)
     }
 }

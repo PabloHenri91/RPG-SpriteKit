@@ -104,6 +104,8 @@
 		84B7EEE523FDD29A00DD1CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEE323FDD29A00DD1CE5 /* Main.storyboard */; };
 		84B7EEED23FDD29A00DD1CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */; };
 		84B7EEEE23FDD29A00DD1CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */; };
+		D9068529240D606F0026EB80 /* BaseBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9068528240D606F0026EB80 /* BaseBar.swift */; };
+		D906852A240D606F0026EB80 /* BaseBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9068528240D606F0026EB80 /* BaseBar.swift */; };
 		D915DF5E24002C8B003CBBF3 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D915DF5D24002C8B003CBBF3 /* MapManager.swift */; };
 		D915DF5F24002CB2003CBBF3 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D915DF5D24002C8B003CBBF3 /* MapManager.swift */; };
 		D9643123240970E200EC6BFE /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9643122240970E200EC6BFE /* StatusBar.swift */; };
@@ -176,6 +178,7 @@
 		84B7EEE123FDD29A00DD1CE5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		84B7EEE423FDD29A00DD1CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84B7EEE623FDD29A00DD1CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9068528240D606F0026EB80 /* BaseBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBar.swift; sourceTree = "<group>"; };
 		D915DF5D24002C8B003CBBF3 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		D9643122240970E200EC6BFE /* StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
 		D96431252409738600EC6BFE /* HealthBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthBar.swift; sourceTree = "<group>"; };
@@ -413,6 +416,7 @@
 				D9643122240970E200EC6BFE /* StatusBar.swift */,
 				D96431252409738600EC6BFE /* HealthBar.swift */,
 				D96431282409756700EC6BFE /* ManaBar.swift */,
+				D9068528240D606F0026EB80 /* BaseBar.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -535,6 +539,7 @@
 				8404E83D23FDE021000112AF /* SKTTimingFunctions.swift in Sources */,
 				8404E81C23FDE01C000112AF /* ScrollNode.swift in Sources */,
 				8404E83B23FDE021000112AF /* Int+Extensions.swift in Sources */,
+				D9068529240D606F0026EB80 /* BaseBar.swift in Sources */,
 				8404E82223FDE01C000112AF /* GameColors.swift in Sources */,
 				8404E82623FDE01C000112AF /* ServerManager.swift in Sources */,
 				8404E83923FDE021000112AF /* CGVector+Extensions.swift in Sources */,
@@ -592,6 +597,7 @@
 				8404E83E23FDE021000112AF /* SKTTimingFunctions.swift in Sources */,
 				8404E81D23FDE01C000112AF /* ScrollNode.swift in Sources */,
 				8404E83C23FDE021000112AF /* Int+Extensions.swift in Sources */,
+				D906852A240D606F0026EB80 /* BaseBar.swift in Sources */,
 				8404E82323FDE01C000112AF /* GameColors.swift in Sources */,
 				8404E82723FDE01C000112AF /* ServerManager.swift in Sources */,
 				8404E83A23FDE021000112AF /* CGVector+Extensions.swift in Sources */,

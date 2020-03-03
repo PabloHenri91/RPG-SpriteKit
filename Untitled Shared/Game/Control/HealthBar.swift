@@ -8,13 +8,11 @@
 
 import SpriteKit
 
-class HealthBar: SKSpriteNode {
+class HealthBar: BaseBar {
 
     init() {
-        let texture = SKTexture(imageNamed: "statusBarItemBackground")
-        super.init(texture: texture, color: .white, size: texture.size())
+        super.init(imageNamed: "healthBar")
         self.position = CGPoint(x: 28, y: -4)
-        self.anchorPoint = CGPoint(x: 0, y: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {

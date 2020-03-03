@@ -10,6 +10,13 @@ import SpriteKit
 
 class BaseCharacter: SKSpriteNode {
     
+    var statusBar: StatusBar!
+    
+    var maxHealth: Float = 0
+    var maxMana: Float = 0
+    var mana: Float = 0
+    var health: Float = 0
+    
     var level = 1
     
     // Movement
@@ -192,5 +199,18 @@ class BaseCharacter: SKSpriteNode {
                 }
             }
         }
+    }
+    
+    func die() {
+        print("died")
+    }
+    
+    func updateHealth(with value: Float) {
+        self.health += value
+        
+        if health <= 0 {
+            return self.die()
+        }
+        self.statusBar.healthBar.update(with: value)
     }
 }
