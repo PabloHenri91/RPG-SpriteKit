@@ -12,9 +12,9 @@ class Tileset: SKSpriteNode {
 
     private var tileWidth: CGFloat = 0
     private var tileHeight: CGFloat = 0
-    private var columns: Int = 0
-    private var rows: Int = 0
-    private var tilecount: Int = 0
+    private var columns = 0
+    private var rows = 0
+    private var tilecount = 0
     
     var tileTextures = [SKTexture]()
     
@@ -28,9 +28,9 @@ class Tileset: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
-    func load(tileWidth: Int, tileHeight: Int) {
-        self.tileWidth = CGFloat(tileWidth)
-        self.tileHeight = CGFloat(tileHeight)
+    func load(tileWidth: CGFloat, tileHeight: CGFloat) {
+        self.tileWidth = tileWidth
+        self.tileHeight = tileHeight
         
         self.columns = Int(self.size.width / self.tileWidth)
         self.rows = Int(self.size.height / self.tileHeight)

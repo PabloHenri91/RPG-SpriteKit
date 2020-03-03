@@ -11,7 +11,7 @@ import SpriteKit
 class HealthBar: SKSpriteNode {
 
     init() {
-        let texture = SKTexture(imageNamed: "statusBarItemBackground")
+        let texture = SKTexture(imageNamed: "statusBarItemBackground", filteringMode: GameScene.defaultFilteringMode)
         super.init(texture: texture, color: .white, size: texture.size())
         self.position = CGPoint(x: 28, y: -4)
         self.anchorPoint = CGPoint(x: 0, y: 1)

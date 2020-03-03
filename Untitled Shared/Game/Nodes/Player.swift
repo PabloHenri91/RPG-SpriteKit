@@ -23,6 +23,10 @@ class Player: BaseCharacter {
     }
     
     override func move() {
+        guard let tiledMap = TiledMap.current else {
+            return
+        }
+        
         if let destination = self.destination {
             
             self.moveA = false
@@ -35,7 +39,7 @@ class Player: BaseCharacter {
             } else {
                 let delta = destination - self.position
                 
-                if abs(delta.x) > TiledMap.tileWidth/2 {
+                if abs(delta.x) > tiledMap.tileWidth/2 {
                     if delta.x > 0 {
                         self.moveD = true
                     } else {
@@ -43,7 +47,7 @@ class Player: BaseCharacter {
                     }
                 }
                 
-                if abs(delta.y) > TiledMap.tileHeight/2 {
+                if abs(delta.y) > tiledMap.tileHeight/2 {
                     if delta.y > 0 {
                         self.moveW = true
                     } else {
@@ -56,6 +60,10 @@ class Player: BaseCharacter {
         super.move()
     }
     func touchDown(touch: UITouch) {
+        guard let TiledMap = TiledMap.current else {
+            return
+        }
+        
         if let parent = self.parent {
             var touchLocation = touch.location(in: parent)
             
