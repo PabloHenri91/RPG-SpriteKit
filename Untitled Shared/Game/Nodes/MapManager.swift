@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class MapManager: SKNode {
+class MapManager: NSObject {
     
     var lastUpdate: TimeInterval = 0
     var loading = false
@@ -19,18 +19,12 @@ class MapManager: SKNode {
     var chunks = [TiledMap]()
     
     var mapType = "world"
- 
-    override init() {
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     func reload() {
         
-        self.removeAllChildren()
+        for chunk in self.chunks {
+            chunk.destroy()
+        }
         
         for y in [self.playerRegion.y - 1, self.playerRegion.y, self.playerRegion.y + 1] {
             for x in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
@@ -41,12 +35,15 @@ class MapManager: SKNode {
         }
         
         self.addTiledMaps();
+        
+        self.loadedRegion = self.playerRegion
     }
     
     func addTiledMaps() {
+        guard let gameWorld = GameWorld.current else { return }
         for chunk in self.chunks {
             if chunk.parent == nil {
-                self.addChild(chunk)
+                gameWorld.addChild(chunk)
             }
         }
     }
@@ -69,11 +66,11 @@ class MapManager: SKNode {
     }
     
     func updatePlayerRegion(position: CGPoint) {
-        guard let tiledMap = TiledMap.current else {
+        guard let map = TiledMap.current else {
             return
         }
-        self.playerRegion.x = position.x / tiledMap.size.width
-        self.playerRegion.y = position.y / tiledMap.size.height
+        self.playerRegion.x = (position.x / map.size.width).rounded()
+        self.playerRegion.y = (position.y / map.size.height).rounded()
     }
     
     func loadMap() {
@@ -104,9 +101,9 @@ class MapManager: SKNode {
     }
     
     func loadA() {
-        self.chunks[2].removeFromParent();
-        self.chunks[5].removeFromParent();
-        self.chunks[8].removeFromParent();
+        self.chunks[2].destroy();
+        self.chunks[5].destroy();
+        self.chunks[8].destroy();
 
         self.chunks[2] = self.chunks[1];
         self.chunks[5] = self.chunks[4];
@@ -116,17 +113,17 @@ class MapManager: SKNode {
         self.chunks[4] = self.chunks[3];
         self.chunks[7] = self.chunks[6];
 
-        self.chunks[0] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y - 1);
-        self.chunks[3] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 0);
-        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 1);
+        self.chunks[0] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y - 1)
+        self.chunks[3] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 0)
+        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: loadedRegion.y + 1)
 
         self.addTiledMaps();
     }
     
     func loadS() {
-        self.chunks[0].removeFromParent();
-        self.chunks[1].removeFromParent();
-        self.chunks[2].removeFromParent();
+        self.chunks[0].destroy();
+        self.chunks[1].destroy();
+        self.chunks[2].destroy();
 
         self.chunks[0] = self.chunks[3];
         self.chunks[1] = self.chunks[4];
@@ -136,18 +133,50 @@ class MapManager: SKNode {
         self.chunks[4] = self.chunks[7];
         self.chunks[5] = self.chunks[8];
 
-        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", x: loadedRegion.x - 1, y: loadedRegion.y + 1);
-        self.chunks[7] = TiledMap(fileNamed: "\(self.mapType)", x: loadedRegion.x + 0, y: loadedRegion.y + 1);
-        self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", x: loadedRegion.x + 1, y: loadedRegion.y + 1);
+        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: self.loadedRegion.y + 1)
+        self.chunks[7] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 0, y: self.loadedRegion.y + 1)
+        self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 1, y: self.loadedRegion.y + 1)
 
         self.addTiledMaps();
     }
     
     func loadD() {
+        self.chunks[0].destroy()
+        self.chunks[3].destroy()
+        self.chunks[6].destroy()
         
+        self.chunks[0] = self.chunks[1]
+        self.chunks[3] = self.chunks[4]
+        self.chunks[6] = self.chunks[7]
+        
+        self.chunks[1] = self.chunks[2]
+        self.chunks[4] = self.chunks[5]
+        self.chunks[7] = self.chunks[8]
+        
+        self.chunks[2] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 1, y: self.loadedRegion.y + 1)
+        self.chunks[5] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 1, y: self.loadedRegion.y + 0)
+        self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 1, y: self.loadedRegion.y - 1)
+        
+        self.addTiledMaps()
     }
     
     func loadW() {
+        self.chunks[6].destroy()
+        self.chunks[7].destroy()
+        self.chunks[8].destroy()
         
+        self.chunks[6] = self.chunks[3]
+        self.chunks[7] = self.chunks[4]
+        self.chunks[8] = self.chunks[5]
+        
+        self.chunks[3] = self.chunks[0]
+        self.chunks[4] = self.chunks[1]
+        self.chunks[5] = self.chunks[2]
+        
+        self.chunks[0] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x - 1, y: self.loadedRegion.y + 1)
+        self.chunks[1] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 0, y: self.loadedRegion.y + 1)
+        self.chunks[2] = TiledMap(fileNamed: "\(self.mapType)", x: self.loadedRegion.x + 1, y: self.loadedRegion.y + 1)
+        
+        self.addTiledMaps()
     }
 }

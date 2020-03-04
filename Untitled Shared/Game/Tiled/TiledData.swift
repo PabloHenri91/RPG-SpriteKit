@@ -10,4 +10,6 @@ import SpriteKit
 
 class TiledData: NSObject {
 
+    var encoding = ""
+    var compression = ""
 }

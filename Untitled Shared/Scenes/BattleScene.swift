@@ -15,6 +15,8 @@ class BattleScene: GameScene {
     weak var player: Player!
     weak var statusBar: StatusBar!
     
+    var mapManager: MapManager!
+    
     enum state: String {
         
         case loading
@@ -36,20 +38,24 @@ class BattleScene: GameScene {
     var battleBeginTime: Double = 0
     var maxBattleDuration: Double = 60 * 3
     
+    enum zPositionType: CGFloat {
+        case player = 1000
+    }
+    
     override func load() {
         super.load()
         
         let playerData = MemoryCard.sharedInstance.playerData!
         playerData.points = playerData.points + 1
-        print(playerData.points)
         
         self.backgroundColor = GameColors.backgroundColor
         
         self.loadGameWorld()
-        self.loadMapManager(gameWorld: self.gameWorld)
+        self.loadMapManager()
         self.loadStatusBar()
         self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)
         self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
+        
         self.nextState = .battle
     }
     
@@ -69,6 +75,7 @@ class BattleScene: GameScene {
     
     func loadPlayer(gameWorld: GameWorld, statusBar: StatusBar) {
         let player = Player()
+        player.zPosition = BattleScene.zPositionType.player.rawValue
         player.statusBar = statusBar
         gameWorld.addChild(player)
         self.player = player;
@@ -80,10 +87,10 @@ class BattleScene: GameScene {
         self.statusBar = statusBar
     }
     
-    func loadMapManager(gameWorld: GameWorld) {
+    func loadMapManager() {
         let mapManager = MapManager()
-        gameWorld.addChild(mapManager)
         mapManager.reload()
+        self.mapManager = mapManager
     }
     
     override func touchDown(touch: UITouch) {
@@ -99,6 +106,7 @@ class BattleScene: GameScene {
                 break
             case .battle:
                 self.gameCamera.update(useLerp: true)
+                self.mapManager.update(position: self.player.position)
                 break
             case .battleEnd:
                 break

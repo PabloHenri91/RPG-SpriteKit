@@ -20,10 +20,10 @@ class TiledTile: SKSpriteNode {
     }
     
     static func position(x: Int, y: Int) -> CGPoint {
-        guard let tiledMap = TiledMap.current  else {
+        guard let map = TiledMap.current  else {
             return .zero
         }
-        return CGPoint(x: x * Int(tiledMap.tileWidth) - Int(tiledMap.size.width)/2 + Int(tiledMap.tileWidth/2),
-                       y: -y * Int(tiledMap.tileHeight) + Int(tiledMap.size.height)/2 - Int(tiledMap.tileHeight/2))
+        return CGPoint(x: x * Int(map.tileWidth) - Int(map.size.width)/2 + Int(map.tileWidth/2),
+                       y: -y * Int(map.tileHeight) + Int(map.size.height)/2 - Int(map.tileHeight/2))
     }
 }

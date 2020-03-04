@@ -8,6 +8,8 @@
 
 import SpriteKit
 
-class TiledObjectGroup: SKNode {
-
+class TiledObjectGroup: NSObject {
+    
+    var id = ""
+    var name = ""
 }

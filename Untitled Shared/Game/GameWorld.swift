@@ -10,16 +10,13 @@ import SpriteKit
 
 class GameWorld: SKNode, SKPhysicsContactDelegate {
 
-    static func current() -> GameWorld? {
-        return GameWorld.lastInstance
-    }
-    private static weak var lastInstance: GameWorld? = nil
+    static weak var current: GameWorld?
     
     init(physicsWorld: SKPhysicsWorld) {
         super.init()
         physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         physicsWorld.contactDelegate = self
-        GameWorld.lastInstance = self
+        GameWorld.current = self
     }
     
     required init?(coder aDecoder: NSCoder) {

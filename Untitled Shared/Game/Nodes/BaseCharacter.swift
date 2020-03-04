@@ -53,9 +53,9 @@ class BaseCharacter: SKSpriteNode {
         
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         
-        if let tiledMap = TiledMap.current {
-            self.tileWidth = tiledMap.tileWidth
-            self.tileHeight = tiledMap.tileHeight
+        if let map = TiledMap.current {
+            self.tileWidth = map.tileWidth
+            self.tileHeight = map.tileHeight
         }
         self.position = CGPoint(x: self.tileWidth/2, y:self.tileHeight/2)
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)

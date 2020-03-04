@@ -10,6 +10,12 @@ import SpriteKit
 
 class TiledMap: SKNode, XMLParserDelegate {
     
+    internal enum CompressionType: String {
+        case uncompressed
+        case zlib
+        case gzip
+    }
+    
     var version = ""
     var tiledVersion = ""
     var orientation = ""
@@ -30,13 +36,17 @@ class TiledMap: SKNode, XMLParserDelegate {
         }
     }
     
-    var layerName = ""
-    
-    var tilesets = [Tileset]()
+    var tilesetList = [Tileset]()
+    var layerList = [TiledLayer]()
+    var objectGroupList = [TiledObjectGroup]()
+    var tiledData = TiledData()
     
     static var current: TiledMap?
     
+    var fileName = ""
+    
     init(fileNamed filename: String, x: CGFloat, y: CGFloat) {
+        self.fileName = "\(x) \(y)"
         super.init()
         guard let url = self.url(forResource: filename) else {
             return
@@ -49,10 +59,16 @@ class TiledMap: SKNode, XMLParserDelegate {
         parser.parse()
         self.position.x = self.size.width * x
         self.position.y = self.size.height * y
+        print("init: \(self.fileName)")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func destroy() {
+        print("destroy: \(self.fileName)")
+        super.destroy()
     }
     
     func url(forResource name: String?) -> URL? {
@@ -108,6 +124,29 @@ class TiledMap: SKNode, XMLParserDelegate {
         return tileset
     }
     
+    func loadLayer(attributeDict: [String : String]) -> TiledLayer {
+        let layer = TiledLayer()
+        layer.id = self.string(key: "id", from: attributeDict)
+        layer.name = self.string(key: "name", from: attributeDict)
+        layer.width = self.float(key: "width", from: attributeDict)
+        layer.height = self.float(key: "height", from: attributeDict)
+        return layer
+    }
+    
+    func loadData(attributeDict: [String : String]) -> TiledData {
+        let tiledData = TiledData()
+        tiledData.encoding = self.string(key: "encoding", from: attributeDict)
+        tiledData.compression = self.string(key: "compression", from: attributeDict)
+        return tiledData
+    }
+    
+    func loadObjectGroup(attributeDict: [String : String]) -> TiledObjectGroup {
+        let objectGroup = TiledObjectGroup()
+        objectGroup.id = self.string(key: "id", from: attributeDict)
+        objectGroup.name = self.string(key: "name", from: attributeDict)
+        return objectGroup
+    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 
         switch elementName {
@@ -116,26 +155,25 @@ class TiledMap: SKNode, XMLParserDelegate {
             break
         case "tileset":
             let tileset = self.loadTileset(attributeDict: attributeDict)
-            self.tilesets.append(tileset)
+            self.tilesetList.append(tileset)
             break
         case "image":
             break
-        case "terraintypes":
-            break
-        case "terrain":
-            break
-        case "tile":
-            break
         case "layer":
-            self.layerName = self.string(key: "name", from: attributeDict)
+            let layer = self.loadLayer(attributeDict: attributeDict)
+            self.layerList.append(layer)
             break
         case "data":
+            let tiledData = self.loadData(attributeDict: attributeDict)
+            self.tiledData = tiledData
             break
-        case "object":
+        case "objectgroup":
+            let objectGroup = self.loadObjectGroup(attributeDict: attributeDict)
+            self.objectGroupList.append(objectGroup)
             break
         default:
-            print("elementName: \(elementName)")
-            print("attributeDict: \(attributeDict)\n")
+            // print("elementName: \(elementName)")
+            // print("attributeDict: \(attributeDict)\n")
             break
         }
         
@@ -143,37 +181,113 @@ class TiledMap: SKNode, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let string = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        if string.isEmpty == false {
-            self.loadLayer(data: string.components(separatedBy: ","))
+        if string.isEmpty {
+            return
         }
+        
+        var idList = [Int]()
+        let encoding = self.tiledData.encoding
+        
+        switch encoding {
+        case "csv":
+            idList = self.decode(csvString: string)
+            break
+        case "base64":
+            idList = self.decode(base64String: string, compression: self.tiledData.compression)
+            break
+        default:
+            break
+        }
+        
+        if idList.count > 0 {
+            self.loadLayer(idList: idList)
+        }
+    }
+    
+    func decode(csvString text: String) -> [Int] {
+        return text.scrub().components(separatedBy: ",").map { Int($0) ?? 0 }
+    }
+    
+    func decode(base64String text: String, compression: String = "") -> [Int] {
+
+        guard let decodedData = Data(base64Encoded: text, options: .ignoreUnknownCharacters) else {
+            return []
+        }
+
+        switch compression {
+        case "zlib", "gzip":
+            if let decompressed = try? decodedData.gunzipped() {
+                return decompressed.toArray(type: UInt32.self).map { Int($0) }
+            }
+        case "zstd":
+            fatalError("zstd has not been implemented")
+        default:
+            return decodedData.toArray(type: UInt32.self).map { Int($0) }
+        }
+        
+        return []
     }
     
     func parserDidEndDocument(_ parser: XMLParser) {
         parser.delegate = nil
     }
     
-    func loadLayer(data: [String]) {
-        guard let tiledMap = TiledMap.current else {
+    func loadLayer(idList: [Int]) {
+        guard let map = TiledMap.current else {
             return
         }
         
-        var i = data.makeIterator()
-        for y in 0..<Int(tiledMap.height) {
-            for x in 0..<Int(tiledMap.width) {
-                guard let id = Int(i.next()?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) ?? "") else { continue }
+        var i = idList.makeIterator()
+        for y in 0..<Int(map.height) {
+            for x in 0..<Int(map.width) {
+                let id = Int(i.next() ?? 0)
                 guard id != 0 else { continue }
                 var tilecount = 0
-                for tileset in self.tilesets {
+                for tileset in self.tilesetList {
                     let lastTilecount = tilecount
                     tilecount = tilecount + tileset.tileTextures.count
                     
                     if id > lastTilecount && id <= tilecount {
                         let texture = tileset.tileTextures[id - lastTilecount - 1]
-                        self.addChild(TiledTile(texture: texture, x: x, y: y))
+                        self.addTile(id: id, texture: texture, x: x, y: y)
                         break
                     }
                 }
             }
+        }
+    }
+    
+    func addTile(id: Int, texture: SKTexture, x: Int, y: Int) {
+        self.addChild(TiledTile(texture: texture, x: x, y: y))
+    }
+}
+
+public extension Data {
+    
+    init<T>(from value: T) {
+        var value = value
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+    
+    func to<T>(type: T.Type) -> T {
+        return self.withUnsafeBytes { (unsafeRawBufferPointer) in
+            let unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: T.self)
+            let unsafePointer = unsafeBufferPointer.baseAddress!
+            let pointee = unsafePointer.pointee
+            return pointee
+        }
+    }
+    
+    init<T>(fromArray values: [T]) {
+        var values = values
+        self.init(buffer: UnsafeBufferPointer(start: &values, count: values.count))
+    }
+    
+    func toArray<T>(type: T.Type) -> [T] {
+        return self.withUnsafeBytes { (unsafeRawBufferPointer) in
+            let unsafeBufferPointer = unsafeRawBufferPointer.bindMemory(to: T.self)
+            let unsafePointer = unsafeBufferPointer.baseAddress
+            return [T](UnsafeBufferPointer(start: unsafePointer, count: self.count / MemoryLayout<T>.stride))
         }
     }
 }
