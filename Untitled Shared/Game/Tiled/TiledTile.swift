@@ -23,7 +23,6 @@ class TiledTile: SKSpriteNode {
         guard let map = TiledMap.current  else {
             return .zero
         }
-        return CGPoint(x: x * Int(map.tileWidth) - Int(map.size.width)/2 + Int(map.tileWidth/2),
-                       y: -y * Int(map.tileHeight) + Int(map.size.height)/2 - Int(map.tileHeight/2))
+        return CGPoint(x: x * Int(map.tileWidth), y: -y * Int(map.tileHeight))
     }
 }

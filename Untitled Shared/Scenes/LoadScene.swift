@@ -36,7 +36,11 @@ class LoadScene: GameScene {
         
         self.addChild(Label(text: "TOUCH TO START", x: 187, y: 620, horizontalAlignment: .center, verticalAlignment: .center))
         
-        self.view?.presentScene(BattleScene())
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil {
+            self.view?.presentScene(BattleScene())
+        }
+        #endif
     }
     
     override func touchUp(touch: UITouch) {

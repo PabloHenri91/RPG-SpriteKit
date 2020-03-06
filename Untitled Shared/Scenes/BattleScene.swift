@@ -51,10 +51,12 @@ class BattleScene: GameScene {
         self.backgroundColor = GameColors.backgroundColor
         
         self.loadGameWorld()
-        self.loadMapManager()
         self.loadStatusBar()
         self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)
+        self.loadMapManager(player: self.player)
         self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
+        
+        self.configurePlayer(mapManager: self.mapManager)
         
         self.nextState = .battle
     }
@@ -81,15 +83,19 @@ class BattleScene: GameScene {
         self.player = player;
     }
     
+    func configurePlayer(mapManager: MapManager) {
+        self.player.configure(mapManager: mapManager)
+    }
+    
     func loadStatusBar() {
         let statusBar = StatusBar()
         self.addChild(statusBar)
         self.statusBar = statusBar
     }
     
-    func loadMapManager() {
+    func loadMapManager(player: Player) {
         let mapManager = MapManager()
-        mapManager.reload()
+        mapManager.reload(position: player.position)
         self.mapManager = mapManager
     }
     

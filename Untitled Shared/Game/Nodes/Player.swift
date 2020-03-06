@@ -64,6 +64,7 @@ class Player: BaseCharacter {
         
         super.move()
     }
+    
     func touchDown(touch: UITouch) {
         guard let TiledMap = TiledMap.current else {
             return
@@ -81,8 +82,8 @@ class Player: BaseCharacter {
                 self.destination = nil
             } else {
                 touchLocation = CGPoint(
-                    x: ((touchLocation.x - TiledMap.tileWidth/2) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth + TiledMap.tileWidth/2,
-                    y: ((touchLocation.y - TiledMap.tileHeight/2) / TiledMap.tileHeight).rounded() * TiledMap.tileHeight + TiledMap.tileHeight/2)
+                    x: ((touchLocation.x) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth,
+                    y: ((touchLocation.y) / TiledMap.tileHeight).rounded() * TiledMap.tileHeight)
                 
                 self.destination = touchLocation
             }

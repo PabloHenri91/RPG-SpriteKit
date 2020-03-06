@@ -41,12 +41,13 @@ class TiledMap: SKNode, XMLParserDelegate {
     var objectGroupList = [TiledObjectGroup]()
     var tiledData = TiledData()
     
-    static var current: TiledMap?
+    static weak var current: TiledMap?
     
     var fileName = ""
     
     init(fileNamed filename: String, x: CGFloat, y: CGFloat) {
         self.fileName = "\(x) \(y)"
+//        print(self.fileName)
         super.init()
         guard let url = self.url(forResource: filename) else {
             return
@@ -57,24 +58,27 @@ class TiledMap: SKNode, XMLParserDelegate {
         TiledMap.current = self
         parser.delegate = self
         parser.parse()
-        self.position.x = self.size.width * x
-        self.position.y = self.size.height * y
-        print("init: \(self.fileName)")
+        self.position = CGPoint(x: self.size.width * x - self.size.width / 2 + self.tileWidth / 2,
+                                y: self.size.height * y + self.size.height / 2 - self.tileWidth / 2)
+        
+    }
+    
+    convenience init(fileNamed filename: String, position: CGPoint?) {
+        let position = position ?? .zero
+        if position == .zero {
+            
+        }
+        self.init(fileNamed: filename, x: position.x, y:position.y)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func destroy() {
-        print("destroy: \(self.fileName)")
-        super.destroy()
-    }
-    
     func url(forResource name: String?) -> URL? {
         let url = Bundle.main.url(forResource: name, withExtension: "tmx")
         if url == nil {
-            return Bundle.main.url(forResource: "default", withExtension: "tmx")
+             return Bundle.main.url(forResource: "default", withExtension: "tmx")
         }
         return url
     }
@@ -230,6 +234,9 @@ class TiledMap: SKNode, XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         parser.delegate = nil
+//        let label = Label(text: self.fileName)
+//        label.set(color: .black)
+//        self.addChild(label)
     }
     
     func loadLayer(idList: [Int]) {

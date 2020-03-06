@@ -104,6 +104,7 @@
 		84B7EEE523FDD29A00DD1CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEE323FDD29A00DD1CE5 /* Main.storyboard */; };
 		84B7EEED23FDD29A00DD1CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */; };
 		84B7EEEE23FDD29A00DD1CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */; };
+		84D9C1082411762E0089913D /* BattleSceneTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9C1072411762E0089913D /* BattleSceneTest.swift */; };
 		84EB2D85240D672C0073C97B /* default.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2D84240D672C0073C97B /* default.tmx */; };
 		84EB2D86240D672C0073C97B /* default.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 84EB2D84240D672C0073C97B /* default.tmx */; };
 		84F60DB9240EB64700E333E4 /* Data+Gzip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F60DB8240EB64700E333E4 /* Data+Gzip.swift */; };
@@ -123,6 +124,16 @@
 		D9A9CDDC2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
 		D9A9CDDD2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84D9C10A2411762E0089913D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84B7EEBE23FDD29900DD1CE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84B7EEDC23FDD29A00DD1CE5;
+			remoteInfo = "Untitled macOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6E42AD5023FE0967007F503B /* GameColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColorsExtension.swift; sourceTree = "<group>"; };
@@ -182,6 +193,9 @@
 		84B7EEE123FDD29A00DD1CE5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		84B7EEE423FDD29A00DD1CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84B7EEE623FDD29A00DD1CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84D9C1052411762E0089913D /* UntitledTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UntitledTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84D9C1072411762E0089913D /* BattleSceneTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BattleSceneTest.swift; sourceTree = "<group>"; };
+		84D9C1092411762E0089913D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84EB2D84240D672C0073C97B /* default.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = default.tmx; sourceTree = "<group>"; };
 		84F60DB8240EB64700E333E4 /* Data+Gzip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Gzip.swift"; sourceTree = "<group>"; };
 		D9068528240D606F0026EB80 /* BaseBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBar.swift; sourceTree = "<group>"; };
@@ -202,6 +216,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		84B7EEDA23FDD29A00DD1CE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D9C1022411762E0089913D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,10 +324,11 @@
 			isa = PBXGroup;
 			children = (
 				84B7EEF723FDD3C500DD1CE5 /* Frameworks */,
-				84B7EEC223FDD29900DD1CE5 /* Untitled Shared */,
+				84B7EECC23FDD29A00DD1CE5 /* Products */,
 				84B7EECD23FDD29A00DD1CE5 /* Untitled iOS */,
 				84B7EEDE23FDD29A00DD1CE5 /* Untitled macOS */,
-				84B7EECC23FDD29A00DD1CE5 /* Products */,
+				84B7EEC223FDD29900DD1CE5 /* Untitled Shared */,
+				84D9C1062411762E0089913D /* UntitledTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -330,6 +352,7 @@
 			children = (
 				84B7EECB23FDD29A00DD1CE5 /* Untitled.app */,
 				84B7EEDD23FDD29A00DD1CE5 /* Untitled.app */,
+				84D9C1052411762E0089913D /* UntitledTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -408,6 +431,15 @@
 			path = Scenes;
 			sourceTree = "<group>";
 		};
+		84D9C1062411762E0089913D /* UntitledTests */ = {
+			isa = PBXGroup;
+			children = (
+				84D9C1072411762E0089913D /* BattleSceneTest.swift */,
+				84D9C1092411762E0089913D /* Info.plist */,
+			);
+			path = UntitledTests;
+			sourceTree = "<group>";
+		};
 		D915DF5C24002C39003CBBF3 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +498,24 @@
 			productReference = 84B7EEDD23FDD29A00DD1CE5 /* Untitled.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84D9C1042411762E0089913D /* UntitledTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84D9C10E2411762E0089913D /* Build configuration list for PBXNativeTarget "UntitledTests" */;
+			buildPhases = (
+				84D9C1012411762E0089913D /* Sources */,
+				84D9C1022411762E0089913D /* Frameworks */,
+				84D9C1032411762E0089913D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84D9C10B2411762E0089913D /* PBXTargetDependency */,
+			);
+			name = UntitledTests;
+			productName = UntitledTests;
+			productReference = 84D9C1052411762E0089913D /* UntitledTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -481,6 +531,10 @@
 					};
 					84B7EEDC23FDD29A00DD1CE5 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					84D9C1042411762E0089913D = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 84B7EEDC23FDD29A00DD1CE5;
 					};
 				};
 			};
@@ -499,6 +553,7 @@
 			targets = (
 				84B7EECA23FDD29A00DD1CE5 /* Untitled iOS */,
 				84B7EEDC23FDD29A00DD1CE5 /* Untitled macOS */,
+				84D9C1042411762E0089913D /* UntitledTests */,
 			);
 		};
 /* End PBXProject section */
@@ -526,6 +581,13 @@
 				8490AD6B2406EBA000102E16 /* world_0_0.tmx in Resources */,
 				84EB2D86240D672C0073C97B /* default.tmx in Resources */,
 				84B7EEEE23FDD29A00DD1CE5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84D9C1032411762E0089913D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +712,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84D9C1012411762E0089913D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84D9C1082411762E0089913D /* BattleSceneTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84D9C10B2411762E0089913D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84B7EEDC23FDD29A00DD1CE5 /* Untitled macOS */;
+			targetProxy = 84D9C10A2411762E0089913D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		84B7EED223FDD29A00DD1CE5 /* Main.storyboard */ = {
@@ -868,6 +946,48 @@
 			};
 			name = Release;
 		};
+		84D9C10C2411762E0089913D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = UntitledTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = organizationName.UntitledTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled.app/Contents/MacOS/Untitled";
+			};
+			name = Debug;
+		};
+		84D9C10D2411762E0089913D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = UntitledTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = organizationName.UntitledTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Untitled.app/Contents/MacOS/Untitled";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -894,6 +1014,15 @@
 			buildConfigurations = (
 				84B7EEF523FDD29A00DD1CE5 /* Debug */,
 				84B7EEF623FDD29A00DD1CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84D9C10E2411762E0089913D /* Build configuration list for PBXNativeTarget "UntitledTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84D9C10C2411762E0089913D /* Debug */,
+				84D9C10D2411762E0089913D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

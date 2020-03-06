@@ -53,14 +53,16 @@ class BaseCharacter: SKSpriteNode {
         
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         
-        if let map = TiledMap.current {
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    }
+    
+    func configure(mapManager: MapManager) {
+        if let map = TiledMap.current ?? mapManager.chunks.first {
             self.tileWidth = map.tileWidth
             self.tileHeight = map.tileHeight
+            self.loadActions()
+            return
         }
-        self.position = CGPoint(x: self.tileWidth/2, y:self.tileHeight/2)
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        
-        self.loadActions()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,7 +75,7 @@ class BaseCharacter: SKSpriteNode {
     
     func loadActions() {
         
-        let speed: Double = 128
+        let speed: Double = 1280
         let distance: Double = Double(self.tileWidth)
         
         let moveActionDuration: TimeInterval = distance/speed
