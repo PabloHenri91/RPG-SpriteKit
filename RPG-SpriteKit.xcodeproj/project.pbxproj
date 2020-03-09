@@ -123,6 +123,10 @@
 		D9A9CDDB2406C93A00C9CBE0 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD82406C93900C9CBE0 /* Player.swift */; };
 		D9A9CDDC2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
 		D9A9CDDD2406C93A00C9CBE0 /* BaseCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */; };
+		D9ED735824169F55003BC3BE /* Ally.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED735724169F54003BC3BE /* Ally.swift */; };
+		D9ED735924169F55003BC3BE /* Ally.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED735724169F54003BC3BE /* Ally.swift */; };
+		D9ED735B24169F62003BC3BE /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED735A24169F62003BC3BE /* Enemy.swift */; };
+		D9ED735C24169F62003BC3BE /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9ED735A24169F62003BC3BE /* Enemy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +209,8 @@
 		D96431282409756700EC6BFE /* ManaBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaBar.swift; sourceTree = "<group>"; };
 		D9A9CDD82406C93900C9CBE0 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCharacter.swift; sourceTree = "<group>"; };
+		D9ED735724169F54003BC3BE /* Ally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ally.swift; sourceTree = "<group>"; };
+		D9ED735A24169F62003BC3BE /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +452,8 @@
 				D9A9CDD92406C93A00C9CBE0 /* BaseCharacter.swift */,
 				D9A9CDD82406C93900C9CBE0 /* Player.swift */,
 				D915DF5D24002C8B003CBBF3 /* MapManager.swift */,
+				D9ED735724169F54003BC3BE /* Ally.swift */,
+				D9ED735A24169F62003BC3BE /* Enemy.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -610,6 +618,7 @@
 				8404E84123FDE021000112AF /* SKAction+SpecialEffects.swift in Sources */,
 				84F60DB9240EB64700E333E4 /* Data+Gzip.swift in Sources */,
 				8404E83D23FDE021000112AF /* SKTTimingFunctions.swift in Sources */,
+				D9ED735824169F55003BC3BE /* Ally.swift in Sources */,
 				8404E81C23FDE01C000112AF /* ScrollNode.swift in Sources */,
 				8404E83B23FDE021000112AF /* Int+Extensions.swift in Sources */,
 				D9068529240D606F0026EB80 /* BaseBar.swift in Sources */,
@@ -629,6 +638,7 @@
 				8404E82423FDE01C000112AF /* GameScene.swift in Sources */,
 				6E42AD6123FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82823FDE01C000112AF /* Button.swift in Sources */,
+				D9ED735B24169F62003BC3BE /* Enemy.swift in Sources */,
 				8404E84D23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
 				8403527F240032550070E585 /* TiledTile.swift in Sources */,
 				8404E83723FDE021000112AF /* SKColor+Extensions.swift in Sources */,
@@ -669,6 +679,7 @@
 				8404E84223FDE021000112AF /* SKAction+SpecialEffects.swift in Sources */,
 				84F60DBA240EB64700E333E4 /* Data+Gzip.swift in Sources */,
 				8404E83E23FDE021000112AF /* SKTTimingFunctions.swift in Sources */,
+				D9ED735924169F55003BC3BE /* Ally.swift in Sources */,
 				8404E81D23FDE01C000112AF /* ScrollNode.swift in Sources */,
 				8404E83C23FDE021000112AF /* Int+Extensions.swift in Sources */,
 				D906852A240D606F0026EB80 /* BaseBar.swift in Sources */,
@@ -688,6 +699,7 @@
 				8404E82523FDE01C000112AF /* GameScene.swift in Sources */,
 				6E42AD6223FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82923FDE01C000112AF /* Button.swift in Sources */,
+				D9ED735C24169F62003BC3BE /* Enemy.swift in Sources */,
 				8404E84E23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
 				84035280240032550070E585 /* TiledTile.swift in Sources */,
 				8404E83823FDE021000112AF /* SKColor+Extensions.swift in Sources */,

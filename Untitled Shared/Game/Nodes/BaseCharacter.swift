@@ -218,15 +218,17 @@ class BaseCharacter: SKSpriteNode {
     
     func die() {
         self.dead = true
+        print("die")
     }
     
     func updateMana(with value: CGFloat) {
         guard self.dead == false else { return }
         
         self.mana += value
+        
         if mana <= 0 { mana = 0 }
         
-        self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
+        if mana >= maxMana { mana = maxMana }
     }
     
     func updateHealth(with value: CGFloat) {
@@ -234,9 +236,12 @@ class BaseCharacter: SKSpriteNode {
         
         self.health += value
         
-        self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
+        if (health >= maxHealth) {
+            health = maxHealth
+        }
         
         if health <= 0 {
+            health = 0
             return self.die()
         }
     }

@@ -10,6 +10,8 @@ import SpriteKit
 
 class Player: BaseCharacter {
 
+    static var enemyList:[Enemy] = []
+    
     init() {
         super.init(textureName: "Player0")
         self.maxMana = 300
@@ -60,6 +62,27 @@ class Player: BaseCharacter {
         super.move()
     }
     
+    func mockSpawnEnemy() {
+        let enemy = Enemy()
+        enemy.position = self.position
+        enemy.health = CGFloat.random(in: 200...500)
+        enemy.maxHealth = enemy.health
+        enemy.mana = CGFloat.random(in: 200...500)
+        enemy.maxMana = enemy.mana
+        self.parent?.addChild(enemy)
+        Player.enemyList.append(enemy)
+    }
+    
+    func touchedEnemy(on location:CGPoint) -> Enemy? {
+        for enemy in Player.enemyList {
+            if enemy.contains(location) {
+                return enemy
+            }
+        }
+        
+        return nil
+    }
+    
     func touchDown(touch: UITouch) {
         guard let TiledMap = TiledMap.current else {
             return
@@ -75,6 +98,10 @@ class Player: BaseCharacter {
             
             if self.contains(touchLocation) {
                 self.destination = nil
+            } else if (self.touchedEnemy(on: touchLocation) != nil) {
+                let enemy = self.touchedEnemy(on: touchLocation)!
+                print(enemy.health)
+                enemy.updateHealth(with: -CGFloat.random(in: 90...150))
             } else {
                 touchLocation = CGPoint(
                     x: ((touchLocation.x) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth,
@@ -85,12 +112,25 @@ class Player: BaseCharacter {
         }
     }
     
+    override func updateMana(with value: CGFloat) {
+        super.updateMana(with: value)
+        self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
+    }
+    
+    override func updateHealth(with value: CGFloat) {
+        super.updateHealth(with: value)
+        self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
+    }
+    
     override func die() {
         super.die()
     }
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
+            case 51:
+                self.mockSpawnEnemy()
+            break
         case 0, 123:
             self.moveA = true
             break
@@ -106,8 +146,5 @@ class Player: BaseCharacter {
         default:
             break
         }
-        
-        self.updateHealth(with: -20)
-        self.updateMana(with: -20)
     }
 }
