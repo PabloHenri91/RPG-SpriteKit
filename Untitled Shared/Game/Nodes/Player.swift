@@ -90,7 +90,12 @@ class Player: BaseCharacter {
         }
     }
     
+    override func die() {
+        super.die()
+    }
+    
     override func keyDown(with event: NSEvent) {
         self.updateHealth(with: -20)
+        self.updateMana(with: -20)
     }
 }
