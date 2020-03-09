@@ -34,11 +34,6 @@ class Player: BaseCharacter {
         
         if let destination = self.destination {
             
-            self.moveA = false
-            self.moveS = false
-            self.moveD = false
-            self.moveW = false
-            
             if self.position.distanceTo(destination) < 1 {
                 self.destination = nil
             } else {
@@ -95,6 +90,23 @@ class Player: BaseCharacter {
     }
     
     override func keyDown(with event: NSEvent) {
+        switch event.keyCode {
+        case 0, 123:
+            self.moveA = true
+            break
+        case 1, 125:
+            self.moveS = true
+            break
+        case 2, 124:
+            self.moveD = true
+            break
+        case 13, 126:
+            self.moveW = true
+            break
+        default:
+            break
+        }
+        
         self.updateHealth(with: -20)
         self.updateMana(with: -20)
     }
