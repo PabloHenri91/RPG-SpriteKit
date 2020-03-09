@@ -207,6 +207,11 @@ class BaseCharacter: SKSpriteNode {
                 }
             }
         }
+        
+        self.moveA = false
+        self.moveS = false
+        self.moveD = false
+        self.moveW = false
     }
     
     func die() {

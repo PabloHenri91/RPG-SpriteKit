@@ -172,6 +172,7 @@ class BattleScene: GameScene {
     }
     
     override func keyDown(with event: NSEvent) {
+        super.keyDown(with: event)
         self.player.keyDown(with: event)
     }
 }
