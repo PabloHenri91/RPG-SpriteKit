@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class BattleScene: GameScene {
+class BattleScene: GameScene, MapManagerDelegate {
     
     weak var gameWorld: GameWorld!
     weak var gameCamera: GameCamera!
@@ -94,7 +94,7 @@ class BattleScene: GameScene {
     }
     
     func loadMapManager(player: Player) {
-        let mapManager = MapManager()
+        let mapManager = MapManager(mapManagerDelegate: self)
         mapManager.reload(position: player.position)
         self.mapManager = mapManager
     }
@@ -174,5 +174,28 @@ class BattleScene: GameScene {
     override func keyDown(with event: NSEvent) {
         super.keyDown(with: event)
         self.player.keyDown(with: event)
+    }
+}
+
+extension BattleScene {
+    
+    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool {
+        var handled = true
+        switch id {
+        case 1:
+            tiledMap.addChild(TiledTile(texture: texture, x: x, y: y))
+            break
+        default:
+            handled = false
+            break
+        }
+        return handled
+    }
+    
+    func addObjectGroup(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, objectGroup: TiledObjectGroup) {
+        
+        for object in objectGroup.objectList {
+            
+        }
     }
 }

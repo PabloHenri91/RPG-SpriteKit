@@ -12,4 +12,6 @@ class TiledObjectGroup: NSObject {
     
     var id = ""
     var name = ""
+    
+    var objectList = [TiledObject]()
 }

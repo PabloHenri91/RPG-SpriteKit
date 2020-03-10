@@ -35,7 +35,7 @@ class BattleSceneTest: XCTestCase {
     }
 
     func testExample() {
-        guard let scene = self.scene else { XCTFail(); return }
+        guard let _ = self.scene else { XCTFail(); return }
         
         self.updateScene()
         

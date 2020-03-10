@@ -8,6 +8,13 @@
 
 import SpriteKit
 
-class TiledObject: SKNode {
-
+class TiledObject: NSObject {
+    
+    var id = ""
+    var name = ""
+    var type = ""
+    var x: CGFloat = 0
+    var y: CGFloat = 0
+    
+    var attributeDict = [String : String]()
 }

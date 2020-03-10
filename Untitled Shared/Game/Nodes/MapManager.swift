@@ -8,22 +8,10 @@
 
 import SpriteKit
 
-class MapManager: NSObject {
+class MapManager: NSObject, TiledMapDelegate {
     
     var lastUpdate: TimeInterval = 0
     var loading = false
-    
-    var baseRegionList = [
-        0 : CGPoint(x:-1, y: 1),
-        1 : CGPoint(x:0, y: 1),
-        2 : CGPoint(x:1, y: 1),
-        3 : CGPoint(x:-1, y: 0),
-        4 : CGPoint(x:0, y: 0),
-        5 : CGPoint(x:1, y: 0),
-        6 : CGPoint(x:-1, y:-1),
-        7 : CGPoint(x:0, y:-1),
-        8 : CGPoint(x:1, y:-1),
-    ]
     
     var loadedRegionList = [Int: CGPoint]()
     
@@ -49,6 +37,13 @@ class MapManager: NSObject {
     
     var mapType = "world"
     
+    weak var delegate: MapManagerDelegate?
+    
+    init(mapManagerDelegate: MapManagerDelegate? = nil) {
+        super.init()
+        self.delegate = mapManagerDelegate
+    }
+    
     func reload(position: CGPoint) {
         
         self.updatePlayerRegion(position: position)
@@ -62,7 +57,7 @@ class MapManager: NSObject {
         for y in [self.playerRegion.y - 1, self.playerRegion.y, self.playerRegion.y + 1] {
             for x in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
                 let filename = "\(self.mapType)"
-                let chunk = TiledMap(fileNamed: "\(filename)_\(Int(x))_\(Int(y))", position: self.loadedRegionList[i])
+                let chunk = TiledMap(fileNamed: "\(filename)_\(Int(x))_\(Int(y))", position: self.loadedRegionList[i], delegate: self)
                 i = i + 1
                 self.chunks.append(chunk)
             }
@@ -71,6 +66,17 @@ class MapManager: NSObject {
         self.addTiledMaps();
         
         self.loadedRegion = self.playerRegion
+    }
+    
+    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool {
+        if let delegate = self.delegate {
+            return delegate.addTile(self, tiledMap, id: id, texture: texture, x: x, y: y)
+        }
+        return false
+    }
+    
+    func addObjectGroup(_ tiledMap: TiledMap, objectGroup: TiledObjectGroup) {
+        self.delegate?.addObjectGroup(self, tiledMap, objectGroup: objectGroup)
     }
     
     func addTiledMaps() {
@@ -105,13 +111,8 @@ class MapManager: NSObject {
             return
         }
         
-        //if abs(position.x) > map.tileWidth {
-            self.playerRegion.x = CGFloat(Int((position.x / map.size.width).rounded()))
-        //}
-        
-        //if abs(position.y) > map.tileHeight {
-            self.playerRegion.y = CGFloat(Int((position.y / map.size.height).rounded()))
-        //}
+        self.playerRegion.x = (position.x / map.size.width).rounded()
+        self.playerRegion.y = (position.y / map.size.height).rounded()
     }
     
     func loadMap() {
@@ -142,11 +143,6 @@ class MapManager: NSObject {
     }
     
     func loadA() {
-        /*
-        0  1   2
-        3  4   5
-        6  7   8
-        */
         self.chunks[2].destroy();
         self.chunks[5].destroy();
         self.chunks[8].destroy();
@@ -167,11 +163,6 @@ class MapManager: NSObject {
     }
     
     func loadS() {
-        /*
-        0  1   2
-        3  4   5
-        6  7   8
-        */
         self.chunks[0].destroy();
         self.chunks[1].destroy();
         self.chunks[2].destroy();
@@ -192,11 +183,6 @@ class MapManager: NSObject {
     }
     
     func loadD() {
-        /*
-        0  1   2
-        3  4   5
-        6  7   8
-        */
         self.chunks[0].destroy()
         self.chunks[3].destroy()
         self.chunks[6].destroy()
@@ -217,11 +203,6 @@ class MapManager: NSObject {
     }
     
     func loadW() {
-        /*
-         0  1   2
-         3  4   5
-         6  7   8
-         */
         self.chunks[6].destroy()
         self.chunks[7].destroy()
         self.chunks[8].destroy()
@@ -240,4 +221,9 @@ class MapManager: NSObject {
         
         self.addTiledMaps()
     }
+}
+
+protocol MapManagerDelegate: class {
+    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool // handled ?
+    func addObjectGroup(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, objectGroup: TiledObjectGroup)
 }

@@ -16,6 +16,8 @@ class TiledMap: SKNode, XMLParserDelegate {
         case gzip
     }
     
+    weak var delegate: TiledMapDelegate?
+    
     var version = ""
     var tiledVersion = ""
     var orientation = ""
@@ -43,11 +45,7 @@ class TiledMap: SKNode, XMLParserDelegate {
     
     static weak var current: TiledMap?
     
-    var fileName = ""
-    
-    init(fileNamed filename: String, x: CGFloat, y: CGFloat) {
-        self.fileName = "\(x) \(y)"
-//        print(self.fileName)
+    init(fileNamed filename: String, x: CGFloat, y: CGFloat, delegate: TiledMapDelegate? = nil) {
         super.init()
         guard let url = self.url(forResource: filename) else {
             return
@@ -56,19 +54,18 @@ class TiledMap: SKNode, XMLParserDelegate {
             return
         }
         TiledMap.current = self
+        self.delegate = delegate
         parser.delegate = self
         parser.parse()
-        self.position = CGPoint(x: self.size.width * x - self.size.width / 2 + self.tileWidth / 2,
-                                y: self.size.height * y + self.size.height / 2 - self.tileWidth / 2)
-        
+        self.position = CGPoint(x: self.size.width * x - self.size.width / 2 + self.tileWidth / 2, y: self.size.height * y + self.size.height / 2 - self.tileWidth / 2)
     }
     
-    convenience init(fileNamed filename: String, position: CGPoint?) {
+    convenience init(fileNamed filename: String, position: CGPoint?, delegate: TiledMapDelegate? = nil) {
         let position = position ?? .zero
         if position == .zero {
             
         }
-        self.init(fileNamed: filename, x: position.x, y:position.y)
+        self.init(fileNamed: filename, x: position.x, y:position.y, delegate:delegate)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -115,12 +112,12 @@ class TiledMap: SKNode, XMLParserDelegate {
     }
     
     func loadTileset(attributeDict: [String : String]) -> Tileset {
-        // let firstgid = self.int(key: "firstgid", from: attributeDict)
+//        let firstgid = self.int(key: "firstgid", from: attributeDict)
         let name = self.string(key: "name", from: attributeDict)
         let tileWidth = self.float(key: "tilewidth", from: attributeDict)
         let tileHeight = self.float(key: "tileheight", from: attributeDict)
-        // let tilecount = self.int(key: "tilecount", from: attributeDict)
-        // let columns = self.int(key: "columns", from: attributeDict)
+//        let tilecount = self.int(key: "tilecount", from: attributeDict)
+//        let columns = self.int(key: "columns", from: attributeDict)
         
         let tileset = Tileset(imageNamed: name)
         tileset.load(tileWidth: tileWidth, tileHeight: tileHeight)
@@ -151,6 +148,27 @@ class TiledMap: SKNode, XMLParserDelegate {
         return objectGroup
     }
     
+    func loadObject(attributeDict: [String : String]) -> TiledObject {
+        var attributeDict = attributeDict
+        
+        let object = TiledObject()
+        object.id = self.string(key: "id", from: attributeDict)
+        object.name = self.string(key: "name", from: attributeDict)
+        object.type = self.string(key: "type", from: attributeDict)
+        object.x = self.float(key: "x", from: attributeDict)
+        object.y = self.float(key: "y", from: attributeDict)
+        
+        attributeDict["id"] = nil
+        attributeDict["name"] = nil
+        attributeDict["type"] = nil
+        attributeDict["x"] = nil
+        attributeDict["y"] = nil
+        
+        object.attributeDict = attributeDict
+        
+        return object
+    }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
 
         switch elementName {
@@ -175,12 +193,41 @@ class TiledMap: SKNode, XMLParserDelegate {
             let objectGroup = self.loadObjectGroup(attributeDict: attributeDict)
             self.objectGroupList.append(objectGroup)
             break
+        case "object":
+            let object = self.loadObject(attributeDict: attributeDict)
+            self.objectGroupList.last?.objectList.append(object)
+            break
         default:
-            // print("elementName: \(elementName)")
-            // print("attributeDict: \(attributeDict)\n")
+//            print("didStartElement: \(elementName)")
+//            print("attributeDict: \(attributeDict)\n")
             break
         }
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         
+        switch elementName {
+        case "map":
+            break
+        case "tileset":
+            break
+        case "image":
+            break
+        case "layer":
+            break
+        case "data":
+            break
+        case "objectgroup":
+            if let objectGroup = self.objectGroupList.last {
+                self.addObjectGroup(objectGroup: objectGroup)
+            }
+            break
+        case "object":
+            break
+        default:
+//            print("didEndElement: \(elementName)")
+            break
+        }
     }
     
     func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -234,9 +281,6 @@ class TiledMap: SKNode, XMLParserDelegate {
     
     func parserDidEndDocument(_ parser: XMLParser) {
         parser.delegate = nil
-//        let label = Label(text: self.fileName)
-//        label.set(color: .black)
-//        self.addChild(label)
     }
     
     func loadLayer(idList: [Int]) {
@@ -265,8 +309,23 @@ class TiledMap: SKNode, XMLParserDelegate {
     }
     
     func addTile(id: Int, texture: SKTexture, x: Int, y: Int) {
-        self.addChild(TiledTile(texture: texture, x: x, y: y))
+        if let delegate = self.delegate {
+            if !delegate.addTile(self, id: id, texture: texture, x: x, y: y) {
+                self.addChild(TiledTile(texture: texture, x: x, y: y))
+            }
+        } else {
+            self.addChild(TiledTile(texture: texture, x: x, y: y))
+        }
     }
+    
+    func addObjectGroup(objectGroup: TiledObjectGroup) {
+        self.delegate?.addObjectGroup(self, objectGroup: objectGroup)
+    }
+}
+
+protocol TiledMapDelegate: class {
+    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool // handled ?
+    func addObjectGroup(_ tiledMap: TiledMap, objectGroup: TiledObjectGroup)
 }
 
 public extension Data {
