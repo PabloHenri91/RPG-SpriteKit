@@ -27,16 +27,6 @@
 		6E42AD6B23FE1AE0007F503B /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42AD6923FE1AE0007F503B /* CreditsScene.swift */; };
 		6E42AD6D23FE1F27007F503B /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E42AD6C23FE1F27007F503B /* kenpixel.ttf */; };
 		6E42AD6E23FE1F27007F503B /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E42AD6C23FE1F27007F503B /* kenpixel.ttf */; };
-		84035272240031420070E585 /* TiledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035271240031420070E585 /* TiledData.swift */; };
-		84035273240031420070E585 /* TiledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035271240031420070E585 /* TiledData.swift */; };
-		84035275240031930070E585 /* TiledLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035274240031930070E585 /* TiledLayer.swift */; };
-		84035276240031930070E585 /* TiledLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035274240031930070E585 /* TiledLayer.swift */; };
-		84035278240032140070E585 /* TiledObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035277240032140070E585 /* TiledObject.swift */; };
-		84035279240032140070E585 /* TiledObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84035277240032140070E585 /* TiledObject.swift */; };
-		8403527C2400323C0070E585 /* TiledObjectGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403527B2400323C0070E585 /* TiledObjectGroup.swift */; };
-		8403527D2400323C0070E585 /* TiledObjectGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403527B2400323C0070E585 /* TiledObjectGroup.swift */; };
-		8403527F240032550070E585 /* TiledTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403527E240032550070E585 /* TiledTile.swift */; };
-		84035280240032550070E585 /* TiledTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8403527E240032550070E585 /* TiledTile.swift */; };
 		8404E81223FDE01C000112AF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404E80623FDE01C000112AF /* Label.swift */; };
 		8404E81323FDE01C000112AF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404E80623FDE01C000112AF /* Label.swift */; };
 		8404E81423FDE01C000112AF /* Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404E80723FDE01C000112AF /* Control.swift */; };
@@ -89,10 +79,6 @@
 		8404E85123FDE09A000112AF /* LoadScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404E84F23FDE09A000112AF /* LoadScene.swift */; };
 		8449EED4240ED50100295B88 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449EED3240ED50100295B88 /* StringExtension.swift */; };
 		8449EED5240ED50100295B88 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8449EED3240ED50100295B88 /* StringExtension.swift */; };
-		8490AD642406EB8600102E16 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AD632406EB8600102E16 /* Tileset.swift */; };
-		8490AD652406EB8600102E16 /* Tileset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AD632406EB8600102E16 /* Tileset.swift */; };
-		8490AD672406EB9300102E16 /* TiledMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AD662406EB9300102E16 /* TiledMap.swift */; };
-		8490AD682406EB9300102E16 /* TiledMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8490AD662406EB9300102E16 /* TiledMap.swift */; };
 		8490AD6A2406EBA000102E16 /* world_0_0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 8490AD692406EBA000102E16 /* world_0_0.tmx */; };
 		8490AD6B2406EBA000102E16 /* world_0_0.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 8490AD692406EBA000102E16 /* world_0_0.tmx */; };
 		84B7EECF23FDD29A00DD1CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7EECE23FDD29A00DD1CE5 /* AppDelegate.swift */; };
@@ -151,11 +137,6 @@
 		6E42AD6923FE1AE0007F503B /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		6E42AD6C23FE1F27007F503B /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
 		6E98EF2A23FE240000761498 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		84035271240031420070E585 /* TiledData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledData.swift; sourceTree = "<group>"; };
-		84035274240031930070E585 /* TiledLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledLayer.swift; sourceTree = "<group>"; };
-		84035277240032140070E585 /* TiledObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledObject.swift; sourceTree = "<group>"; };
-		8403527B2400323C0070E585 /* TiledObjectGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledObjectGroup.swift; sourceTree = "<group>"; };
-		8403527E240032550070E585 /* TiledTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiledTile.swift; sourceTree = "<group>"; };
 		8404E80623FDE01C000112AF /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		8404E80723FDE01C000112AF /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
 		8404E80823FDE01C000112AF /* BlackSpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlackSpriteNode.swift; sourceTree = "<group>"; };
@@ -182,8 +163,6 @@
 		8404E83623FDE021000112AF /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		8404E84F23FDE09A000112AF /* LoadScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadScene.swift; sourceTree = "<group>"; };
 		8449EED3240ED50100295B88 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		8490AD632406EB8600102E16 /* Tileset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tileset.swift; sourceTree = "<group>"; };
-		8490AD662406EB9300102E16 /* TiledMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TiledMap.swift; sourceTree = "<group>"; };
 		8490AD692406EBA000102E16 /* world_0_0.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = world_0_0.tmx; sourceTree = "<group>"; };
 		84B7EEC623FDD29A00DD1CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84B7EECB23FDD29A00DD1CE5 /* Untitled.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Untitled.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,20 +223,6 @@
 				6E98EF2A23FE240000761498 /* MyPlayground.playground */,
 			);
 			path = Playground;
-			sourceTree = "<group>";
-		};
-		8403526D240030F30070E585 /* Tiled */ = {
-			isa = PBXGroup;
-			children = (
-				8490AD662406EB9300102E16 /* TiledMap.swift */,
-				84035271240031420070E585 /* TiledData.swift */,
-				84035274240031930070E585 /* TiledLayer.swift */,
-				84035277240032140070E585 /* TiledObject.swift */,
-				8403527B2400323C0070E585 /* TiledObjectGroup.swift */,
-				8403527E240032550070E585 /* TiledTile.swift */,
-				8490AD632406EB8600102E16 /* Tileset.swift */,
-			);
-			path = Tiled;
 			sourceTree = "<group>";
 		};
 		8404E7B723FDDA79000112AF /* Music */ = {
@@ -418,7 +383,6 @@
 			children = (
 				D9643121240970CA00EC6BFE /* Control */,
 				841396DF2406C76100DF3361 /* Map */,
-				8403526D240030F30070E585 /* Tiled */,
 				D915DF5C24002C39003CBBF3 /* Nodes */,
 				6E42AD5023FE0967007F503B /* GameColorsExtension.swift */,
 				6E42AD5323FE0A45007F503B /* GameWorld.swift */,
@@ -640,26 +604,19 @@
 				8404E82823FDE01C000112AF /* Button.swift in Sources */,
 				D9ED735B24169F62003BC3BE /* Enemy.swift in Sources */,
 				8404E84D23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
-				8403527F240032550070E585 /* TiledTile.swift in Sources */,
 				8404E83723FDE021000112AF /* SKColor+Extensions.swift in Sources */,
 				8404E81223FDE01C000112AF /* Label.swift in Sources */,
-				84035275240031930070E585 /* TiledLayer.swift in Sources */,
 				84B7EECF23FDD29A00DD1CE5 /* AppDelegate.swift in Sources */,
-				8403527C2400323C0070E585 /* TiledObjectGroup.swift in Sources */,
 				6E42AD5123FE0967007F503B /* GameColorsExtension.swift in Sources */,
 				8404E84323FDE021000112AF /* SKNode+Extensions.swift in Sources */,
 				6E42AD5423FE0A45007F503B /* GameWorld.swift in Sources */,
-				84035278240032140070E585 /* TiledObject.swift in Sources */,
 				D96431292409756700EC6BFE /* ManaBar.swift in Sources */,
-				8490AD642406EB8600102E16 /* Tileset.swift in Sources */,
 				8404E81823FDE01C000112AF /* MultiLineLabel.swift in Sources */,
 				D96431262409738600EC6BFE /* HealthBar.swift in Sources */,
-				84035272240031420070E585 /* TiledData.swift in Sources */,
 				8404E84B23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6723FE161E007F503B /* Music.swift in Sources */,
 				8404E81E23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5A23FE10E9007F503B /* MemoryCard.swift in Sources */,
-				8490AD672406EB9300102E16 /* TiledMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,26 +658,19 @@
 				8404E82923FDE01C000112AF /* Button.swift in Sources */,
 				D9ED735C24169F62003BC3BE /* Enemy.swift in Sources */,
 				8404E84E23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
-				84035280240032550070E585 /* TiledTile.swift in Sources */,
 				8404E83823FDE021000112AF /* SKColor+Extensions.swift in Sources */,
 				8404E81323FDE01C000112AF /* Label.swift in Sources */,
-				84035276240031930070E585 /* TiledLayer.swift in Sources */,
 				84B7EEE023FDD29A00DD1CE5 /* AppDelegate.swift in Sources */,
-				8403527D2400323C0070E585 /* TiledObjectGroup.swift in Sources */,
 				6E42AD5223FE0967007F503B /* GameColorsExtension.swift in Sources */,
 				8404E84423FDE021000112AF /* SKNode+Extensions.swift in Sources */,
 				6E42AD5523FE0A45007F503B /* GameWorld.swift in Sources */,
-				84035279240032140070E585 /* TiledObject.swift in Sources */,
 				D964312A2409756700EC6BFE /* ManaBar.swift in Sources */,
-				8490AD652406EB8600102E16 /* Tileset.swift in Sources */,
 				8404E81923FDE01C000112AF /* MultiLineLabel.swift in Sources */,
 				D96431272409738900EC6BFE /* HealthBar.swift in Sources */,
-				84035273240031420070E585 /* TiledData.swift in Sources */,
 				8404E84C23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6823FE161E007F503B /* Music.swift in Sources */,
 				8404E81F23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5B23FE10E9007F503B /* MemoryCard.swift in Sources */,
-				8490AD682406EB9300102E16 /* TiledMap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
