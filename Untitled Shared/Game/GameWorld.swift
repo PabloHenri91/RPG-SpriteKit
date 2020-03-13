@@ -65,7 +65,7 @@ class GameWorld: SKNode, SKPhysicsContactDelegate {
                     break
                 }
                 print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
-                fatalError()
+                // fatalError()
             #endif
             break
         }
@@ -113,7 +113,7 @@ class GameWorld: SKNode, SKPhysicsContactDelegate {
                     break
                 }
                 print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
-                fatalError()
+                // fatalError()
             #endif
             break
         }

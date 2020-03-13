@@ -27,6 +27,7 @@ class LoadScene: GameScene {
         super.load()
         #if DEBUG
         self.view?.showsFPS = true
+        self.view?.showsPhysics = true
         #endif
         
         Label.defaultFontName = .kenPixel

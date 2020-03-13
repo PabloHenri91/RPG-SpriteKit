@@ -62,6 +62,7 @@ class BaseCharacter: SKSpriteNode {
         if let map = TiledMap.current ?? mapManager.chunks.first {
             self.tileWidth = map.tileWidth
             self.tileHeight = map.tileHeight
+            self.loadPhysics()
             self.loadActions()
             return
         }
@@ -73,6 +74,23 @@ class BaseCharacter: SKSpriteNode {
     
     func update() {
         
+    }
+    
+    func loadPhysics() {
+        
+        var transform = CGAffineTransform(rotationAngle: π/4)
+        
+        let physicsBody = SKPhysicsBody(polygonFrom: CGPath(rect: CGRect(x: -self.tileWidth/2, y: -self.tileHeight/2, width: self.tileWidth, height: self.tileHeight), transform: &transform))
+        
+        physicsBody.usesPreciseCollisionDetection = false
+        physicsBody.categoryBitMask = UInt32.max
+        physicsBody.collisionBitMask = 0
+        physicsBody.contactTestBitMask = UInt32.max
+        physicsBody.affectedByGravity = false
+        physicsBody.isDynamic = true
+        physicsBody.allowsRotation = false
+        
+        self.physicsBody = physicsBody
     }
     
     func loadActions() {
@@ -145,27 +163,27 @@ class BaseCharacter: SKSpriteNode {
             for physicsBody in contactedBodies {
                 if let node = physicsBody.node {
                     
-                    let delta = node.position - self.position
+                    let delta = node.convert(node.position, to: self.parent ?? SKNode()) - self.position
                     
-                    if delta.x > self.tileWidth/2 {
+                    if delta.x.rounded() > self.tileWidth/2 {
                         if moveDirectionX > 0 {
                             moveDirectionX = 0
                         }
                     }
                     
-                    if delta.x < -self.tileWidth/2 {
+                    if delta.x.rounded() < -self.tileWidth/2 {
                         if moveDirectionX < 0 {
                             moveDirectionX = 0
                         }
                     }
                     
-                    if delta.y > self.tileHeight/2 {
+                    if delta.y.rounded() > self.tileHeight/2 {
                         if moveDirectionY > 0 {
                             moveDirectionY = 0
                         }
                     }
                     
-                    if delta.y < -self.tileHeight/2 {
+                    if delta.y.rounded() < -self.tileHeight/2 {
                         if moveDirectionY < 0 {
                             moveDirectionY = 0
                         }

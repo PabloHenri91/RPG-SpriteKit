@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="left-down" compressionlevel="0" width="65" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="left-down" compressionlevel="0" width="121" height="69" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="7">
  <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
   <image source="../../Assets.xcassets/_Game/Tileset/Tileset.imageset/Tileset.png" width="512" height="512"/>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="65" height="65">
+ <layer id="1" name="Tile Layer 1" width="121" height="69">
   <data encoding="base64" compression="zlib">
-   eAHt0jERAAAMhDDev+nK6JIBA1xWTR4wwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADDDDAAAMMMMAAAwwwwAADrwYORPcQgg==
+   eAHt3LEOgkAQBmGU939ntRQKQu6Au3+/gsJEhd2ZwcLouizL6rADDkQ48PpydGTtYHt/xjeL748nxnlMt51ijPHWCY/nc0LH8zE72xnGGJ91xvPHc0bH4zHp3QnGGPd2yvvd75SO79/53Z5jjPHdzjlff+d03H+no3mKMcajOel6zjup4/M7m80zjDGezVnXu3dWx/udpHmCMcZpTlecR8c6ruh92sw61nGa0xXn0bGOK3qfNrOOdZzmdMV5dKzjit6nzZzY8dvv5P/+JyCRcVqHrfNg7PO41SGvf94hHT/P4OoOMMb4ase8//WO6fj6HT/tMcYYP+2g87c7qOP2HY7uIcYYj+6o6zt2VMfHO5rdI4wxnt1h1++/jSs44F7tXl3B8/QZdazjdMcrzKdjHVfwPH1GHes43fEK8+lYxxU8T59RxzpOd7zCfDrWcQXP02fUcb2Ot8w93n/Hbid2MqoDHwNwJm8=
   </data>
  </layer>
+ <objectgroup id="1" name="Object Layer 1">
+  <object id="2" type="Wall" x="0" y="0" width="32" height="1104"/>
+  <object id="3" type="Wall" x="1904" y="0" width="32" height="1104"/>
+  <object id="4" type="Wall" x="0" y="0" width="1936" height="32"/>
+  <object id="5" type="Wall" x="0" y="1072" width="1936" height="32"/>
+  <object id="6" type="Wall" x="816" y="560" width="16" height="16"/>
+ </objectgroup>
 </map>

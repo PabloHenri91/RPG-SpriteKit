@@ -195,7 +195,13 @@ extension BattleScene {
     func addObjectGroup(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, objectGroup: TiledObjectGroup) {
         
         for object in objectGroup.objectList {
-            
+            switch object.type {
+            case "\(Wall.self)":
+                tiledMap.addChild(Wall(object: object))
+                break
+            default:
+                break
+            }
         }
     }
 }
