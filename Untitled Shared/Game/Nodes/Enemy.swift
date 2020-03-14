@@ -10,4 +10,12 @@ import SpriteKit
 
 class Enemy: BaseCharacter {
 
+    static var enemyList = Set<Enemy>()
+    
+    override func die() {
+        super.die()
+        Enemy.enemyList.remove(self)
+        self.removeFromParent()
+    }
+    
 }

@@ -10,8 +10,6 @@ import SpriteKit
 
 class Player: BaseCharacter {
 
-    static var enemyList:[Enemy] = []
-    
     init() {
         super.init(textureName: "Player0")
         self.maxMana = 300
@@ -62,6 +60,7 @@ class Player: BaseCharacter {
         super.move()
     }
     
+    //@todo mock method only
     func mockSpawnEnemy() {
         let enemy = Enemy()
         enemy.position = self.position
@@ -70,11 +69,11 @@ class Player: BaseCharacter {
         enemy.mana = CGFloat.random(in: 200...500)
         enemy.maxMana = enemy.mana
         self.parent?.addChild(enemy)
-        Player.enemyList.append(enemy)
+        Enemy.enemyList.insert(enemy)
     }
     
     func touchedEnemy(on location:CGPoint) -> Enemy? {
-        for enemy in Player.enemyList {
+        for enemy in Enemy.enemyList {
             if enemy.contains(location) {
                 return enemy
             }
