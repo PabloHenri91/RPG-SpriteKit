@@ -8,10 +8,10 @@
 
 import SpriteKit
 
-class Wall: SKNode {
+class Wall: SKSpriteNode {
 
     init(object: TiledObject) {
-        super.init()
+        super.init(texture: nil, color: .clear, size: CGSize(width: object.width, height: object.height))
         self.position = CGPoint(x: object.x + object.width / 2, y: -object.y - object.height / 2)
         if let map = TiledMap.current {
             self.position = self.position - CGPoint(x: map.tileWidth / 2, y: -map.tileHeight / 2)

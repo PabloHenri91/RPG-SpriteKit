@@ -161,30 +161,17 @@ class BaseCharacter: SKSpriteNode {
         
         if let contactedBodies = self.physicsBody?.allContactedBodies() {
             for physicsBody in contactedBodies {
-                if let node = physicsBody.node {
+                if let node = physicsBody.node as? SKSpriteNode {
                     
-                    let delta = node.convert(node.position, to: self.parent ?? SKNode()) - self.position
-                    
-                    if delta.x.rounded() > self.tileWidth/2 {
-                        if moveDirectionX > 0 {
+                    if moveDirectionX != 0 || moveDirectionY != 0 {
+                        
+                        let offset = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
+                        let nodePosition = (node.parent ?? node).convert(node.position, to: self.parent ?? self) - offset
+                        let position = self.position + CGPoint(x: moveDirectionX * self.tileWidth,
+                                                               y: moveDirectionY * self.tileHeight)
+                        
+                        if CGRect(origin: nodePosition, size: node.size).contains(position) {
                             moveDirectionX = 0
-                        }
-                    }
-                    
-                    if delta.x.rounded() < -self.tileWidth/2 {
-                        if moveDirectionX < 0 {
-                            moveDirectionX = 0
-                        }
-                    }
-                    
-                    if delta.y.rounded() > self.tileHeight/2 {
-                        if moveDirectionY > 0 {
-                            moveDirectionY = 0
-                        }
-                    }
-                    
-                    if delta.y.rounded() < -self.tileHeight/2 {
-                        if moveDirectionY < 0 {
                             moveDirectionY = 0
                         }
                     }
