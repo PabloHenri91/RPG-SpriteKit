@@ -200,6 +200,7 @@ extension BattleScene {
                 tiledMap.addChild(Wall(object: object))
                 break
             default:
+                tiledMap.addChild(Wall(object: object))
                 break
             }
         }

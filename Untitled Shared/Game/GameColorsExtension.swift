@@ -10,7 +10,7 @@ import SpriteKit
 
 extension GameColors {
 
-    static let backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.05882352941, blue: 0.1490196078, alpha: 1)
+    static let backgroundColor = #colorLiteral(red: 0.2784313725, green: 0.1764705882, blue: 0.2392156863, alpha: 1)
 
     static let controlBlue = #colorLiteral(red: 0, green: 0.6078431373, blue: 0.8862745098, alpha: 1)
     static let controlRed = #colorLiteral(red: 1, green: 0, blue: 0.3960784314, alpha: 1)
