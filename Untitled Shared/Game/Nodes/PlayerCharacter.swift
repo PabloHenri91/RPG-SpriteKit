@@ -131,15 +131,19 @@ class PlayerCharacter: PlayableCharacter {
                 self.mockSpawnEnemy()
             break
         case 0, 123:
+            self.destination = nil
             self.moveA = true
             break
         case 1, 125:
+            self.destination = nil
             self.moveS = true
             break
         case 2, 124:
+            self.destination = nil
             self.moveD = true
             break
         case 13, 126:
+            self.destination = nil
             self.moveW = true
             break
         default:

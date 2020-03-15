@@ -152,15 +152,19 @@ class NonPlayableCharacter: SKSpriteNode {
             for physicsBody in contactedBodies {
                 if let node = physicsBody.node as? SKSpriteNode {
                     
-                    if moveDirectionX != 0 || moveDirectionY != 0 {
-                        
-                        let offset = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
-                        let nodePosition = (node.parent ?? node).convert(node.position, to: self.parent ?? self) - offset
-                        let position = self.position + CGPoint(x: moveDirectionX * self.tileWidth,
-                                                               y: moveDirectionY * self.tileHeight)
-                        
+                    let offset = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
+                    let nodePosition = (node.parent ?? node).convert(node.position, to: self.parent ?? self) - offset
+                    
+                    if moveDirectionX != 0 {
+                        let position = self.position + CGPoint(x: moveDirectionX * self.tileWidth, y: 0)
                         if CGRect(origin: nodePosition, size: node.size).contains(position) {
                             moveDirectionX = 0
+                        }
+                    }
+                    
+                    if moveDirectionY != 0 {
+                        let position = self.position + CGPoint(x: 0, y: moveDirectionY * self.tileHeight)
+                        if CGRect(origin: nodePosition, size: node.size).contains(position) {
                             moveDirectionY = 0
                         }
                     }
