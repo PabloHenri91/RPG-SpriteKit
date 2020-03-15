@@ -12,7 +12,7 @@ class BattleScene: GameScene, MapManagerDelegate {
     
     weak var gameWorld: GameWorld!
     weak var gameCamera: GameCamera!
-    weak var player: Player!
+    weak var player: PlayerCharacter!
     weak var statusBar: StatusBar!
     
     var mapManager: MapManager!
@@ -76,7 +76,7 @@ class BattleScene: GameScene, MapManagerDelegate {
     }
     
     func loadPlayer(gameWorld: GameWorld, statusBar: StatusBar) {
-        let player = Player()
+        let player = PlayerCharacter()
         player.zPosition = BattleScene.zPositionType.player.rawValue
         player.statusBar = statusBar
         gameWorld.addChild(player)
@@ -93,7 +93,7 @@ class BattleScene: GameScene, MapManagerDelegate {
         self.statusBar = statusBar
     }
     
-    func loadMapManager(player: Player) {
+    func loadMapManager(player: PlayerCharacter) {
         let mapManager = MapManager(mapManagerDelegate: self)
         mapManager.reload(position: player.position)
         self.mapManager = mapManager

@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Player: BaseCharacter {
+class PlayerCharacter: PlayableCharacter {
 
     init() {
         super.init(textureName: "Player0")

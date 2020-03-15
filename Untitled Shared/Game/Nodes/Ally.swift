@@ -8,6 +8,6 @@
 
 import SpriteKit
 
-class Ally: BaseCharacter {
+class Ally: PlayableCharacter {
 
 }

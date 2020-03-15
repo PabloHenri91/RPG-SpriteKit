@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Enemy: BaseCharacter {
+class Enemy: PlayableCharacter {
 
     static var enemyList = Set<Enemy>()
     

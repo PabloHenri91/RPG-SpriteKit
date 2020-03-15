@@ -1,5 +1,5 @@
 //
-//  BaseCharacter.swift
+//  NonPlayableCharacter.swift
 //  Untitled iOS
 //
 //  Created by John Reis on 26/02/20.
@@ -8,18 +8,7 @@
 
 import SpriteKit
 
-class BaseCharacter: SKSpriteNode {
-    
-    var statusBar: StatusBar!
-    
-    var maxHealth: CGFloat = 0
-    var maxMana: CGFloat = 0
-    var mana: CGFloat = 0
-    var health: CGFloat = 0
-    
-    var dead = false
-    
-    var level = 1
+class NonPlayableCharacter: SKSpriteNode {
     
     // Movement
     var actionMoveA = SKAction()
@@ -219,35 +208,5 @@ class BaseCharacter: SKSpriteNode {
         self.moveS = false
         self.moveD = false
         self.moveW = false
-    }
-    
-    func die() {
-        self.dead = true
-        print("die")
-    }
-    
-    func updateMana(with value: CGFloat) {
-        guard self.dead == false else { return }
-        
-        self.mana += value
-        
-        if mana <= 0 { mana = 0 }
-        
-        if mana >= maxMana { mana = maxMana }
-    }
-    
-    func updateHealth(with value: CGFloat) {
-        guard self.dead == false else { return }
-        
-        self.health += value
-        
-        if (health >= maxHealth) {
-            health = maxHealth
-        }
-        
-        if health <= 0 {
-            health = 0
-            return self.die()
-        }
     }
 }
