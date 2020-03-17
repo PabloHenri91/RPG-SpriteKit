@@ -11,12 +11,9 @@ import SpriteKit
 class PlayerCharacter: PlayableCharacter {
 
     init() {
-        super.init(textureName: "Player0")
+        super.init(type: .warrior, level: 30, primaryAttribute: .strength, secondaryAttribute: .constitution)
         self.maxMana = 300
         self.mana = 300
-        
-        self.maxHealth = 500
-        self.health = 500
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -62,7 +59,7 @@ class PlayerCharacter: PlayableCharacter {
     
     //@todo mock method only
     func mockSpawnEnemy() {
-        let enemy = Enemy()
+        let enemy = Enemy(type: .ranger, level: 10, primaryAttribute: .agility, secondaryAttribute: .intelligence)
         enemy.position = self.position
         enemy.health = CGFloat.random(in: 200...500)
         enemy.maxHealth = enemy.health
