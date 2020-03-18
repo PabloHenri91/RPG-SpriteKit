@@ -142,16 +142,16 @@ class NonPlayableCharacter: SKSpriteNode {
         var moveDirectionY: CGFloat = 0
         
         if self.moveA {
-            moveDirectionX = -1
+            moveDirectionX = moveDirectionX - 1
         }
         if self.moveS {
-            moveDirectionY = -1
+            moveDirectionY = moveDirectionY - 1
         }
         if self.moveD {
-            moveDirectionX = +1
+            moveDirectionX = moveDirectionX + 1
         }
         if self.moveW {
-            moveDirectionY = +1
+            moveDirectionY = moveDirectionY + 1
         }
         
         if let contactedBodies = self.nodePhysicsBody?.allContactedBodies() {
