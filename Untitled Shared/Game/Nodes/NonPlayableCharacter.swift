@@ -19,13 +19,14 @@ class NonPlayableCharacter: SKSpriteNode {
     var isMoving = false
     
     enum moveType {
+        case none
         case moveA
         case moveS
         case moveD
         case moveW
     }
     
-    var lastMove: moveType = .moveS
+    var lastMove: moveType = .none
     
     var destination: CGPoint? = nil
     
@@ -37,6 +38,8 @@ class NonPlayableCharacter: SKSpriteNode {
     
     var tileWidth: CGFloat = 0
     var tileHeight: CGFloat = 0
+    
+    weak var nodePhysicsBody: SKPhysicsBody?
     
     init(textureName: String = "Player0") {
         
@@ -79,12 +82,15 @@ class NonPlayableCharacter: SKSpriteNode {
         physicsBody.isDynamic = true
         physicsBody.allowsRotation = false
         
-        self.physicsBody = physicsBody
+        let node = SKNode()
+        node.physicsBody = physicsBody
+        self.addChild(node)
+        self.nodePhysicsBody = physicsBody
     }
     
     func loadActions() {
         
-        let speed: Double = 1280
+        let speed: Double = 960
         let distance: Double = Double(self.tileWidth)
         
         let moveActionDuration: TimeInterval = distance/speed
@@ -136,19 +142,19 @@ class NonPlayableCharacter: SKSpriteNode {
         var moveDirectionY: CGFloat = 0
         
         if self.moveA {
-            moveDirectionX = moveDirectionX - 1
+            moveDirectionX = -1
         }
         if self.moveS {
-            moveDirectionY = moveDirectionY - 1
+            moveDirectionY = -1
         }
         if self.moveD {
-            moveDirectionX = moveDirectionX + 1
+            moveDirectionX = +1
         }
         if self.moveW {
-            moveDirectionY = moveDirectionY + 1
+            moveDirectionY = +1
         }
         
-        if let contactedBodies = self.physicsBody?.allContactedBodies() {
+        if let contactedBodies = self.nodePhysicsBody?.allContactedBodies() {
             for physicsBody in contactedBodies {
                 if let node = physicsBody.node as? SKSpriteNode {
                     
@@ -174,36 +180,45 @@ class NonPlayableCharacter: SKSpriteNode {
         
         if moveDirectionX != 0 && moveDirectionY != 0 {
             switch self.lastMove {
-                case .moveA, .moveD:
-                    moveDirectionX = 0
-                    break
-                case .moveS, .moveW:
-                    moveDirectionY = 0
-                    break
+            case .moveA, .moveD:
+                moveDirectionX = 0
+                break
+            case .moveS, .moveW:
+                moveDirectionY = 0
+                break
+            case .none:
+                break
             }
         }
         
         if moveDirectionX != 0 {
-            self.isMoving = true
-            
             if moveDirectionX > 0 {
-                self.lastMove = .moveD
-                self.run(self.actionMoveD)
+                if self.lastMove != .moveA {
+                    self.lastMove = .moveD
+                    self.isMoving = true
+                    self.run(self.actionMoveD)
+                }
             } else {
-                self.lastMove = .moveA
-                self.run(self.actionMoveA)
+                if self.lastMove != .moveD {
+                    self.lastMove = .moveA
+                    self.isMoving = true
+                    self.run(self.actionMoveA)
+                }
             }
-            
         } else {
             if moveDirectionY != 0 {
-                self.isMoving = true
-                
                 if moveDirectionY > 0 {
-                    self.lastMove = .moveW
-                    self.run(self.actionMoveW)
+                    if self.lastMove != .moveS {
+                        self.lastMove = .moveW
+                        self.isMoving = true
+                        self.run(self.actionMoveW)
+                    }
                 } else {
-                    self.lastMove = .moveS
-                    self.run(self.actionMoveS)
+                    if self.lastMove != .moveW {
+                        self.lastMove = .moveS
+                        self.isMoving = true
+                        self.run(self.actionMoveS)
+                    }
                 }
             }
         }

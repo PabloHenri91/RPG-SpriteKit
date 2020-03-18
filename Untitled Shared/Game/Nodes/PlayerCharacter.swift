@@ -31,8 +31,11 @@ class PlayerCharacter: PlayableCharacter {
         
         if let destination = self.destination {
             
+            print(self.position.distanceTo(destination))
+            
             if self.position.distanceTo(destination) < 1 {
                 self.destination = nil
+                self.lastMove = .none
             } else {
                 let delta = destination - self.position
                 
@@ -94,6 +97,7 @@ class PlayerCharacter: PlayableCharacter {
             
             if self.contains(touchLocation) {
                 self.destination = nil
+                self.lastMove = .none
             } else if (self.touchedEnemy(on: touchLocation) != nil) {
                 let enemy = self.touchedEnemy(on: touchLocation)!
                 print(enemy.health)
@@ -102,8 +106,8 @@ class PlayerCharacter: PlayableCharacter {
                 touchLocation = CGPoint(
                     x: ((touchLocation.x) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth,
                     y: ((touchLocation.y) / TiledMap.tileHeight).rounded() * TiledMap.tileHeight)
-                
                 self.destination = touchLocation
+                self.lastMove = .none
             }
         }
     }
@@ -129,18 +133,22 @@ class PlayerCharacter: PlayableCharacter {
             break
         case 0, 123:
             self.destination = nil
+            self.lastMove = .none
             self.moveA = true
             break
         case 1, 125:
             self.destination = nil
+            self.lastMove = .none
             self.moveS = true
             break
         case 2, 124:
             self.destination = nil
+            self.lastMove = .none
             self.moveD = true
             break
         case 13, 126:
             self.destination = nil
+            self.lastMove = .none
             self.moveW = true
             break
         default:
