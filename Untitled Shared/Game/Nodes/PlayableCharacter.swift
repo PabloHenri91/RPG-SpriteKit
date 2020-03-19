@@ -40,7 +40,7 @@ class PlayableCharacter: NonPlayableCharacter {
     var intelligence = 10 // magic damage
     
     init(type: type, level: Int, primaryAttribute: attribute, secondaryAttribute: attribute) {
-        super.init(textureName: "Player0")
+        super.init()
         self.type = type
         self.level = level
         self.primaryAttribute = primaryAttribute

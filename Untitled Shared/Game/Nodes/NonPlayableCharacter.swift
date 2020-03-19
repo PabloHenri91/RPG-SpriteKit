@@ -41,12 +41,8 @@ class NonPlayableCharacter: SKSpriteNode {
     
     weak var nodePhysicsBody: SKPhysicsBody?
     
-    init(textureName: String = "Player0") {
-        
-        let texture = SKTexture(imageNamed: textureName, filteringMode: GameScene.defaultFilteringMode)
-        
-        super.init(texture: texture, color: SKColor.white, size: texture.size())
-        
+    init() {
+        super.init(texture: nil, color: SKColor.white, size: CGSize(width: 1, height: 1))
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
     }
     
@@ -56,6 +52,7 @@ class NonPlayableCharacter: SKSpriteNode {
             self.tileHeight = map.tileHeight
             self.loadPhysics()
             self.loadActions()
+            self.loadTexture()
             return
         }
     }
@@ -130,6 +127,50 @@ class NonPlayableCharacter: SKSpriteNode {
                 }
             ])
         ])
+    }
+    
+    func loadTexture() {
+        
+        for node in self.children {
+            if node is SKSpriteNode {
+                node.removeFromParent()
+            }
+        }
+        
+        var tileset = TiledTileset.load(imageNamed: "bodyTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+        self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+        
+        tileset = TiledTileset.load(imageNamed: "armorTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+        self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+        
+        tileset = TiledTileset.load(imageNamed: "legsTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+        self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+        
+        tileset = TiledTileset.load(imageNamed: "hairTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+        self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+        
+        tileset = TiledTileset.load(imageNamed: "headTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+        self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+        
+        switch Float.random(in: 0...2).rounded()  {
+        case 0:
+            tileset = TiledTileset.load(imageNamed: "meleeTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+            self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+            
+            tileset = TiledTileset.load(imageNamed: "shieldTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+            self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+            break
+        case 1:
+            tileset = TiledTileset.load(imageNamed: "rangedTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+            self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+            break
+        case 2:
+            tileset = TiledTileset.load(imageNamed: "magicTileset", tileWidth: self.tileWidth, tileHeight: self.tileHeight)
+            self.addChild(SKSpriteNode(texture: tileset.tileTextures.randomElement()))
+            break
+        default:
+            break
+        }
     }
     
     func move() {

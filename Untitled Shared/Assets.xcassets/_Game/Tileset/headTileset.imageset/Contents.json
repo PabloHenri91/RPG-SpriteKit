@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "characterTileset.png",
+      "filename" : "headTileset.png",
       "scale" : "1x"
     },
     {

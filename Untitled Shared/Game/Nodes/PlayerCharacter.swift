@@ -128,8 +128,11 @@ class PlayerCharacter: PlayableCharacter {
     
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
-            case 51:
-                self.mockSpawnEnemy()
+        case 12:
+            self.loadTexture()
+            break
+        case 51:
+            self.mockSpawnEnemy()
             break
         case 0, 123:
             self.destination = nil
