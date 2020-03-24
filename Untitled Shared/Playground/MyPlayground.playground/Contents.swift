@@ -87,7 +87,7 @@ for i in 0...29 {
     // 1961 hp if warrior and half points spent on constitution
     // 8073 hp if warrior and all points spent on constitution
     let constitution = Double(13 + i * 3) // on poit per level if warrior plus two optional points per level
-    print("level: \(i + 1) constitution: \(constitution) health: \(playerMaxHealth(constitution: constitution))")
+    // print("level: \(i + 1) constitution: \(constitution) health: \(playerMaxHealth(constitution: constitution))")
 }
 
 let armor = Armor()

@@ -11,11 +11,11 @@ import SpriteKit
 class PlayableCharacter: NonPlayableCharacter {
     
     enum attribute {
-        case constitution, strength, agility, dexterity, wisdom, intelligence
+        case none, constitution, strength, agility, dexterity, wisdom, intelligence
     }
     
     enum type {
-        case warrior, mage, ranger
+        case none, warrior, mage, ranger
     }
     
     var statusBar: StatusBar!
@@ -33,18 +33,21 @@ class PlayableCharacter: NonPlayableCharacter {
     var primaryAttribute: attribute = .constitution
     var secondaryAttribute: attribute = .strength
     var constitution = 10 // health
-    var force = 10 // melee damage
+    var strength = 10 // melee damage
     var agility = 10 // movement speed
     var dexterity = 10 // ranged damage
     var wisdom = 10 // mana
     var intelligence = 10 // magic damage
     
+    var armor = Armor()
+    var weapon = Weapon()
+    
     init(type: type, level: Int, primaryAttribute: attribute, secondaryAttribute: attribute) {
-        super.init()
         self.type = type
         self.level = level
         self.primaryAttribute = primaryAttribute
         self.secondaryAttribute = secondaryAttribute
+        super.init()
         self.updateAttributes()
     }
     
@@ -53,8 +56,14 @@ class PlayableCharacter: NonPlayableCharacter {
     }
     
     func updateAttributes() {
-        self.maxHealth = GameMath.maxHealth(character: self)
-        self.health = maxHealth
+        self.maxHealth = GameMath.health(armor: self.armor, character: self)
+        self.health = self.maxHealth
+        self.maxMana = GameMath.mana(character: self)
+        self.mana = self.maxMana
+    }
+    
+    override func movementSpeed() -> CGFloat {
+        return GameMath.movementSpeed(character: self)
     }
     
     func updateMana(with value: CGFloat) {

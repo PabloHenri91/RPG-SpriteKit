@@ -11,9 +11,7 @@ import SpriteKit
 class PlayerCharacter: PlayableCharacter {
 
     init() {
-        super.init(type: .warrior, level: 30, primaryAttribute: .strength, secondaryAttribute: .constitution)
-        self.maxMana = 300
-        self.mana = 300
+        super.init(type: .none, level: 1, primaryAttribute: .none, secondaryAttribute: .none)
     }
     
     required init?(coder aDecoder: NSCoder) {

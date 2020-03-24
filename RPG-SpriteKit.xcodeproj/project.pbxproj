@@ -27,6 +27,12 @@
 		6E42AD6B23FE1AE0007F503B /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42AD6923FE1AE0007F503B /* CreditsScene.swift */; };
 		6E42AD6D23FE1F27007F503B /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E42AD6C23FE1F27007F503B /* kenpixel.ttf */; };
 		6E42AD6E23FE1F27007F503B /* kenpixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E42AD6C23FE1F27007F503B /* kenpixel.ttf */; };
+		6E495E1C24299D6F00FD7E14 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E1B24299D6F00FD7E14 /* Weapon.swift */; };
+		6E495E1D24299D6F00FD7E14 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E1B24299D6F00FD7E14 /* Weapon.swift */; };
+		6E495E1F2429A89700FD7E14 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E1E2429A89700FD7E14 /* Armor.swift */; };
+		6E495E202429A89700FD7E14 /* Armor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E1E2429A89700FD7E14 /* Armor.swift */; };
+		6E495E222429A8D300FD7E14 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E212429A8D300FD7E14 /* Item.swift */; };
+		6E495E232429A8D300FD7E14 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E495E212429A8D300FD7E14 /* Item.swift */; };
 		6E4A85CD241EB3D5008C1932 /* PlayableCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A85CC241EB3D5008C1932 /* PlayableCharacter.swift */; };
 		6E4A85CE241EB3D5008C1932 /* PlayableCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A85CC241EB3D5008C1932 /* PlayableCharacter.swift */; };
 		6EFF0EF1241F067F00E2202E /* GameMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0EF0241F067F00E2202E /* GameMath.swift */; };
@@ -156,6 +162,9 @@
 		6E42AD6623FE161E007F503B /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		6E42AD6923FE1AE0007F503B /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		6E42AD6C23FE1F27007F503B /* kenpixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = kenpixel.ttf; sourceTree = "<group>"; };
+		6E495E1B24299D6F00FD7E14 /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		6E495E1E2429A89700FD7E14 /* Armor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Armor.swift; sourceTree = "<group>"; };
+		6E495E212429A8D300FD7E14 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		6E4A85CC241EB3D5008C1932 /* PlayableCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableCharacter.swift; sourceTree = "<group>"; };
 		6E98EF2A23FE240000761498 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6EFF0EF0241F067F00E2202E /* GameMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMath.swift; sourceTree = "<group>"; };
@@ -460,12 +469,15 @@
 			isa = PBXGroup;
 			children = (
 				D9ED735724169F54003BC3BE /* Ally.swift */,
+				6E495E1E2429A89700FD7E14 /* Armor.swift */,
 				D9ED735A24169F62003BC3BE /* Enemy.swift */,
+				6E495E212429A8D300FD7E14 /* Item.swift */,
 				D915DF5D24002C8B003CBBF3 /* MapManager.swift */,
 				D9A9CDD92406C93A00C9CBE0 /* NonPlayableCharacter.swift */,
 				6E4A85CC241EB3D5008C1932 /* PlayableCharacter.swift */,
 				D9A9CDD82406C93900C9CBE0 /* PlayerCharacter.swift */,
 				84855C8B241A9A7A00C3BA39 /* Wall.swift */,
+				6E495E1B24299D6F00FD7E14 /* Weapon.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -639,6 +651,7 @@
 				8404E83B23FDE021000112AF /* Int+Extensions.swift in Sources */,
 				D9068529240D606F0026EB80 /* BaseBar.swift in Sources */,
 				8404E82223FDE01C000112AF /* GameColors.swift in Sources */,
+				6E495E1C24299D6F00FD7E14 /* Weapon.swift in Sources */,
 				8404E82623FDE01C000112AF /* ServerManager.swift in Sources */,
 				8404E83923FDE021000112AF /* CGVector+Extensions.swift in Sources */,
 				8404E81623FDE01C000112AF /* BlackSpriteNode.swift in Sources */,
@@ -657,6 +670,7 @@
 				6E42AD6123FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82823FDE01C000112AF /* Button.swift in Sources */,
 				D9ED735B24169F62003BC3BE /* Enemy.swift in Sources */,
+				6E495E222429A8D300FD7E14 /* Item.swift in Sources */,
 				8404E84D23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
 				8404E83723FDE021000112AF /* SKColor+Extensions.swift in Sources */,
 				8404E81223FDE01C000112AF /* Label.swift in Sources */,
@@ -672,6 +686,7 @@
 				847126E3241A8B1A00B0BB75 /* Tileset.swift in Sources */,
 				8404E84B23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6723FE161E007F503B /* Music.swift in Sources */,
+				6E495E1F2429A89700FD7E14 /* Armor.swift in Sources */,
 				8404E81E23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5A23FE10E9007F503B /* MemoryCard.swift in Sources */,
 				847126E7241A8B1A00B0BB75 /* TiledLayer.swift in Sources */,
@@ -703,6 +718,7 @@
 				8404E83C23FDE021000112AF /* Int+Extensions.swift in Sources */,
 				D906852A240D606F0026EB80 /* BaseBar.swift in Sources */,
 				8404E82323FDE01C000112AF /* GameColors.swift in Sources */,
+				6E495E1D24299D6F00FD7E14 /* Weapon.swift in Sources */,
 				8404E82723FDE01C000112AF /* ServerManager.swift in Sources */,
 				8404E83A23FDE021000112AF /* CGVector+Extensions.swift in Sources */,
 				8404E81723FDE01C000112AF /* BlackSpriteNode.swift in Sources */,
@@ -721,6 +737,7 @@
 				6E42AD6223FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82923FDE01C000112AF /* Button.swift in Sources */,
 				D9ED735C24169F62003BC3BE /* Enemy.swift in Sources */,
+				6E495E232429A8D300FD7E14 /* Item.swift in Sources */,
 				8404E84E23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
 				8404E83823FDE021000112AF /* SKColor+Extensions.swift in Sources */,
 				8404E81323FDE01C000112AF /* Label.swift in Sources */,
@@ -736,6 +753,7 @@
 				847126E4241A8B1A00B0BB75 /* Tileset.swift in Sources */,
 				8404E84C23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6823FE161E007F503B /* Music.swift in Sources */,
+				6E495E202429A89700FD7E14 /* Armor.swift in Sources */,
 				8404E81F23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5B23FE10E9007F503B /* MemoryCard.swift in Sources */,
 				847126E8241A8B1A00B0BB75 /* TiledLayer.swift in Sources */,

@@ -85,12 +85,16 @@ class NonPlayableCharacter: SKSpriteNode {
         self.nodePhysicsBody = physicsBody
     }
     
+    func movementSpeed() -> CGFloat {
+        return 96.0
+    }
+    
     func loadActions() {
         
-        let speed: Double = 960
+        let speed: Double = Double(self.movementSpeed())
         let distance: Double = Double(self.tileWidth)
         
-        let moveActionDuration: TimeInterval = distance/speed
+        let moveActionDuration: TimeInterval = distance / speed
         
         self.actionMoveA = SKAction.group([
             SKAction.sequence([
