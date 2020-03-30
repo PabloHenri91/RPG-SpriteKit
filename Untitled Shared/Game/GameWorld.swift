@@ -64,8 +64,8 @@ class GameWorld: SKNode, SKPhysicsContactDelegate {
                     bodyBcategoryBitMask = "unknown"
                     break
                 }
-//                print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
-                // fatalError()
+//            print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
+//            fatalError()
             #endif
             break
         }
@@ -112,8 +112,8 @@ class GameWorld: SKNode, SKPhysicsContactDelegate {
                     bodyBcategoryBitMask = "unknown"
                     break
                 }
-//                print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
-                // fatalError()
+//            print("\(#function) case [.\(bodyAcategoryBitMask), .\(bodyBcategoryBitMask)]:")
+//            fatalError()
             #endif
             break
         }

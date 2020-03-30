@@ -49,7 +49,6 @@ class BattleSceneTest: XCTestCase {
         for _ in 0...frames {
             self.currentTime = self.currentTime + 1.0 / 60.0
             scene.update(self.currentTime)
-            print(self.currentTime)
         }
     }
     
@@ -75,8 +74,5 @@ class BattleSceneTest: XCTestCase {
         guard let touch = UITouch(cgEvent: event) else { return }
         
         scene.touchDown(touch: touch)
-        
-        print(touch.location(in: scene))
     }
-
 }

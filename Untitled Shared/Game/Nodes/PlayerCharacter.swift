@@ -29,15 +29,12 @@ class PlayerCharacter: PlayableCharacter {
         
         if let destination = self.destination {
             
-            print(self.position.distanceTo(destination))
-            
-            if self.position.distanceTo(destination) < 1 {
-                self.destination = nil
-                self.lastMove = .none
+            if self.position.distanceTo(destination).rounded() < map.tileWidth {
+                self.stop()
             } else {
                 let delta = destination - self.position
                 
-                if abs(delta.x) > map.tileWidth/2 {
+                if abs(delta.x) > map.tileWidth / 2 {
                     if delta.x > 0 {
                         self.moveD = true
                     } else {
@@ -45,7 +42,7 @@ class PlayerCharacter: PlayableCharacter {
                     }
                 }
                 
-                if abs(delta.y) > map.tileHeight/2 {
+                if abs(delta.y) > map.tileHeight / 2 {
                     if delta.y > 0 {
                         self.moveW = true
                     } else {
@@ -60,12 +57,10 @@ class PlayerCharacter: PlayableCharacter {
     
     //@todo mock method only
     func mockSpawnEnemy() {
+        guard let mapManager = MapManager.current else { return }
         let enemy = Enemy(type: .ranger, level: 10, primaryAttribute: .agility, secondaryAttribute: .intelligence)
+        enemy.configure(mapManager: mapManager)
         enemy.position = self.position
-        enemy.health = CGFloat.random(in: 200...500)
-        enemy.maxHealth = enemy.health
-        enemy.mana = CGFloat.random(in: 200...500)
-        enemy.maxMana = enemy.mana
         self.parent?.addChild(enemy)
         Enemy.enemyList.insert(enemy)
     }
@@ -88,24 +83,15 @@ class PlayerCharacter: PlayableCharacter {
         if let parent = self.parent {
             var touchLocation = touch.location(in: parent)
             
-            self.moveA = false
-            self.moveS = false
-            self.moveD = false
-            self.moveW = false
+            self.stop()
             
-            if self.contains(touchLocation) {
-                self.destination = nil
-                self.lastMove = .none
-            } else if (self.touchedEnemy(on: touchLocation) != nil) {
-                let enemy = self.touchedEnemy(on: touchLocation)!
-                print(enemy.health)
+            if let enemy = self.touchedEnemy(on: touchLocation) {
                 enemy.updateHealth(with: -CGFloat.random(in: 90...150))
             } else {
                 touchLocation = CGPoint(
                     x: ((touchLocation.x) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth,
                     y: ((touchLocation.y) / TiledMap.tileHeight).rounded() * TiledMap.tileHeight)
                 self.destination = touchLocation
-                self.lastMove = .none
             }
         }
     }
@@ -131,26 +117,6 @@ class PlayerCharacter: PlayableCharacter {
             break
         case 51:
             self.mockSpawnEnemy()
-            break
-        case 0, 123:
-            self.destination = nil
-            self.lastMove = .none
-            self.moveA = true
-            break
-        case 1, 125:
-            self.destination = nil
-            self.lastMove = .none
-            self.moveS = true
-            break
-        case 2, 124:
-            self.destination = nil
-            self.lastMove = .none
-            self.moveD = true
-            break
-        case 13, 126:
-            self.destination = nil
-            self.lastMove = .none
-            self.moveW = true
             break
         default:
             break

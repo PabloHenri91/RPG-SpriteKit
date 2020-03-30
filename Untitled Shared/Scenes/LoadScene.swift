@@ -16,6 +16,13 @@ class LoadScene: GameScene {
     init() {
         GameScene.defaultSize = CGSize(width: 1920 / 4, height: 1080 / 4)
         GameScene.defaultFilteringMode = .nearest
+        
+        GameColors.background = GameColors.backgroundColor
+        
+        Label.defaultFontName = .kenPixel
+        Label.defaultColor = GameColors.backgroundColor
+        Label.defaultSize = .fontSize8
+        
         super.init()
     }
     
@@ -30,12 +37,9 @@ class LoadScene: GameScene {
 //        self.view?.showsPhysics = true
         #endif
         
-        Label.defaultFontName = .kenPixel
-        Label.defaultColor = GameColors.fontWhite
+        self.loadTitle()
         
-        self.backgroundColor = GameColors.backgroundColor
-        
-        self.addChild(Label(text: "TOUCH TO START", x: 187, y: 620, horizontalAlignment: .center, verticalAlignment: .center))
+        self.addChild(Label(text: "TOUCH TO START", fontColor: GameColors.fontWhite, x: 240, y: 211, horizontalAlignment: .center, verticalAlignment: .center))
         
         #if DEBUG
         if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil {
@@ -57,5 +61,12 @@ class LoadScene: GameScene {
                 Music.sharedInstance.playMusic(withType: .battle)
             }
         }
+    }
+}
+
+extension GameScene {
+    
+    func loadTitle() {
+        self.addChild(Label(text: "Title", fontSize: .fontSize16, fontColor: GameColors.fontWhite, x: 240, y: 81, horizontalAlignment: .center, verticalAlignment: .center))
     }
 }

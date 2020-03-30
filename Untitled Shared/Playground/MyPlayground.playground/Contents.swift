@@ -1,5 +1,20 @@
 import Cocoa
 
+var base = 16.0
+let goldenRation = 1.61803398875
+
+for i in 1...10 {
+    base = base * goldenRation
+    print(base.rounded())
+}
+
+base = 16.0
+for i in 1...5 {
+    base = base / goldenRation
+    print(base.rounded())
+}
+
+/*
 let baseDamage = 10.0
 let hitsPerSecond = 2.0
 let timeToKillInSeconds = 10.0
@@ -111,3 +126,4 @@ for i in 2...90 {
     // print("Level \(i): \(xpForLevel(level: i))")
     // print("Total xp: \(xpTotal)\n")
 }
+*/

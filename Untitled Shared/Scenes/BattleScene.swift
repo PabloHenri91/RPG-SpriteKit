@@ -48,8 +48,6 @@ class BattleScene: GameScene, MapManagerDelegate {
         let playerData = MemoryCard.sharedInstance.playerData!
         playerData.points = playerData.points + 1
         
-        self.backgroundColor = GameColors.backgroundColor
-        
         self.loadGameWorld()
         self.loadStatusBar()
         self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)

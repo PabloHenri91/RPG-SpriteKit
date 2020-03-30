@@ -56,7 +56,7 @@ class PlayableCharacter: NonPlayableCharacter {
     }
     
     func updateAttributes() {
-        self.maxHealth = GameMath.health(armor: self.armor, character: self)
+        self.maxHealth = GameMath.health(character: self)
         self.health = self.maxHealth
         self.maxMana = GameMath.mana(character: self)
         self.mana = self.maxMana
@@ -93,6 +93,5 @@ class PlayableCharacter: NonPlayableCharacter {
     
     func die() {
         self.dead = true
-        print("die")
     }
 }

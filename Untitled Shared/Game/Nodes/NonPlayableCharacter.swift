@@ -273,4 +273,13 @@ class NonPlayableCharacter: SKSpriteNode {
         self.moveD = false
         self.moveW = false
     }
+    
+    func stop() {
+        self.destination = nil
+        self.lastMove = .none
+        self.moveA = false
+        self.moveS = false
+        self.moveD = false
+        self.moveW = false
+    }
 }

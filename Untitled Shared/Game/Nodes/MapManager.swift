@@ -39,9 +39,12 @@ class MapManager: NSObject, TiledMapDelegate {
     
     weak var delegate: MapManagerDelegate?
     
+    static weak var current: MapManager?
+    
     init(mapManagerDelegate: MapManagerDelegate? = nil) {
         super.init()
         self.delegate = mapManagerDelegate
+        MapManager.current = self
     }
     
     func reload(position: CGPoint) {
@@ -100,7 +103,6 @@ class MapManager: NSObject, TiledMapDelegate {
             if self.playerRegion != self.loadedRegion {
                 self.loading = true
                 self.loadMap()
-                print(self.playerRegion)
                 self.loading = false
             }
         }

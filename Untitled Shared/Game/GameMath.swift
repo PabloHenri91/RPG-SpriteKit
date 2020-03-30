@@ -20,8 +20,8 @@ class GameMath: NSObject {
         return CGFloat(base + bonus).rounded()
     }
     
-    static func health(armor: Armor, character: PlayableCharacter) -> CGFloat {
-        var value: CGFloat = 100.0 * CGFloat(pow(1.1, 4.0 * Double(armor.rarity.hashValue)))
+    static func health(character: PlayableCharacter) -> CGFloat {
+        var value: CGFloat = 100.0
         value = value * constitution(character: character)
         return value
     }

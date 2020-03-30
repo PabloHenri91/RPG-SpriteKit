@@ -29,6 +29,5 @@ class GameViewController: NSViewController, NSWindowDelegate {
         GameScene.viewBoundsSize = view.bounds.size
         GameScene.updateSize()
         scene.size = GameScene.currentSize
-        print(view.bounds.size)
     }
 }

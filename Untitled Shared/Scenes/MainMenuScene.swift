@@ -12,7 +12,9 @@ class MainMenuScene: GameScene {
 
     enum state: String {
         case mainMenu
-        case battle
+        case continueGame
+        case loadGame
+        case newGame
     }
     
     var state: state = .mainMenu
@@ -23,19 +25,33 @@ class MainMenuScene: GameScene {
         
         MemoryCard.sharedInstance.saveGame()
         
-        let playerData = MemoryCard.sharedInstance.playerData!
-        playerData.points = playerData.points + 1
-        print(playerData.points)
+        self.loadTitle()
+        self.loadButtons()
+    }
+    
+    func loadButtons() {
         
-        self.backgroundColor = GameColors.backgroundColor
+        if MemoryCard.sharedInstance.playerData.selectedCharacter() != nil {
+            let buttonContinue = Button(imageNamed: "button_110x26", text: "Continue", x: 185, y: 162, horizontalAlignment: .center, verticalAlignment: .bottom)
+            self.addChild(buttonContinue)
+            buttonContinue.addHandler { [weak self] in
+                guard let `self` = self else { return }
+                self.nextState = .continueGame
+            }
+            
+            let buttonLoadGame = Button(imageNamed: "button_110x26", text: "Load Game", x: 185, y: 198, horizontalAlignment: .center, verticalAlignment: .bottom)
+            self.addChild(buttonLoadGame)
+            buttonLoadGame.addHandler { [weak self] in
+                guard let `self` = self else { return }
+                self.nextState = .loadGame
+            }
+        }
         
-        let buttonPlay = Button(imageNamed: "button_233x55", x: 71, y: 604, horizontalAlignment: .center, verticalAlignment: .bottom)
-        buttonPlay.setIcon(imageNamed: "Play")
-        buttonPlay.set(color: GameColors.controlRed, blendMode: .add)
-        self.addChild(buttonPlay)
-        buttonPlay.addHandler { [weak self] in
+        let buttonNewGame = Button(imageNamed: "button_110x26", text: "New Game", x: 185, y: 234, horizontalAlignment: .center, verticalAlignment: .bottom)
+        self.addChild(buttonNewGame)
+        buttonNewGame.addHandler { [weak self] in
             guard let `self` = self else { return }
-            self.nextState = .battle
+            self.nextState = .newGame
         }
     }
     
@@ -48,7 +64,11 @@ class MainMenuScene: GameScene {
                 
             case .mainMenu:
                 break
-            case .battle:
+            case .continueGame:
+                break
+            case .loadGame:
+                break
+            case .newGame:
                 break
             }
         } else {
@@ -58,9 +78,15 @@ class MainMenuScene: GameScene {
                 
             case .mainMenu:
                 break
-            case .battle:
+            case .continueGame:
                 Music.sharedInstance.stop()
                 self.view?.presentScene(BattleScene(), transition: GameScene.defaultTransition)
+                break
+            case .loadGame:
+                self.view?.presentScene(LoadGameScene(), transition: GameScene.defaultTransition)
+                break
+            case .newGame:
+                self.view?.presentScene(NewGameScene(), transition: GameScene.defaultTransition)
                 break
             }
         }
