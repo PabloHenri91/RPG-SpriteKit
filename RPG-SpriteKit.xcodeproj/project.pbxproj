@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E328928243E8B0600300C72 /* BoxChooseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E328927243E8B0600300C72 /* BoxChooseClass.swift */; };
+		6E328929243E8B0600300C72 /* BoxChooseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E328927243E8B0600300C72 /* BoxChooseClass.swift */; };
+		6E32892B243E995200300C72 /* BoxChooseAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E32892A243E995200300C72 /* BoxChooseAttribute.swift */; };
+		6E32892C243E995200300C72 /* BoxChooseAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E32892A243E995200300C72 /* BoxChooseAttribute.swift */; };
 		6E42AD5123FE0967007F503B /* GameColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42AD5023FE0967007F503B /* GameColorsExtension.swift */; };
 		6E42AD5223FE0967007F503B /* GameColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42AD5023FE0967007F503B /* GameColorsExtension.swift */; };
 		6E42AD5423FE0A45007F503B /* GameWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42AD5323FE0A45007F503B /* GameWorld.swift */; };
@@ -160,6 +164,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E328927243E8B0600300C72 /* BoxChooseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxChooseClass.swift; sourceTree = "<group>"; };
+		6E32892A243E995200300C72 /* BoxChooseAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxChooseAttribute.swift; sourceTree = "<group>"; };
 		6E42AD5023FE0967007F503B /* GameColorsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameColorsExtension.swift; sourceTree = "<group>"; };
 		6E42AD5323FE0A45007F503B /* GameWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWorld.swift; sourceTree = "<group>"; };
 		6E42AD5623FE108F007F503B /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
@@ -268,6 +274,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E328926243E8AEA00300C72 /* Box */ = {
+			isa = PBXGroup;
+			children = (
+				6E328927243E8B0600300C72 /* BoxChooseClass.swift */,
+				6E32892A243E995200300C72 /* BoxChooseAttribute.swift */,
+			);
+			path = Box;
+			sourceTree = "<group>";
+		};
 		6E42AD6F23FE23BE007F503B /* Playground */ = {
 			isa = PBXGroup;
 			children = (
@@ -449,6 +464,7 @@
 		84B7EEFA23FDD51D00DD1CE5 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				6E328926243E8AEA00300C72 /* Box */,
 				D9643121240970CA00EC6BFE /* Control */,
 				841396DF2406C76100DF3361 /* Map */,
 				D915DF5C24002C39003CBBF3 /* Nodes */,
@@ -650,6 +666,7 @@
 				6E518DEC2431843F00DDF293 /* CharacterData.swift in Sources */,
 				6E4A85CD241EB3D5008C1932 /* PlayableCharacter.swift in Sources */,
 				8404E82023FDE01C000112AF /* GameCamera.swift in Sources */,
+				6E328928243E8B0600300C72 /* BoxChooseClass.swift in Sources */,
 				6E42AD6423FE14FB007F503B /* BattleScene.swift in Sources */,
 				6E518DE92431211100DDF293 /* ItemData.swift in Sources */,
 				847126EB241A8B1A00B0BB75 /* TiledObject.swift in Sources */,
@@ -684,6 +701,7 @@
 				8449EED4240ED50100295B88 /* StringExtension.swift in Sources */,
 				8404E83F23FDE021000112AF /* SKAction+Extensions.swift in Sources */,
 				8404E81423FDE01C000112AF /* Control.swift in Sources */,
+				6E32892B243E995200300C72 /* BoxChooseAttribute.swift in Sources */,
 				6E42AD5D23FE113D007F503B /* PlayerData.swift in Sources */,
 				847126E5241A8B1A00B0BB75 /* TiledObjectGroup.swift in Sources */,
 				8404E82423FDE01C000112AF /* GameScene.swift in Sources */,
@@ -721,6 +739,7 @@
 				6E518DED2431843F00DDF293 /* CharacterData.swift in Sources */,
 				6E4A85CE241EB3D5008C1932 /* PlayableCharacter.swift in Sources */,
 				8404E82123FDE01C000112AF /* GameCamera.swift in Sources */,
+				6E328929243E8B0600300C72 /* BoxChooseClass.swift in Sources */,
 				6E42AD6523FE14FB007F503B /* BattleScene.swift in Sources */,
 				6E518DEA2431211100DDF293 /* ItemData.swift in Sources */,
 				847126EC241A8B1A00B0BB75 /* TiledObject.swift in Sources */,
@@ -755,6 +774,7 @@
 				8449EED5240ED50100295B88 /* StringExtension.swift in Sources */,
 				8404E84023FDE021000112AF /* SKAction+Extensions.swift in Sources */,
 				8404E81523FDE01C000112AF /* Control.swift in Sources */,
+				6E32892C243E995200300C72 /* BoxChooseAttribute.swift in Sources */,
 				6E42AD5E23FE113D007F503B /* PlayerData.swift in Sources */,
 				847126E6241A8B1A00B0BB75 /* TiledObjectGroup.swift in Sources */,
 				8404E82523FDE01C000112AF /* GameScene.swift in Sources */,
