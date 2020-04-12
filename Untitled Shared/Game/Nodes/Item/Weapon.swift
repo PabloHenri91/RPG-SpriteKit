@@ -72,12 +72,12 @@ class Weapon: Item {
         return name
     }
     
-    func skinTexture(index i: Int) -> SKTexture? {
+    override func skinTexture(skin: Int) -> SKTexture {
         var texture: SKTexture? = nil
-        if let name = self.skinName(index: i) {
+        if let name = self.skinName(index: skin) {
             texture = SKTexture(imageNamed: name, filteringMode: GameScene.defaultFilteringMode)
         }
-        return texture
+        return texture ?? super.skinTexture(skin: skin)
     }
     
     override var description: String {

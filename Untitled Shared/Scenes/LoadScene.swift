@@ -43,7 +43,8 @@ class LoadScene: GameScene {
         
         #if DEBUG
         if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] == nil {
-            self.view?.presentScene(BattleScene())
+//            self.view?.presentScene(BattleScene())
+//            MemoryCard.sharedInstance.reset()
         }
         #endif
     }

@@ -11,8 +11,7 @@ import SpriteKit
 class HealthBar: BaseBar {
 
     init() {
-        super.init(imageNamed: "healthBar")
-        self.position = CGPoint(x: 28, y: -4)
+        super.init(background: "barBackground388x10", border: "barBorder388x10", x: 0, y: 0, color: GameColors.controlRed)
     }
     
     required init?(coder aDecoder: NSCoder) {

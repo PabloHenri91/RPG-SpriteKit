@@ -54,6 +54,10 @@
 		6E518DF02431891A00DDF293 /* NewGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E518DEE2431891A00DDF293 /* NewGameScene.swift */; };
 		6E518DF22431893C00DDF293 /* LoadGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E518DF12431893C00DDF293 /* LoadGameScene.swift */; };
 		6E518DF32431893C00DDF293 /* LoadGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E518DF12431893C00DDF293 /* LoadGameScene.swift */; };
+		6E7FD0AD24439102005EE633 /* ItemSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7FD0AC24439102005EE633 /* ItemSlot.swift */; };
+		6E7FD0AE24439102005EE633 /* ItemSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7FD0AC24439102005EE633 /* ItemSlot.swift */; };
+		6E7FD0B024439763005EE633 /* PlayerHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7FD0AF24439763005EE633 /* PlayerHUD.swift */; };
+		6E7FD0B124439763005EE633 /* PlayerHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7FD0AF24439763005EE633 /* PlayerHUD.swift */; };
 		6E97E97C2442550200DA1642 /* WeaponData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E97E97B2442550200DA1642 /* WeaponData.swift */; };
 		6E97E97D2442550200DA1642 /* WeaponData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E97E97B2442550200DA1642 /* WeaponData.swift */; };
 		6E97E97F244256EF00DA1642 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E97E97E244256EF00DA1642 /* Arrow.swift */; };
@@ -210,6 +214,8 @@
 		6E518DEB2431843F00DDF293 /* CharacterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterData.swift; sourceTree = "<group>"; };
 		6E518DEE2431891A00DDF293 /* NewGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameScene.swift; sourceTree = "<group>"; };
 		6E518DF12431893C00DDF293 /* LoadGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadGameScene.swift; sourceTree = "<group>"; };
+		6E7FD0AC24439102005EE633 /* ItemSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSlot.swift; sourceTree = "<group>"; };
+		6E7FD0AF24439763005EE633 /* PlayerHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHUD.swift; sourceTree = "<group>"; };
 		6E97E97B2442550200DA1642 /* WeaponData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponData.swift; sourceTree = "<group>"; };
 		6E97E97E244256EF00DA1642 /* Arrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		6E97E9812442573B00DA1642 /* Shield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
@@ -312,8 +318,8 @@
 		6E328926243E8AEA00300C72 /* Box */ = {
 			isa = PBXGroup;
 			children = (
-				6E328927243E8B0600300C72 /* BoxChooseClass.swift */,
 				6E32892A243E995200300C72 /* BoxChooseAttribute.swift */,
+				6E328927243E8B0600300C72 /* BoxChooseClass.swift */,
 			);
 			path = Box;
 			sourceTree = "<group>";
@@ -575,7 +581,9 @@
 			children = (
 				D9068528240D606F0026EB80 /* BaseBar.swift */,
 				D96431252409738600EC6BFE /* HealthBar.swift */,
+				6E7FD0AC24439102005EE633 /* ItemSlot.swift */,
 				D96431282409756700EC6BFE /* ManaBar.swift */,
+				6E7FD0AF24439763005EE633 /* PlayerHUD.swift */,
 				D9643122240970E200EC6BFE /* StatusBar.swift */,
 			);
 			path = Control;
@@ -768,6 +776,7 @@
 				8404E82423FDE01C000112AF /* GameScene.swift in Sources */,
 				6E42AD6123FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82823FDE01C000112AF /* Button.swift in Sources */,
+				6E7FD0AD24439102005EE633 /* ItemSlot.swift in Sources */,
 				D9ED735B24169F62003BC3BE /* Enemy.swift in Sources */,
 				6E495E222429A8D300FD7E14 /* Item.swift in Sources */,
 				8404E84D23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
@@ -790,6 +799,7 @@
 				8404E84B23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6723FE161E007F503B /* Music.swift in Sources */,
 				6E495E1F2429A89700FD7E14 /* Armor.swift in Sources */,
+				6E7FD0B024439763005EE633 /* PlayerHUD.swift in Sources */,
 				8404E81E23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5A23FE10E9007F503B /* MemoryCard.swift in Sources */,
 				847126E7241A8B1A00B0BB75 /* TiledLayer.swift in Sources */,
@@ -850,6 +860,7 @@
 				8404E82523FDE01C000112AF /* GameScene.swift in Sources */,
 				6E42AD6223FE1257007F503B /* Model.xcdatamodeld in Sources */,
 				8404E82923FDE01C000112AF /* Button.swift in Sources */,
+				6E7FD0AE24439102005EE633 /* ItemSlot.swift in Sources */,
 				D9ED735C24169F62003BC3BE /* Enemy.swift in Sources */,
 				6E495E232429A8D300FD7E14 /* Item.swift in Sources */,
 				8404E84E23FDE022000112AF /* CGFloat+Extensions.swift in Sources */,
@@ -872,6 +883,7 @@
 				8404E84C23FDE021000112AF /* Vector3.swift in Sources */,
 				6E42AD6823FE161E007F503B /* Music.swift in Sources */,
 				6E495E202429A89700FD7E14 /* Armor.swift in Sources */,
+				6E7FD0B124439763005EE633 /* PlayerHUD.swift in Sources */,
 				8404E81F23FDE01C000112AF /* Box.swift in Sources */,
 				6E42AD5B23FE10E9007F503B /* MemoryCard.swift in Sources */,
 				847126E8241A8B1A00B0BB75 /* TiledLayer.swift in Sources */,

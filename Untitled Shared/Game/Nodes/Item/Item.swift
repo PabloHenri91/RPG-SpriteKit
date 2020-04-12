@@ -50,6 +50,13 @@ class Item: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    func icon() -> SKSpriteNode {
+        let icon = SKSpriteNode(texture: self.skinTexture(skin: self.skin), color: self.color, size: self.size)
+        icon.blendMode = .add
+        icon.colorBlendFactor = 1
+        return icon
+    }
+    
     func skinTexture(skin: Int) -> SKTexture {
         return SKTexture(imageNamed: "itemNull", filteringMode: GameScene.defaultFilteringMode)
     }

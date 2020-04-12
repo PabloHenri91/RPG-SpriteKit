@@ -14,6 +14,7 @@ class BattleScene: GameScene, MapManagerDelegate {
     weak var gameCamera: GameCamera!
     weak var player: PlayerCharacter!
     weak var statusBar: StatusBar!
+    weak var playerHUD: PlayerHUD!
     
     var mapManager: MapManager!
     
@@ -46,14 +47,27 @@ class BattleScene: GameScene, MapManagerDelegate {
         super.load()
         
         self.loadGameWorld()
-        self.loadStatusBar()
-        self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)
+        self.loadPlayer(gameWorld: self.gameWorld)
         self.loadMapManager(player: self.player)
         self.loadGameCamera(gameWorld: self.gameWorld, gameCameraNode: self.player)
+        self.loadPlayerHUD()
         
         self.configurePlayer(mapManager: self.mapManager)
+        self.configurePlayerHUD(statusBar: self.statusBar, player: self.player)
         
         self.nextState = .battle
+    }
+    
+    func loadPlayerHUD() {
+        self.loadStatusBar()
+        let playerHUD = PlayerHUD()
+        self.addChild(playerHUD)
+        self.playerHUD = playerHUD
+    }
+    
+    func configurePlayerHUD(statusBar: StatusBar, player: PlayerCharacter) {
+        player.statusBar = statusBar
+        self.playerHUD.configure(playableCharacter: player)
     }
     
     func loadGameWorld() {
@@ -62,7 +76,7 @@ class BattleScene: GameScene, MapManagerDelegate {
         self.gameWorld = gameWorld
     }
     
-    func loadGameCamera(gameWorld: GameWorld, gameCameraNode:SKNode = SKNode()) {
+    func loadGameCamera(gameWorld: GameWorld, gameCameraNode: SKNode = SKNode()) {
         let gameCamera = GameCamera()
         gameWorld.addChild(gameCamera)
         gameCamera.node = gameCameraNode
@@ -70,12 +84,11 @@ class BattleScene: GameScene, MapManagerDelegate {
         self.gameCamera = gameCamera
     }
     
-    func loadPlayer(gameWorld: GameWorld, statusBar: StatusBar) {
+    func loadPlayer(gameWorld: GameWorld) {
         let playerData = MemoryCard.sharedInstance.playerData!
         guard let characterData = playerData.selectedCharacter() else { fatalError() }
         let player = PlayerCharacter(characterData: characterData)
         player.zPosition = BattleScene.zPositionType.player.rawValue
-        player.statusBar = statusBar
         gameWorld.addChild(player)
         self.player = player;
     }

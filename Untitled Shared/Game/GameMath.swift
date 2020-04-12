@@ -50,7 +50,7 @@ class GameMath: NSObject {
     }
     
     static func mana(character: PlayableCharacter) -> CGFloat {
-        var value: CGFloat = 10.0
+        var value: CGFloat = 30.0
         value = value * GameMath.wisdom(character: character)
         return value.rounded()
     }

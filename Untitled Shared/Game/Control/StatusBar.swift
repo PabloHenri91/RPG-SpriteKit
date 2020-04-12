@@ -14,7 +14,7 @@ class StatusBar: Control {
     var manaBar: ManaBar!
     
     init() {
-        super.init(imageNamed: "statusbar", x: 8, y: 8, horizontalAlignment: .left, verticalAlignment: .top)
+        super.init(x: 46, y: 234, horizontalAlignment: .center, verticalAlignment: .bottom)
         self.loadHealthBar()
         self.loadManaBar()
     }

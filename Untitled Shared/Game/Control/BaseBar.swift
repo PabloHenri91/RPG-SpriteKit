@@ -8,27 +8,29 @@
 
 import SpriteKit
 
-enum BarType {
-    case health
-    case mana
-}
-
-class BaseBar: SKSpriteNode {
-
-    let bar: SKSpriteNode
-    let barMaxWidth: CGFloat
+class BaseBar: Control {
     
-    init(imageNamed: String) {
-        let backgroundTexture = SKTexture(imageNamed: "statusBarItemBackground")
-        let texture = SKTexture(imageNamed: imageNamed)
-        self.bar = SKSpriteNode(texture: texture, color: .white, size: texture.size())
-        self.barMaxWidth = self.bar.size.width
-        super.init(texture: backgroundTexture, color: .white, size: backgroundTexture.size())
-        self.anchorPoint = CGPoint(x: 0, y: 1)
+    var barMaxWidth: CGFloat = 1
+    
+    weak var bar: SKSpriteNode!
+    
+    init(background: String, border: String, x: CGFloat, y: CGFloat, color: SKColor) {
+        super.init(imageNamed: background, x: x, y: y)
         
-        self.bar.position = CGPoint(x: 1, y: -1)
-        self.bar.anchorPoint = CGPoint(x: 0, y: 1)
+        let bar = SKSpriteNode(texture: nil, color: .white, size: self.size)
+        bar.color = color
+        bar.colorBlendFactor = 1
+        bar.position = CGPoint(x: 0, y: -self.size.height / 2)
+        bar.anchorPoint = CGPoint(x: 0, y: 0.5)
         self.addChild(bar)
+        self.bar = bar
+        
+        let border = Control(imageNamed: border, x: 0, y: 0)
+        border.color = color
+        border.colorBlendFactor = 0.5
+        self.addChild(border)
+        
+        self.barMaxWidth = self.size.width
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,9 +38,6 @@ class BaseBar: SKSpriteNode {
     }
     
     func update(with value: CGFloat, from maxValue: CGFloat) {
-        let maxBarWidth = self.barMaxWidth
-        let factor = (value / maxValue)
-        self.bar.size.width = (factor * maxBarWidth)
+        self.bar.size.width = self.barMaxWidth * value / maxValue
     }
-    
 }
