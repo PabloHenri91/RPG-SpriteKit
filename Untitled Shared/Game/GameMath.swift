@@ -21,60 +21,92 @@ class GameMath: NSObject {
     }
     
     static func health(character: PlayableCharacter) -> CGFloat {
-        var value: CGFloat = 100.0
-        value = value * constitution(character: character)
-        return value
+        var value: CGFloat = 30.0
+        value = value * GameMath.constitution(character: character)
+        return value.rounded()
     }
     
     static func movementSpeed(character: PlayableCharacter) -> CGFloat {
         var value: CGFloat = 9.6
-        value = value * agility(character: character)
-        return value
+        value = value * GameMath.agility(character: character)
+        return value.rounded()
     }
     
     static func mana(character: PlayableCharacter) -> CGFloat {
-        var value: CGFloat = 100.0
-        value = value * wisdom(character: character)
+        var value: CGFloat = 10.0
+        value = value * GameMath.wisdom(character: character)
+        return value.rounded()
+    }
+    
+    static func damage(weapon: Weapon?, character: PlayableCharacter) -> CGFloat {
+        guard let weapon = weapon else { return 0 }
+        var value = 10.0 * CGFloat(pow(1.1, 4.0 * Double(weapon.rarity.rawValue)))
+        switch weapon.type {
+        case .melee:
+            value = value * character.strength
+            break
+        case .magic:
+            value = value * character.intelligence
+            break
+        case .ranged:
+            value = value * character.dexterity
+            break
+        }
+        
+        value = value * pow(1.1, CGFloat(weapon.level - 1))
+        
+        return value.rounded()
+    }
+    
+    static func damageMultiplier(armor: Armor?) -> CGFloat {
+        guard let armor = armor else { return 1 }
+        var value = 1.0 * CGFloat(pow(1.1, 4.0 * Double(armor.rarity.rawValue)))
+        value = value * pow(1.1, CGFloat(armor.level))
+        value = 1.0 / value
         return value
     }
     
-    static func damage(weapon: Weapon, character: PlayableCharacter) -> CGFloat {
-        var value = 1.0 * CGFloat(pow(1.1, 4.0 * Double(weapon.rarity.hashValue)))
-        switch weapon.type {
-        case .melee:
-            value = value * strength(character: character)
-            break
-        case .magic:
-            value = value * intelligence(character: character)
-            break
-        case .ranged:
-            value = value * dexterity(character: character)
-            break
+    static func damageMultiplier(weapon: Weapon?, armor: Armor?) -> CGFloat {
+        guard let weapon = weapon else { return 0 }
+        var value: CGFloat = 1.0
+        if let armor = armor {
+            if armor.element.weakness == weapon.element.type {
+                value = value * (CGFloat.pi / 2.0)
+            } else if armor.element.strength == weapon.element.type {
+                value = value / (CGFloat.pi / 2.0)
+            }
         }
         return value
     }
+    
+    static func damage(character: PlayableCharacter, target: PlayableCharacter) -> CGFloat {
+        var damage = GameMath.damage(weapon: character.weapon, character: character)
+        damage = damage * GameMath.damageMultiplier(armor: target.armor)
+        damage = damage * GameMath.damageMultiplier(weapon: character.weapon, armor: target.armor)
+        return damage
+    }
 
     static func constitution(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .constitution, type: .warrior, character: character)
+        return GameMath.calculate(attribute: .constitution, type: .warrior, character: character)
     }
     
     static func strength(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .strength, type: .warrior, character: character)
+        return GameMath.calculate(attribute: .strength, type: .warrior, character: character)
     }
     
     static func agility(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .agility, type: .ranger, character: character)
+        return GameMath.calculate(attribute: .agility, type: .ranger, character: character)
     }
     
     static func dexterity(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .dexterity, type: .ranger, character: character)
+        return GameMath.calculate(attribute: .dexterity, type: .ranger, character: character)
     }
     
     static func wisdom(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .wisdom, type: .mage, character: character)
+        return GameMath.calculate(attribute: .wisdom, type: .mage, character: character)
     }
     
     static func intelligence(character: PlayableCharacter) -> CGFloat {
-        return calculate(attribute: .intelligence, type: .mage, character: character)
+        return GameMath.calculate(attribute: .intelligence, type: .mage, character: character)
     }
 }

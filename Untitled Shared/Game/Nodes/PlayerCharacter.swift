@@ -14,6 +14,14 @@ class PlayerCharacter: PlayableCharacter {
         super.init(type: .none, level: 1, primaryAttribute: .none, secondaryAttribute: .none)
     }
     
+    init(characterData: CharacterData) {
+        let type = PlayableCharacter.type(rawValue: Int(characterData.type)) ?? .none
+        let level = Int(characterData.level)
+        let primaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.primaryAttribute)) ?? .none
+        let secondaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.secondaryAttribute)) ?? .none
+        super.init(type: type, level: level, primaryAttribute: primaryAttribute, secondaryAttribute: secondaryAttribute)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

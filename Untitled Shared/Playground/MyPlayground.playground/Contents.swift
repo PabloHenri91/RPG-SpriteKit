@@ -1,31 +1,31 @@
 import Cocoa
 
-var base = 16.0
-let goldenRation = 1.61803398875
+//var base = 16.0
+//let goldenRation = 1.61803398875
+//
+//for i in 1...10 {
+//    base = base * goldenRation
+//    print(base.rounded())
+//}
+//
+//base = 16.0
+//for i in 1...5 {
+//    base = base / goldenRation
+//    print(base.rounded())
+//}
 
-for i in 1...10 {
-    base = base * goldenRation
-    print(base.rounded())
-}
 
-base = 16.0
-for i in 1...5 {
-    base = base / goldenRation
-    print(base.rounded())
-}
-
-/*
 let baseDamage = 10.0
 let hitsPerSecond = 2.0
 let timeToKillInSeconds = 10.0
 
-let t1 = timeToKillInSeconds * hitsPerSecond * baseDamage // level 1 common armor base health bonus
-let t2 = round(t1 * pow(1.1, 4)) // uncommon
-let t3 = round(t2 * pow(1.1, 4)) // rare
-let t4 = round(t3 * pow(1.1, 4)) // heroic
-let t5 = round(t4 * pow(1.1, 4)) // epic
-let t6 = round(t5 * pow(1.1, 4)) // legendary
-let t7 = round(t6 * pow(1.1, 4)) // supreme
+let t1 = baseDamage //timeToKillInSeconds * hitsPerSecond * baseDamage // level 1 common armor base health bonus
+let t2 = (t1 * pow(1.1, 4)) // uncommon
+let t3 = (t2 * pow(1.1, 4)) // rare
+let t4 = (t3 * pow(1.1, 4)) // heroic
+let t5 = (t4 * pow(1.1, 4)) // epic
+let t6 = (t5 * pow(1.1, 4)) // legendary
+let t7 = (t6 * pow(1.1, 4)) // supreme
 
 func random() -> CGFloat {
     return CGFloat(Float.random(in: 0...1))
@@ -126,4 +126,3 @@ for i in 2...90 {
     // print("Level \(i): \(xpForLevel(level: i))")
     // print("Total xp: \(xpTotal)\n")
 }
-*/

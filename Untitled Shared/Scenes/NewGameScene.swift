@@ -12,6 +12,7 @@ class NewGameScene: GameScene {
     
     enum state: String {
         case newGame
+        case continueGame
         case mainMenu
     }
     
@@ -23,6 +24,7 @@ class NewGameScene: GameScene {
     var labelClass: Label! = nil
     var labelPrimaryAttribute: Label! = nil
     var labelSecondaryAttribute: Label! = nil
+    var buttonAccept: Button! = nil
     
     weak var box: Box? = nil
 
@@ -52,7 +54,7 @@ class NewGameScene: GameScene {
         self.addChild(buttonPrimaryAttribute)
         buttonPrimaryAttribute.addHandler { [weak self] in
             guard let `self` = self else { return }
-            let box = BoxChooseAttribute(completion:  { [weak self] (attribute: PlayableCharacter.attribute) in
+            let box = BoxChooseAttribute(hiddenAttribute: self.playableCharacter.secondaryAttribute, completion:  { [weak self] (attribute: PlayableCharacter.attribute) in
                 guard let `self` = self else { return }
                 self.changePrimaryAttribute(attribute: attribute)
             })
@@ -64,7 +66,7 @@ class NewGameScene: GameScene {
         self.addChild(buttonSecondaryAttribute)
         buttonSecondaryAttribute.addHandler { [weak self] in
             guard let `self` = self else { return }
-            let box = BoxChooseAttribute(completion:  { [weak self] (attribute: PlayableCharacter.attribute) in
+            let box = BoxChooseAttribute(hiddenAttribute: self.playableCharacter.primaryAttribute, completion:  { [weak self] (attribute: PlayableCharacter.attribute) in
                 guard let `self` = self else { return }
                 self.changeSecondaryAttribute(attribute: attribute)
             })
@@ -89,24 +91,51 @@ class NewGameScene: GameScene {
         let labelSecondaryAttribute = Label(text: "\(self.playableCharacter.secondaryAttribute)", fontColor: GameColors.fontWhite, x: 55, y: 13)
         controlSecondaryAttribute.addChild(labelSecondaryAttribute)
         self.labelSecondaryAttribute = labelSecondaryAttribute
+        
+        let buttonAccept = Button(imageNamed: "button_110x26", text: "Accept", x: 185, y: 234, horizontalAlignment: .center, verticalAlignment: .bottom)
+        self.addChild(buttonAccept)
+        self.buttonAccept = buttonAccept
+        self.buttonAcceptUpdate()
+        buttonAccept.addHandler { [weak self] in
+            guard let `self` = self else { return }
+            self.buttonAcceptAction()
+        }
+    }
+    
+    func buttonAcceptUpdate() {
+        self.buttonAccept.isHidden = self.playableCharacter.type == .none
+            || self.playableCharacter.primaryAttribute == .none
+            || self.playableCharacter.secondaryAttribute == .none
+    }
+    
+    func buttonAcceptAction() {
+        let memoryCard = MemoryCard.sharedInstance
+        let playerData = memoryCard.playerData!
+        let characterData = memoryCard.newCharacterData(playableCharacter: self.playableCharacter)
+        playerData.addToCharacterList(characterData)
+        playerData.load(character: characterData)
+        self.nextState = .continueGame
     }
     
     func changeType(type: PlayableCharacter.type) {
         self.box?.remove()
         self.playableCharacter.type = type
         self.labelClass.text = "\(type)"
+        self.buttonAcceptUpdate()
     }
     
     func changePrimaryAttribute(attribute: PlayableCharacter.attribute) {
         self.box?.remove()
         self.playableCharacter.primaryAttribute = attribute
         self.labelPrimaryAttribute.text = "\(attribute)"
+        self.buttonAcceptUpdate()
     }
     
     func changeSecondaryAttribute(attribute: PlayableCharacter.attribute) {
         self.box?.remove()
         self.playableCharacter.secondaryAttribute = attribute
         self.labelSecondaryAttribute.text = "\(attribute)"
+        self.buttonAcceptUpdate()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -120,6 +149,8 @@ class NewGameScene: GameScene {
                 break
             case .newGame:
                 break
+            case .continueGame:
+                break
             }
         } else {
             self.state = self.nextState
@@ -130,6 +161,9 @@ class NewGameScene: GameScene {
                 self.view?.presentScene(MainMenuScene(), transition: GameScene.defaultTransition)
                 break
             case .newGame:
+                break
+            case .continueGame:
+                self.view?.presentScene(BattleScene(), transition: GameScene.defaultTransition)
                 break
             }
         }

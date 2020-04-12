@@ -45,9 +45,6 @@ class BattleScene: GameScene, MapManagerDelegate {
     override func load() {
         super.load()
         
-        let playerData = MemoryCard.sharedInstance.playerData!
-        playerData.points = playerData.points + 1
-        
         self.loadGameWorld()
         self.loadStatusBar()
         self.loadPlayer(gameWorld: self.gameWorld, statusBar: self.statusBar)
@@ -74,7 +71,9 @@ class BattleScene: GameScene, MapManagerDelegate {
     }
     
     func loadPlayer(gameWorld: GameWorld, statusBar: StatusBar) {
-        let player = PlayerCharacter()
+        let playerData = MemoryCard.sharedInstance.playerData!
+        guard let characterData = playerData.selectedCharacter() else { fatalError() }
+        let player = PlayerCharacter(characterData: characterData)
         player.zPosition = BattleScene.zPositionType.player.rawValue
         player.statusBar = statusBar
         gameWorld.addChild(player)

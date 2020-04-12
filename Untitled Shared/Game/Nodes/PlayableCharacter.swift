@@ -10,11 +10,11 @@ import SpriteKit
 
 class PlayableCharacter: NonPlayableCharacter {
     
-    enum attribute {
+    enum attribute: Int {
         case none, constitution, strength, agility, dexterity, wisdom, intelligence
     }
     
-    enum type {
+    enum type: Int {
         case none, warrior, mage, ranger
     }
     
@@ -32,15 +32,15 @@ class PlayableCharacter: NonPlayableCharacter {
     var type: type = .warrior
     var primaryAttribute: attribute = .constitution
     var secondaryAttribute: attribute = .strength
-    var constitution = 10 // health
-    var strength = 10 // melee damage
-    var agility = 10 // movement speed
-    var dexterity = 10 // ranged damage
-    var wisdom = 10 // mana
-    var intelligence = 10 // magic damage
+    var constitution: CGFloat = 10 // health
+    var strength: CGFloat = 10 // melee damage
+    var agility: CGFloat = 10 // movement speed
+    var dexterity: CGFloat = 10 // ranged damage
+    var wisdom: CGFloat = 10 // mana
+    var intelligence: CGFloat = 10 // magic damage
     
-    var armor = Armor()
-    var weapon = Weapon()
+    var armor: Armor?
+    var weapon: Weapon?
     
     init(type: type, level: Int, primaryAttribute: attribute, secondaryAttribute: attribute) {
         self.type = type
@@ -56,6 +56,13 @@ class PlayableCharacter: NonPlayableCharacter {
     }
     
     func updateAttributes() {
+        self.constitution = GameMath.constitution(character: self)
+        self.strength = GameMath.strength(character: self)
+        self.agility = GameMath.agility(character: self)
+        self.dexterity = GameMath.constitution(character: self)
+        self.wisdom = GameMath.wisdom(character: self)
+        self.intelligence = GameMath.constitution(character: self)
+        
         self.maxHealth = GameMath.health(character: self)
         self.health = self.maxHealth
         self.maxMana = GameMath.mana(character: self)

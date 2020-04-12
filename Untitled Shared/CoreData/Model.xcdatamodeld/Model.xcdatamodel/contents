@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E287" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArmorData" representedClassName="ArmorData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
+    <entity name="ArrowData" representedClassName="ArrowData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
+    <entity name="BackpackData" representedClassName="BackpackData" parentEntity="ItemData" syncable="YES" codeGenerationType="class">
+        <relationship name="itemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
+    </entity>
     <entity name="CharacterData" representedClassName="CharacterData" syncable="YES" codeGenerationType="class">
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="primaryAttribute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -7,15 +12,18 @@
         <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="xp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="backpack" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
         <relationship name="chest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
-        <relationship name="inventory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
         <relationship name="leftHand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
         <relationship name="rightHand" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
     </entity>
     <entity name="ItemData" representedClassName="ItemData" syncable="YES" codeGenerationType="class">
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="colorBlue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="colorGreen" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="colorRed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="rarity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="skin" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="PlayerData" representedClassName="PlayerData" syncable="YES" codeGenerationType="class">
         <attribute name="modelVersion" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -26,9 +34,16 @@
         <attribute name="sound" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="characterList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterData"/>
     </entity>
+    <entity name="ShieldData" representedClassName="ShieldData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
+    <entity name="WeaponData" representedClassName="WeaponData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
     <elements>
-        <element name="PlayerData" positionX="-63" positionY="-18" width="128" height="148"/>
-        <element name="ItemData" positionX="-63" positionY="27" width="128" height="88"/>
+        <element name="ArmorData" positionX="-54" positionY="99" width="128" height="43"/>
+        <element name="BackpackData" positionX="-45" positionY="108" width="128" height="58"/>
         <element name="CharacterData" positionX="-45" positionY="54" width="128" height="193"/>
+        <element name="ItemData" positionX="-63" positionY="27" width="128" height="133"/>
+        <element name="PlayerData" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="WeaponData" positionX="-54" positionY="99" width="128" height="43"/>
+        <element name="ShieldData" positionX="-54" positionY="99" width="128" height="43"/>
+        <element name="ArrowData" positionX="-45" positionY="108" width="128" height="43"/>
     </elements>
 </model>
