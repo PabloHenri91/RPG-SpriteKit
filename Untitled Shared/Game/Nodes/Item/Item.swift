@@ -27,20 +27,23 @@ class Item: SKSpriteNode {
     
     static var diameter: CGFloat = 16
     
-    init(level: Int = 0, rarity: rarity = .common, color: SKColor? = nil, skin: Int = 0) {
+    init(level: Int = 1, rarity: rarity = .common, color: SKColor? = nil, skin: Int = 0) {
         self.level = level
         self.rarity = rarity
+        let color = color ?? Element.randomColor()
         self.skin = skin
-        super.init(texture: nil, color: color ?? Element.randomColor(), size: CGSize.zero)
+        super.init(texture: nil, color: color, size: CGSize.zero)
         self.load()
     }
     
-    convenience init(itemData: ItemData) {
-        let level = Int(itemData.level)
-        let rarity = Item.rarity(rawValue: Int(itemData.rarity)) ?? .common
-        let color = SKColor(red: CGFloat(itemData.colorRed), green: CGFloat(itemData.colorGreen), blue: CGFloat(itemData.colorBlue), alpha: 1)
-        let skin = Int(itemData.skin)
-        self.init(level: level, rarity: rarity, color: color, skin: skin)
+    init?(itemData: ItemData?) {
+        guard let itemData = itemData else { return nil }
+        self.level = Int(itemData.level)
+        self.rarity = Item.rarity(rawValue: Int(itemData.rarity)) ?? .common
+        let color = itemData.color()
+        self.skin = Int(itemData.skin)
+        super.init(texture: nil, color: color, size: CGSize.zero)
+        self.load()
     }
     
     required init?(coder aDecoder: NSCoder) {

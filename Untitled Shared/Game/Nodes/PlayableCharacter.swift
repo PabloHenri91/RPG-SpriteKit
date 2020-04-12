@@ -39,8 +39,11 @@ class PlayableCharacter: NonPlayableCharacter {
     var wisdom: CGFloat = 10 // mana
     var intelligence: CGFloat = 10 // magic damage
     
+    var backpack: Backpack?
     var armor: Armor?
+    var shield: Shield?
     var weapon: Weapon?
+    var arrow: Arrow?
     
     init(type: type, level: Int, primaryAttribute: attribute, secondaryAttribute: attribute) {
         self.type = type
@@ -59,9 +62,9 @@ class PlayableCharacter: NonPlayableCharacter {
         self.constitution = GameMath.constitution(character: self)
         self.strength = GameMath.strength(character: self)
         self.agility = GameMath.agility(character: self)
-        self.dexterity = GameMath.constitution(character: self)
+        self.dexterity = GameMath.dexterity(character: self)
         self.wisdom = GameMath.wisdom(character: self)
-        self.intelligence = GameMath.constitution(character: self)
+        self.intelligence = GameMath.intelligence(character: self)
         
         self.maxHealth = GameMath.health(character: self)
         self.health = self.maxHealth
@@ -100,5 +103,37 @@ class PlayableCharacter: NonPlayableCharacter {
     
     func die() {
         self.dead = true
+    }
+    
+    func typeDescription() -> String {
+        switch self.type {
+        case .none:
+            return "null"
+        case .warrior:
+            return "Warrior"
+        case .mage:
+            return "Mage"
+        case .ranger:
+            return "Ranger"
+        }
+    }
+    
+    override var description: String {
+        return [
+            "\(self.typeDescription()) Lvl. \(self.level)",
+            "primaryAttribute: \(self.primaryAttribute)",
+            "secondaryAttribute: \(self.secondaryAttribute)",
+            "constitution: \(self.constitution)",
+            "strength: \(self.strength)",
+            "agility: \(self.agility)",
+            "dexterity: \(self.dexterity)",
+            "wisdom: \(self.wisdom)",
+            "intelligence: \(self.intelligence)",
+            "\(self.backpack?.description ?? "")",
+            "\(self.armor?.description ?? "")",
+            "\(self.shield?.description ?? "")",
+            "\(self.weapon?.description ?? "")",
+            "\(self.arrow?.description ?? "")"
+            ].joined(separator: "\n")
     }
 }

@@ -10,13 +10,14 @@ import SpriteKit
 
 class Weapon: Item {
     
-    enum type {
+    enum type: Int {
+        case none
         case melee
         case magic
         case ranged
     }
     
-    var type: type = .melee
+    var type: type = .none
     
     static var skinListMelee: [String] = [
         "sword0"
@@ -30,30 +31,57 @@ class Weapon: Item {
         "bow0"
     ]
     
+    static var nameList: [String: String] = [
+        "sword0": "Sword",
+        "staff0": "Staff",
+        "bow0": "Bow",
+    ]
+    
     init(type: type, level: Int = 1, rarity: Item.rarity = .common, color: SKColor? = nil, skin: Int = 0) {
         self.type = type
         super.init(level: level, rarity: rarity, color: color, skin: skin)
+    }
+    
+    init?(weaponData: WeaponData?) {
+        guard let weaponData = weaponData else { return nil }
+        self.type = Weapon.type(rawValue: Int(weaponData.type)) ?? .none
+        super.init(itemData: weaponData)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func skinTexture(index i: Int) -> SKTexture? {
-        var texture: SKTexture? = nil
+    func skinName(index i: Int) -> String? {
+        var name: String? = nil
         
         switch self.type {
+        case .none:
+            break
         case .melee:
-            texture = SKTexture(imageNamed: Weapon.skinListMelee[i], filteringMode: GameScene.defaultFilteringMode)
+            name = Weapon.skinListMelee[i]
             break
         case .magic:
-            texture = SKTexture(imageNamed: Weapon.skinListMagic[i], filteringMode: GameScene.defaultFilteringMode)
+            name = Weapon.skinListMagic[i]
             break
         case .ranged:
-            texture = SKTexture(imageNamed: Weapon.skinListRanged[i], filteringMode: GameScene.defaultFilteringMode)
+            name = Weapon.skinListRanged[i]
             break
         }
         
+        return name
+    }
+    
+    func skinTexture(index i: Int) -> SKTexture? {
+        var texture: SKTexture? = nil
+        if let name = self.skinName(index: i) {
+            texture = SKTexture(imageNamed: name, filteringMode: GameScene.defaultFilteringMode)
+        }
         return texture
+    }
+    
+    override var description: String {
+        let weaponName = Weapon.nameList[self.skinName(index: self.skin) ?? ""] ?? "null"
+        return "\(Item.description(rarity: self.rarity)) \(self.element) \(weaponName) Lvl. \(self.level)"
     }
 }

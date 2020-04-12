@@ -201,7 +201,7 @@ class Element: NSObject {
     override var description: String {
         switch self.type {
         case .none:
-            return ""
+            return "null"
         case .fire:
             return "Fire"
         case .ice:

@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import SpriteKit
 
 extension MemoryCard {
 
@@ -28,5 +29,12 @@ extension ItemData {
         self.level = Int16(item.level)
         self.rarity = Int16(item.rarity.rawValue)
         self.skin = Int16(item.skin)
+    }
+    
+    func color() -> SKColor {
+        let red = CGFloat(self.colorRed)
+        let green = CGFloat(self.colorGreen)
+        let blue = CGFloat(self.colorBlue)
+        return SKColor.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
 }

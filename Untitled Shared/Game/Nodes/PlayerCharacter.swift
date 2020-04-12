@@ -20,6 +20,11 @@ class PlayerCharacter: PlayableCharacter {
         let primaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.primaryAttribute)) ?? .none
         let secondaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.secondaryAttribute)) ?? .none
         super.init(type: type, level: level, primaryAttribute: primaryAttribute, secondaryAttribute: secondaryAttribute)
+        self.backpack = Backpack(backpackData: characterData.backpack)
+        self.armor = Armor(armorData: characterData.chest)
+        self.shield = Shield(shieldData: characterData.leftHand as? ShieldData)
+        self.arrow = Arrow(arrowData: characterData.leftHand as? ArrowData)
+        self.weapon = Weapon(weaponData: characterData.rightHand)
     }
     
     required init?(coder aDecoder: NSCoder) {

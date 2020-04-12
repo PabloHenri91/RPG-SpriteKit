@@ -67,6 +67,9 @@
 		6E9BD087243EC754003CE574 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9BD086243EC754003CE574 /* Element.swift */; };
 		6E9BD088243EC754003CE574 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9BD086243EC754003CE574 /* Element.swift */; };
 		6EBDFC65244297C100BBF795 /* ArmorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC64244297C100BBF795 /* ArmorTest.swift */; };
+		6EBDFC672442DD7900BBF795 /* GameMathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC662442DD7900BBF795 /* GameMathTest.swift */; };
+		6EBDFC692442E84000BBF795 /* BackpackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC682442E84000BBF795 /* BackpackTest.swift */; };
+		6EBDFC6B2442EB9600BBF795 /* ShieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */; };
 		6EFF0EF1241F067F00E2202E /* GameMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0EF0241F067F00E2202E /* GameMath.swift */; };
 		6EFF0EF2241F067F00E2202E /* GameMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0EF0241F067F00E2202E /* GameMath.swift */; };
 		8404E81223FDE01C000112AF /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8404E80623FDE01C000112AF /* Label.swift */; };
@@ -215,6 +218,9 @@
 		6E98EF2A23FE240000761498 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6E9BD086243EC754003CE574 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		6EBDFC64244297C100BBF795 /* ArmorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmorTest.swift; sourceTree = "<group>"; };
+		6EBDFC662442DD7900BBF795 /* GameMathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMathTest.swift; sourceTree = "<group>"; };
+		6EBDFC682442E84000BBF795 /* BackpackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackTest.swift; sourceTree = "<group>"; };
+		6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldTest.swift; sourceTree = "<group>"; };
 		6EFF0EF0241F067F00E2202E /* GameMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMath.swift; sourceTree = "<group>"; };
 		8404E80623FDE01C000112AF /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		8404E80723FDE01C000112AF /* Control.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Control.swift; sourceTree = "<group>"; };
@@ -324,12 +330,12 @@
 			isa = PBXGroup;
 			children = (
 				6E495E1E2429A89700FD7E14 /* Armor.swift */,
+				6E97E97E244256EF00DA1642 /* Arrow.swift */,
 				6E4B34D1243EBBC1005457E3 /* Backpack.swift */,
 				6E9BD086243EC754003CE574 /* Element.swift */,
 				6E495E212429A8D300FD7E14 /* Item.swift */,
-				6E495E1B24299D6F00FD7E14 /* Weapon.swift */,
-				6E97E97E244256EF00DA1642 /* Arrow.swift */,
 				6E97E9812442573B00DA1642 /* Shield.swift */,
+				6E495E1B24299D6F00FD7E14 /* Weapon.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -512,13 +518,13 @@
 		84B7EEFA23FDD51D00DD1CE5 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				6E42AD5023FE0967007F503B /* GameColorsExtension.swift */,
+				6EFF0EF0241F067F00E2202E /* GameMath.swift */,
+				6E42AD5323FE0A45007F503B /* GameWorld.swift */,
 				6E328926243E8AEA00300C72 /* Box */,
 				D9643121240970CA00EC6BFE /* Control */,
 				841396DF2406C76100DF3361 /* Map */,
 				D915DF5C24002C39003CBBF3 /* Nodes */,
-				6E42AD5023FE0967007F503B /* GameColorsExtension.swift */,
-				6E42AD5323FE0A45007F503B /* GameWorld.swift */,
-				6EFF0EF0241F067F00E2202E /* GameMath.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -541,6 +547,9 @@
 			children = (
 				84D9C1092411762E0089913D /* Info.plist */,
 				6EBDFC64244297C100BBF795 /* ArmorTest.swift */,
+				6EBDFC682442E84000BBF795 /* BackpackTest.swift */,
+				6EBDFC662442DD7900BBF795 /* GameMathTest.swift */,
+				6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */,
 				6E1EB788244266FC00EE9A7E /* WeaponTest.swift */,
 			);
 			path = UntitledTests;
@@ -564,10 +573,10 @@
 		D9643121240970CA00EC6BFE /* Control */ = {
 			isa = PBXGroup;
 			children = (
-				D9643122240970E200EC6BFE /* StatusBar.swift */,
+				D9068528240D606F0026EB80 /* BaseBar.swift */,
 				D96431252409738600EC6BFE /* HealthBar.swift */,
 				D96431282409756700EC6BFE /* ManaBar.swift */,
-				D9068528240D606F0026EB80 /* BaseBar.swift */,
+				D9643122240970E200EC6BFE /* StatusBar.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -874,7 +883,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EBDFC65244297C100BBF795 /* ArmorTest.swift in Sources */,
+				6EBDFC692442E84000BBF795 /* BackpackTest.swift in Sources */,
+				6EBDFC6B2442EB9600BBF795 /* ShieldTest.swift in Sources */,
 				6E1EB789244266FC00EE9A7E /* WeaponTest.swift in Sources */,
+				6EBDFC672442DD7900BBF795 /* GameMathTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,10 +26,10 @@ extension MemoryCard {
             self.configureNewWarrior(characterData: characterData)
             break
         case .mage:
-            self.configureNewWarrior(characterData: characterData)
+            self.configureNewMage(characterData: characterData)
             break
         case .ranger:
-            self.configureNewWarrior(characterData: characterData)
+            self.configureNewRanger(characterData: characterData)
             break
         default:
             break

@@ -14,7 +14,24 @@ class Arrow: Item {
         "arrow0"
     ]
     
+    override init(level: Int = 1, rarity: Item.rarity = .common, color: SKColor? = nil, skin: Int = 0) {
+        super.init(level: level, rarity: rarity, color: color, skin: skin)
+    }
+       
+    init?(arrowData: ArrowData?) {
+        guard let arrowData = arrowData else { return nil }
+        super.init(itemData: arrowData)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func skinTexture(skin: Int) -> SKTexture {
         return SKTexture(imageNamed: Arrow.skinList[skin], filteringMode: GameScene.defaultFilteringMode)
+    }
+    
+    override var description: String {
+        return "\(Item.description(rarity: self.rarity)) \(self.element) Arrow Lvl. \(self.level)"
     }
 }

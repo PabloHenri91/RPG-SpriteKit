@@ -13,6 +13,7 @@ extension MemoryCard {
     func newWeaponData(weapon: Weapon) -> WeaponData {
         
         let weaponData: WeaponData = self.insertNewObject()
+        weaponData.type = Int16(weapon.type.rawValue)
         weaponData.load(item: weapon)
         return weaponData
     }

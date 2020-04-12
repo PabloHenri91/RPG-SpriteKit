@@ -10,11 +10,28 @@ import SpriteKit
 
 class GameMath: NSObject {
     
+    static func blockChance(shield: Shield?) -> CGFloat {
+        guard let shield = shield else { return 0 }
+        var value = 1.0 * CGFloat(pow(1.1, 4.0 * Double(shield.rarity.rawValue)))
+        value = value * pow(1.1, CGFloat(shield.level))
+        value = 1.0 - 1.0 / value
+        return value
+    }
+    
+    static func backPackSlots(backpack: Backpack) -> CGFloat {
+        var value = 4.5 * CGFloat(pow(1.1, 4.0 * Double(backpack.rarity.rawValue)))
+        value = value * pow(1.1, CGFloat(backpack.level - 1))
+        return value.rounded()
+    }
+    
     static func calculate(attribute: PlayableCharacter.attribute, type: PlayableCharacter.type, character: PlayableCharacter) -> CGFloat {
-        let base = character.type == type ? 13.0 : 10.0
+        var base = 10.0
+        base = base + (character.type == type ? 1.5 : 0)
+        base = base + (character.primaryAttribute == attribute ? 1.5 : 0)
+        base = base + (character.secondaryAttribute == attribute ? 0.5 : 0)
         var bonus = 1.0
-        bonus = bonus + (character.type == type ? 1 : 0)
-        bonus = bonus + (character.primaryAttribute == attribute ? 1 : 0)
+        bonus = bonus + (character.type == type ? 1.0 : 0)
+        bonus = bonus + (character.primaryAttribute == attribute ? 1.0 : 0)
         bonus = bonus + (character.secondaryAttribute == attribute ? 0.5 : 0)
         bonus = bonus * Double(character.level - 1)
         return CGFloat(base + bonus).rounded()
@@ -42,6 +59,8 @@ class GameMath: NSObject {
         guard let weapon = weapon else { return 0 }
         var value = 10.0 * CGFloat(pow(1.1, 4.0 * Double(weapon.rarity.rawValue)))
         switch weapon.type {
+        case .none:
+            break
         case .melee:
             value = value * character.strength
             break
