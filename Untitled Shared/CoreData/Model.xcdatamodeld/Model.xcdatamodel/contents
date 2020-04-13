@@ -3,7 +3,7 @@
     <entity name="ArmorData" representedClassName="ArmorData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
     <entity name="ArrowData" representedClassName="ArrowData" parentEntity="ItemData" syncable="YES" codeGenerationType="class"/>
     <entity name="BackpackData" representedClassName="BackpackData" parentEntity="ItemData" syncable="YES" codeGenerationType="class">
-        <relationship name="itemList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemData"/>
+        <relationship name="itemList" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemData"/>
     </entity>
     <entity name="CharacterData" representedClassName="CharacterData" syncable="YES" codeGenerationType="class">
         <attribute name="level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

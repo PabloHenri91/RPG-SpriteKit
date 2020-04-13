@@ -10,7 +10,8 @@ import CoreData
 
 extension MemoryCard {
     
-    func newArrowData(arrow: Arrow) -> ArrowData {
+    func newArrowData(arrow: Arrow?) -> ArrowData? {
+        guard let arrow = arrow else { return nil }
         let arrowData: ArrowData = self.insertNewObject()
         arrowData.load(item: arrow)
         return arrowData

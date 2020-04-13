@@ -10,10 +10,11 @@ import SpriteKit
 
 class PlayerHUD: Control {
     
-    var backpackSlot: ItemSlot!
-    var chestSlot: ItemSlot!
-    var leftHandSlot: ItemSlot!
-    var rightHandSlot: ItemSlot!
+    weak var backpackSlot: ItemSlot!
+    weak var chestSlot: ItemSlot!
+    weak var leftHandSlot: ItemSlot!
+    weak var rightHandSlot: ItemSlot!
+    weak var backpackHUD: BackpackHUD!
 
     init() {
         super.init(x: 0, y: 0)
@@ -21,6 +22,10 @@ class PlayerHUD: Control {
         let backpackSlot = ItemSlot(x: 444, y: 234, horizontalAlignment: .right, verticalAlignment: .bottom)
         self.addChild(backpackSlot)
         self.backpackSlot = backpackSlot
+        backpackSlot.addHandler { [weak self] in
+            guard let `self` = self else { return }
+            self.backpackSlotHandler()
+        }
         
         let chestSlot = ItemSlot(x: 444, y: 198, horizontalAlignment: .right, verticalAlignment: .bottom)
         self.addChild(chestSlot)
@@ -33,10 +38,19 @@ class PlayerHUD: Control {
         let leftHandSlot = ItemSlot(x: 444, y: 162, horizontalAlignment: .right, verticalAlignment: .bottom)
         self.addChild(leftHandSlot)
         self.leftHandSlot = leftHandSlot
+        
+        let backpackHUD = BackpackHUD(x: 44, y: 43, horizontalAlignment: .center, verticalAlignment: .center)
+        backpackHUD.isHidden = true
+        self.addChild(backpackHUD)
+        self.backpackHUD = backpackHUD
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func canForceCenterVerticalAlignment() -> Bool {
+        return false
     }
     
     func configure(playableCharacter: PlayableCharacter) {
@@ -45,5 +59,12 @@ class PlayerHUD: Control {
         self.leftHandSlot.addItem(item: playableCharacter.shield)
         self.leftHandSlot.addItem(item: playableCharacter.arrow)
         self.rightHandSlot.addItem(item: playableCharacter.weapon)
+        self.backpackHUD.configure(backpack: playableCharacter.backpack)
+    }
+    
+    func backpackSlotHandler() {
+        if let _ = self.backpackSlot.item {
+            self.backpackHUD.isHidden = !self.backpackHUD.isHidden
+        }
     }
 }

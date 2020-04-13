@@ -10,7 +10,8 @@ import CoreData
 
 extension MemoryCard {
     
-    func newArmorData(armor: Armor) -> ArmorData {
+    func newArmorData(armor: Armor?) -> ArmorData? {
+        guard let armor = armor else { return nil }
         let armorData: ArmorData = self.insertNewObject()
         armorData.load(item: armor)
         return armorData

@@ -10,8 +10,8 @@ import CoreData
 
 extension MemoryCard {
     
-    func newShieldData(shield: Shield) -> ShieldData {
-        
+    func newShieldData(shield: Shield?) -> ShieldData? {
+        guard let shield = shield else { return nil }
         let shieldData: ShieldData = self.insertNewObject()
         shieldData.load(item: shield)
         return shieldData

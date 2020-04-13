@@ -181,10 +181,12 @@ class BattleScene: GameScene, MapManagerDelegate {
         self.gameCamera.update()
     }
     
+    #if os(OSX)
     override func keyDown(with event: NSEvent) {
         super.keyDown(with: event)
         self.player.keyDown(with: event)
     }
+    #endif
 }
 
 extension BattleScene {

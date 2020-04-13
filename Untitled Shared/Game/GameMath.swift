@@ -18,12 +18,6 @@ class GameMath: NSObject {
         return value
     }
     
-    static func backPackSlots(backpack: Backpack) -> CGFloat {
-        var value = 4.5 * CGFloat(pow(1.1, 4.0 * Double(backpack.rarity.rawValue)))
-        value = value * pow(1.1, CGFloat(backpack.level - 1))
-        return value.rounded()
-    }
-    
     static func calculate(attribute: PlayableCharacter.attribute, type: PlayableCharacter.type, character: PlayableCharacter) -> CGFloat {
         var base = 10.0
         base = base + (character.type == type ? 1.5 : 0)

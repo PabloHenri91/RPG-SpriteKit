@@ -11,9 +11,28 @@ import SpriteKit
 
 extension MemoryCard {
 
-    func newItemData() -> ItemData {
-        let itemData: ItemData = self.insertNewObject()
-        // ???
+    func newItemData(item: Item?) -> ItemData? {
+        guard let item = item else { return nil }
+        var itemData: ItemData? = nil
+        switch item {
+        case is Armor:
+            itemData = self.newArmorData(armor: item as? Armor)
+            break
+        case is Arrow:
+            itemData = self.newArrowData(arrow: item as? Arrow)
+            break
+        case is Backpack:
+            itemData = self.newBackpackData(backpack: item as? Backpack)
+            break
+        case is Shield:
+            itemData = self.newShieldData(shield: item as? Shield)
+            break
+        case is Weapon:
+            itemData = self.newWeaponData(weapon: item as? Weapon)
+            break
+        default:
+            break
+        }
         return itemData
     }
     

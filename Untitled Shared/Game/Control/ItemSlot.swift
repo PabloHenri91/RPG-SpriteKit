@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class ItemSlot: Control {
+class ItemSlot: Button {
     
     var item: Item? = nil
 

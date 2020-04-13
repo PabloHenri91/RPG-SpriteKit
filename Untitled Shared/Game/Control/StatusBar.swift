@@ -23,6 +23,10 @@ class StatusBar: Control {
         super.init(coder: aDecoder)
     }
     
+    override func canForceCenterVerticalAlignment() -> Bool {
+        return false
+    }
+    
     func loadHealthBar() {
         self.healthBar = HealthBar()
         self.addChild(self.healthBar)

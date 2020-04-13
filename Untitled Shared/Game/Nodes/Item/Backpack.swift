@@ -14,13 +14,21 @@ class Backpack: Item {
         "backpack0"
     ]
     
-    override init(level: Int = 1, rarity: Item.rarity = .common, color: SKColor? = nil, skin: Int = 0) {
+    var itemList = [Item]()
+    
+    override init(level: Int? = nil, rarity: Item.rarity? = nil, color: SKColor? = nil, skin: Int? = nil) {
         super.init(level: level, rarity: rarity, color: color, skin: skin)
     }
     
-    init?(backpackData: BackpackData?) {
-        guard let backpackData = backpackData else { return nil }
+    override init?(itemData: ItemData?) {
+        guard let backpackData = itemData as? BackpackData else { return nil }
         super.init(itemData: backpackData)
+        
+        for itemData in backpackData.getItemList() {
+            if let item = Item.create(itemData: itemData) {
+                self.itemList.append(item)
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,6 +40,10 @@ class Backpack: Item {
     }
     
     override var description: String {
-        return "\(Item.description(rarity: self.rarity)) Backpack"
+        var textList = ["\(Item.description(rarity: self.rarity)) \(self.element) Backpack Lvl. \(self.level)"]
+        for item in self.itemList {
+            textList.append(item.description)
+        }
+        return textList.joined(separator: "\n")
     }
 }

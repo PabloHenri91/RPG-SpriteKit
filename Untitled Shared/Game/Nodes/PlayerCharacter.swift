@@ -20,11 +20,11 @@ class PlayerCharacter: PlayableCharacter {
         let primaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.primaryAttribute)) ?? .none
         let secondaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.secondaryAttribute)) ?? .none
         super.init(type: type, level: level, primaryAttribute: primaryAttribute, secondaryAttribute: secondaryAttribute)
-        self.backpack = Backpack(backpackData: characterData.backpack)
-        self.armor = Armor(armorData: characterData.chest)
-        self.shield = Shield(shieldData: characterData.leftHand as? ShieldData)
-        self.arrow = Arrow(arrowData: characterData.leftHand as? ArrowData)
-        self.weapon = Weapon(weaponData: characterData.rightHand)
+        self.backpack = Backpack(itemData: characterData.backpack)
+        self.armor = Armor(itemData: characterData.chest)
+        self.shield = Shield(itemData: characterData.leftHand)
+        self.arrow = Arrow(itemData: characterData.leftHand)
+        self.weapon = Weapon(itemData: characterData.rightHand)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -123,6 +123,7 @@ class PlayerCharacter: PlayableCharacter {
         super.die()
     }
     
+    #if os(OSX)
     override func keyDown(with event: NSEvent) {
         switch event.keyCode {
         case 12:
@@ -135,4 +136,5 @@ class PlayerCharacter: PlayableCharacter {
             break
         }
     }
+    #endif
 }

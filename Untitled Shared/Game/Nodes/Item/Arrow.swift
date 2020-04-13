@@ -14,12 +14,12 @@ class Arrow: Item {
         "arrow0"
     ]
     
-    override init(level: Int = 1, rarity: Item.rarity = .common, color: SKColor? = nil, skin: Int = 0) {
+    override init(level: Int? = nil, rarity: Item.rarity? = nil, color: SKColor? = nil, skin: Int? = nil) {
         super.init(level: level, rarity: rarity, color: color, skin: skin)
     }
-       
-    init?(arrowData: ArrowData?) {
-        guard let arrowData = arrowData else { return nil }
+    
+    override init?(itemData: ItemData?) {
+        guard let arrowData = itemData as? ArrowData else { return nil }
         super.init(itemData: arrowData)
     }
     

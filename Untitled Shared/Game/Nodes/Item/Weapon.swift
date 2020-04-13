@@ -37,13 +37,13 @@ class Weapon: Item {
         "bow0": "Bow",
     ]
     
-    init(type: type, level: Int = 1, rarity: Item.rarity = .common, color: SKColor? = nil, skin: Int = 0) {
-        self.type = type
+    init(type: type? = nil, level: Int? = nil, rarity: Item.rarity? = nil, color: SKColor? = nil, skin: Int? = nil) {
+        self.type = type ?? Weapon.randomType()
         super.init(level: level, rarity: rarity, color: color, skin: skin)
     }
     
-    init?(weaponData: WeaponData?) {
-        guard let weaponData = weaponData else { return nil }
+    override init?(itemData: ItemData?) {
+        guard let weaponData = itemData as? WeaponData else { return nil }
         self.type = Weapon.type(rawValue: Int(weaponData.type)) ?? .none
         super.init(itemData: weaponData)
     }
@@ -80,8 +80,14 @@ class Weapon: Item {
         return texture ?? super.skinTexture(skin: skin)
     }
     
+    
+    
     override var description: String {
         let weaponName = Weapon.nameList[self.skinName(index: self.skin) ?? ""] ?? "null"
         return "\(Item.description(rarity: self.rarity)) \(self.element) \(weaponName) Lvl. \(self.level)"
+    }
+    
+    static func randomType() -> type {
+        return [.melee, .magic, .ranged].randomElement() ?? .none
     }
 }

@@ -35,7 +35,20 @@ extension MemoryCard {
             break
         }
         
+        self.cheatFillBackpack(characterData: characterData)
+        
         return characterData
+    }
+    
+    func cheatFillBackpack(characterData: CharacterData) {
+        guard let backpack = characterData.backpack else { return }
+        backpack.rarity = Int16(Item.rarity.supreme.rawValue)
+        backpack.level = 10
+        for _ in 0..<64 {
+            if let itemData = self.newItemData(item: Item.random()) {
+                backpack.addToItemList(itemData)
+            }
+        }
     }
     
     func configureNewWarrior(characterData: CharacterData) {

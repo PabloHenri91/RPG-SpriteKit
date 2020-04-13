@@ -27,11 +27,11 @@ class Item: SKSpriteNode {
     
     static var diameter: CGFloat = 16
     
-    init(level: Int = 1, rarity: rarity = .common, color: SKColor? = nil, skin: Int = 0) {
-        self.level = level
-        self.rarity = rarity
+    init(level: Int? = nil, rarity: rarity? = nil, color: SKColor? = nil, skin: Int? = nil) {
+        self.level = level ?? 1 + Int.random(10)
+        self.rarity = rarity ?? Item.randomRarity()
         let color = color ?? Element.randomColor()
-        self.skin = skin
+        self.skin = skin ?? 0
         super.init(texture: nil, color: color, size: CGSize.zero)
         self.load()
     }
@@ -48,6 +48,24 @@ class Item: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    static func create(itemData: ItemData?) -> Item? {
+        guard let itemData = itemData else { return nil }
+        switch itemData {
+        case is ArmorData:
+            return Armor(itemData: itemData)
+        case is ArrowData:
+            return Arrow(itemData: itemData)
+        case is BackpackData:
+            return Backpack(itemData: itemData)
+        case is ShieldData:
+            return Shield(itemData: itemData)
+        case is WeaponData:
+            return Weapon(itemData: itemData)
+        default:
+            return nil
+        }
     }
     
     func icon() -> SKSpriteNode {
@@ -87,6 +105,34 @@ class Item: SKSpriteNode {
             }
         }
         return value
+    }
+    
+    static func random() -> Item? {
+        var item: Item? = nil
+        
+        let itemType = ["\(Armor.self)", "\(Arrow.self)", "\(Backpack.self)", "\(Shield.self)", "\(Weapon.self)"].randomElement()
+        
+        switch itemType {
+        case "\(Armor.self)":
+            item = Armor()
+            break
+        case "\(Arrow.self)":
+            item = Arrow()
+            break
+        case "\(Backpack.self)":
+            item = Backpack()
+            break
+        case "\(Shield.self)":
+            item = Shield()
+            break
+        case "\(Weapon.self)":
+            item = Weapon()
+            break
+        default:
+            break
+        }
+        
+        return item
     }
     
     static func description(rarity: rarity) -> String {

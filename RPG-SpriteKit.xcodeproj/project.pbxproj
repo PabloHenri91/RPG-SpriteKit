@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E028DE72443F24D005F52FE /* BackpackHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E028DE62443F24D005F52FE /* BackpackHUD.swift */; };
+		6E028DE82443F24D005F52FE /* BackpackHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E028DE62443F24D005F52FE /* BackpackHUD.swift */; };
+		6E028DEA2443F5C6005F52FE /* zPositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E028DE92443F5C6005F52FE /* zPositionExtension.swift */; };
+		6E028DEB2443F5C6005F52FE /* zPositionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E028DE92443F5C6005F52FE /* zPositionExtension.swift */; };
 		6E1EB789244266FC00EE9A7E /* WeaponTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1EB788244266FC00EE9A7E /* WeaponTest.swift */; };
 		6E328928243E8B0600300C72 /* BoxChooseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E328927243E8B0600300C72 /* BoxChooseClass.swift */; };
 		6E328929243E8B0600300C72 /* BoxChooseClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E328927243E8B0600300C72 /* BoxChooseClass.swift */; };
@@ -72,7 +76,6 @@
 		6E9BD088243EC754003CE574 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9BD086243EC754003CE574 /* Element.swift */; };
 		6EBDFC65244297C100BBF795 /* ArmorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC64244297C100BBF795 /* ArmorTest.swift */; };
 		6EBDFC672442DD7900BBF795 /* GameMathTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC662442DD7900BBF795 /* GameMathTest.swift */; };
-		6EBDFC692442E84000BBF795 /* BackpackTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC682442E84000BBF795 /* BackpackTest.swift */; };
 		6EBDFC6B2442EB9600BBF795 /* ShieldTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */; };
 		6EFF0EF1241F067F00E2202E /* GameMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0EF0241F067F00E2202E /* GameMath.swift */; };
 		6EFF0EF2241F067F00E2202E /* GameMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0EF0241F067F00E2202E /* GameMath.swift */; };
@@ -190,6 +193,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E028DE62443F24D005F52FE /* BackpackHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackHUD.swift; sourceTree = "<group>"; };
+		6E028DE92443F5C6005F52FE /* zPositionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zPositionExtension.swift; sourceTree = "<group>"; };
 		6E1EB788244266FC00EE9A7E /* WeaponTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponTest.swift; sourceTree = "<group>"; };
 		6E328927243E8B0600300C72 /* BoxChooseClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxChooseClass.swift; sourceTree = "<group>"; };
 		6E32892A243E995200300C72 /* BoxChooseAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxChooseAttribute.swift; sourceTree = "<group>"; };
@@ -225,7 +230,6 @@
 		6E9BD086243EC754003CE574 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		6EBDFC64244297C100BBF795 /* ArmorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArmorTest.swift; sourceTree = "<group>"; };
 		6EBDFC662442DD7900BBF795 /* GameMathTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMathTest.swift; sourceTree = "<group>"; };
-		6EBDFC682442E84000BBF795 /* BackpackTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackpackTest.swift; sourceTree = "<group>"; };
 		6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShieldTest.swift; sourceTree = "<group>"; };
 		6EFF0EF0241F067F00E2202E /* GameMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMath.swift; sourceTree = "<group>"; };
 		8404E80623FDE01C000112AF /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -553,7 +557,6 @@
 			children = (
 				84D9C1092411762E0089913D /* Info.plist */,
 				6EBDFC64244297C100BBF795 /* ArmorTest.swift */,
-				6EBDFC682442E84000BBF795 /* BackpackTest.swift */,
 				6EBDFC662442DD7900BBF795 /* GameMathTest.swift */,
 				6EBDFC6A2442EB9600BBF795 /* ShieldTest.swift */,
 				6E1EB788244266FC00EE9A7E /* WeaponTest.swift */,
@@ -571,6 +574,7 @@
 				6E4A85CC241EB3D5008C1932 /* PlayableCharacter.swift */,
 				D9A9CDD82406C93900C9CBE0 /* PlayerCharacter.swift */,
 				84855C8B241A9A7A00C3BA39 /* Wall.swift */,
+				6E028DE92443F5C6005F52FE /* zPositionExtension.swift */,
 				6E4B34D4243EBED0005457E3 /* Item */,
 			);
 			path = Nodes;
@@ -585,6 +589,7 @@
 				D96431282409756700EC6BFE /* ManaBar.swift */,
 				6E7FD0AF24439763005EE633 /* PlayerHUD.swift */,
 				D9643122240970E200EC6BFE /* StatusBar.swift */,
+				6E028DE62443F24D005F52FE /* BackpackHUD.swift */,
 			);
 			path = Control;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E028DEA2443F5C6005F52FE /* zPositionExtension.swift in Sources */,
 				6E97E97C2442550200DA1642 /* WeaponData.swift in Sources */,
 				6E42AD5723FE108F007F503B /* MainMenuScene.swift in Sources */,
 				6E4B34D2243EBBC1005457E3 /* Backpack.swift in Sources */,
@@ -735,6 +741,7 @@
 				8404E82023FDE01C000112AF /* GameCamera.swift in Sources */,
 				6E328928243E8B0600300C72 /* BoxChooseClass.swift in Sources */,
 				6E4B34CF243EBB60005457E3 /* ArmorData.swift in Sources */,
+				6E028DE72443F24D005F52FE /* BackpackHUD.swift in Sources */,
 				6E42AD6423FE14FB007F503B /* BattleScene.swift in Sources */,
 				6E518DE92431211100DDF293 /* ItemData.swift in Sources */,
 				847126EB241A8B1A00B0BB75 /* TiledObject.swift in Sources */,
@@ -810,6 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E028DEB2443F5C6005F52FE /* zPositionExtension.swift in Sources */,
 				6E97E97D2442550200DA1642 /* WeaponData.swift in Sources */,
 				6E42AD5823FE108F007F503B /* MainMenuScene.swift in Sources */,
 				6E4B34D3243EBBC1005457E3 /* Backpack.swift in Sources */,
@@ -819,6 +827,7 @@
 				8404E82123FDE01C000112AF /* GameCamera.swift in Sources */,
 				6E328929243E8B0600300C72 /* BoxChooseClass.swift in Sources */,
 				6E4B34D0243EBB60005457E3 /* ArmorData.swift in Sources */,
+				6E028DE82443F24D005F52FE /* BackpackHUD.swift in Sources */,
 				6E42AD6523FE14FB007F503B /* BattleScene.swift in Sources */,
 				6E518DEA2431211100DDF293 /* ItemData.swift in Sources */,
 				847126EC241A8B1A00B0BB75 /* TiledObject.swift in Sources */,
@@ -895,7 +904,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EBDFC65244297C100BBF795 /* ArmorTest.swift in Sources */,
-				6EBDFC692442E84000BBF795 /* BackpackTest.swift in Sources */,
 				6EBDFC6B2442EB9600BBF795 /* ShieldTest.swift in Sources */,
 				6E1EB789244266FC00EE9A7E /* WeaponTest.swift in Sources */,
 				6EBDFC672442DD7900BBF795 /* GameMathTest.swift in Sources */,
@@ -990,6 +998,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1042,6 +1051,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1053,16 +1063,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NK57AC4EC3;
 				INFOPLIST_FILE = "Untitled iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = organizationName.Untitled;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.trevisantecnologia.test;
 				PRODUCT_NAME = Untitled;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1073,16 +1081,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = NK57AC4EC3;
 				INFOPLIST_FILE = "Untitled iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = organizationName.Untitled;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.trevisantecnologia.test;
 				PRODUCT_NAME = Untitled;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
