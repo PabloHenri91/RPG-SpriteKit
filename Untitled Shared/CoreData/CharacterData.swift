@@ -36,6 +36,7 @@ extension MemoryCard {
         }
         
         self.cheatFillBackpack(characterData: characterData)
+        self.cheatMaxLevel(characterData: characterData)
         
         return characterData
     }
@@ -49,6 +50,10 @@ extension MemoryCard {
                 backpack.addToItemList(itemData)
             }
         }
+    }
+    
+    func cheatMaxLevel(characterData: CharacterData) {
+        characterData.level = 30
     }
     
     func configureNewWarrior(characterData: CharacterData) {

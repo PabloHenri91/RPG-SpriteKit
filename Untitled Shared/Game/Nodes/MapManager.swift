@@ -57,10 +57,9 @@ class MapManager: NSObject, TiledMapDelegate {
         }
         
         var i = 0
-        for y in [self.playerRegion.y - 1, self.playerRegion.y, self.playerRegion.y + 1] {
-            for x in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
-                let filename = "\(self.mapType)"
-                let chunk = TiledMap(fileNamed: "\(filename)_\(Int(x))_\(Int(y))", position: self.loadedRegionList[i], delegate: self)
+        for _ in [self.playerRegion.y - 1, self.playerRegion.y, self.playerRegion.y + 1] {
+            for _ in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
+                let chunk = TiledMap(mapType: self.mapType, position: self.loadedRegionList[i], delegate: self)
                 i = i + 1
                 self.chunks.append(chunk)
             }
@@ -71,7 +70,7 @@ class MapManager: NSObject, TiledMapDelegate {
         self.loadedRegion = self.playerRegion
     }
     
-    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool {
+    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool {
         if let delegate = self.delegate {
             return delegate.addTile(self, tiledMap, id: id, texture: texture, x: x, y: y)
         }
@@ -157,9 +156,9 @@ class MapManager: NSObject, TiledMapDelegate {
         self.chunks[4] = self.chunks[3];
         self.chunks[7] = self.chunks[6];
 
-        self.chunks[0] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[0])
-        self.chunks[3] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[3])
-        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[6])
+        self.chunks[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
+        self.chunks[3] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[3], delegate: self)
+        self.chunks[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
 
         self.addTiledMaps();
     }
@@ -177,9 +176,9 @@ class MapManager: NSObject, TiledMapDelegate {
         self.chunks[4] = self.chunks[7];
         self.chunks[5] = self.chunks[8];
 
-        self.chunks[6] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[6])
-        self.chunks[7] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[7])
-        self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[8])
+        self.chunks[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
+        self.chunks[7] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[7], delegate: self)
+        self.chunks[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
 
         self.addTiledMaps();
     }
@@ -197,9 +196,9 @@ class MapManager: NSObject, TiledMapDelegate {
         self.chunks[4] = self.chunks[5]
         self.chunks[7] = self.chunks[8]
         
-        self.chunks[2] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[2])
-        self.chunks[5] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[5])
-        self.chunks[8] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[8])
+        self.chunks[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
+        self.chunks[5] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[5], delegate: self)
+        self.chunks[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
         
         self.addTiledMaps()
     }
@@ -217,15 +216,15 @@ class MapManager: NSObject, TiledMapDelegate {
         self.chunks[4] = self.chunks[1]
         self.chunks[5] = self.chunks[2]
         
-        self.chunks[0] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[0])
-        self.chunks[1] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[1])
-        self.chunks[2] = TiledMap(fileNamed: "\(self.mapType)", position: self.loadedRegionList[2])
+        self.chunks[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
+        self.chunks[1] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[1], delegate: self)
+        self.chunks[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
         
         self.addTiledMaps()
     }
 }
 
 protocol MapManagerDelegate: class {
-    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool // handled ?
+    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool // handled ?
     func addObjectGroup(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, objectGroup: TiledObjectGroup)
 }

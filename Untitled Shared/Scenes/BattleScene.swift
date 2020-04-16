@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 class BattleScene: GameScene, MapManagerDelegate {
     
@@ -191,11 +192,39 @@ class BattleScene: GameScene, MapManagerDelegate {
 
 extension BattleScene {
     
-    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture, x: Int, y: Int) -> Bool {
+    func randomTile(random: GKMersenneTwisterRandomSource, distance: CGFloat) -> Int {
+        var id = 0
+        let distance = Float(distance)
+        if random.nextUniform() < distance / 2.0 / 100.0 {
+            id = 33 + random.nextInt(upperBound: 6) // wall
+        } else if random.nextUniform() < distance / 100.0 {
+            id = 2 + random.nextInt(upperBound: 7) // dirt/grass
+        } else if random.nextUniform() < 1.0 / 1000.0 {
+            id = 721 + random.nextInt(upperBound: 2) // gem
+        }
+        return id
+    }
+    
+    func fillTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, x: Int, y: Int) {
+        let id = self.randomTile(random: tiledMap.random, distance: CGPoint(x: tiledMap.region.x, y: tiledMap.region.y).length())
+        if id > 0 {
+            let texture = tiledMap.texture(id: id)
+            if !self.addTile(mapManagerDelegate, tiledMap, id: id, texture: texture, x: x, y: y) {
+                tiledMap.addChild(id: id, texture: texture, x: x, y: y)
+            }
+        }
+    }
+    
+    func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool {
         var handled = true
         switch id {
-        case 1:
-            tiledMap.addChild(TiledTile(texture: texture, x: x, y: y))
+        case 0:
+            self.fillTile(mapManagerDelegate, tiledMap, id: id, x: x, y: y)
+            break
+        case 33...38:
+            if let wall = Wall(texture: texture, x: x, y: y) {
+                tiledMap.addChild(wall)
+            }
             break
         default:
             handled = false

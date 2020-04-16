@@ -35,6 +35,7 @@ class LoadScene: GameScene {
         #if DEBUG
 //        self.view?.showsFPS = true
 //        self.view?.showsPhysics = true
+        self.view?.showsNodeCount = true
         #endif
         
         self.loadTitle()

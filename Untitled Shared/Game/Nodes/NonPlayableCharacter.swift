@@ -204,6 +204,7 @@ class NonPlayableCharacter: SKSpriteNode {
                 if let node = physicsBody.node as? SKSpriteNode {
                     
                     let offset = CGPoint(x: node.size.width / 2, y: node.size.height / 2)
+                    // TODO: let nodePosition = node.position - offset
                     let nodePosition = (node.parent ?? node).convert(node.position, to: self.parent ?? self) - offset
                     
                     if moveDirectionX != 0 {
