@@ -68,14 +68,18 @@ class PlayerCharacter: PlayableCharacter {
         super.move()
     }
     
-    //@todo mock method only
-    func mockSpawnEnemy() {
-        guard let mapManager = MapManager.current else { return }
-        let enemy = Enemy(type: .ranger, level: 10, primaryAttribute: .agility, secondaryAttribute: .intelligence)
-        enemy.configure(mapManager: mapManager)
-        enemy.position = self.position
-        self.parent?.addChild(enemy)
-        Enemy.enemyList.insert(enemy)
+    override func updateMana(with value: CGFloat) {
+        super.updateMana(with: value)
+        self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
+    }
+    
+    override func updateHealth(with value: CGFloat) {
+        super.updateHealth(with: value)
+        self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
+    }
+    
+    override func die() {
+        super.die()
     }
     
     func touchedEnemy(on location:CGPoint) -> Enemy? {
@@ -108,33 +112,4 @@ class PlayerCharacter: PlayableCharacter {
             }
         }
     }
-    
-    override func updateMana(with value: CGFloat) {
-        super.updateMana(with: value)
-        self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
-    }
-    
-    override func updateHealth(with value: CGFloat) {
-        super.updateHealth(with: value)
-        self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
-    }
-    
-    override func die() {
-        super.die()
-    }
-    
-    #if os(OSX)
-    override func keyDown(with event: NSEvent) {
-        switch event.keyCode {
-        case 12:
-            self.loadTexture()
-            break
-        case 51:
-            self.mockSpawnEnemy()
-            break
-        default:
-            break
-        }
-    }
-    #endif
 }

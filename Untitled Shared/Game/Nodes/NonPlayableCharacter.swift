@@ -10,32 +10,17 @@ import SpriteKit
 
 class NonPlayableCharacter: SKSpriteNode {
     
-    // Movement
     var actionMoveA = SKAction()
     var actionMoveS = SKAction()
     var actionMoveD = SKAction()
     var actionMoveW = SKAction()
-    
-    var isMoving = false
-    
-    enum moveType {
-        case none
-        case moveA
-        case moveS
-        case moveD
-        case moveW
-    }
-    
     var lastMove: moveType = .none
-    
-    var destination: CGPoint? = nil
-    
-    // Controls
+    var isMoving = false
     var moveA = false
     var moveS = false
     var moveD = false
     var moveW = false
-    
+    var destination: CGPoint? = nil
     var tileWidth: CGFloat = 0
     var tileHeight: CGFloat = 0
     
@@ -44,6 +29,10 @@ class NonPlayableCharacter: SKSpriteNode {
     init() {
         super.init(texture: nil, color: SKColor.white, size: CGSize(width: 1, height: 1))
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     func configure(mapManager: MapManager) {
@@ -55,14 +44,6 @@ class NonPlayableCharacter: SKSpriteNode {
             self.loadTexture()
             return
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    func update() {
-        
     }
     
     func loadPhysics() {
@@ -83,10 +64,6 @@ class NonPlayableCharacter: SKSpriteNode {
         node.physicsBody = physicsBody
         self.addChild(node)
         self.nodePhysicsBody = physicsBody
-    }
-    
-    func movementSpeed() -> CGFloat {
-        return 96.0
     }
     
     func loadActions() {
@@ -175,6 +152,10 @@ class NonPlayableCharacter: SKSpriteNode {
         default:
             break
         }
+    }
+    
+    func update() {
+        
     }
     
     func move() {
@@ -282,5 +263,17 @@ class NonPlayableCharacter: SKSpriteNode {
         self.moveS = false
         self.moveD = false
         self.moveW = false
+    }
+    
+    func movementSpeed() -> CGFloat {
+        return 96.0
+    }
+    
+    enum moveType {
+        case none
+        case moveA
+        case moveS
+        case moveD
+        case moveW
     }
 }

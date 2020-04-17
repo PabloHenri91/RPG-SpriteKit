@@ -10,35 +10,22 @@ import SpriteKit
 
 class PlayableCharacter: NonPlayableCharacter {
     
-    enum attribute: Int {
-        case none, constitution, strength, agility, dexterity, wisdom, intelligence
-    }
-    
-    enum type: Int {
-        case none, warrior, mage, ranger
-    }
-    
+    var dead = false
     var statusBar: StatusBar!
-    
     var maxHealth: CGFloat = 0
     var health: CGFloat = 0
-    
     var maxMana: CGFloat = 0
     var mana: CGFloat = 0
-    
-    var dead = false
-    
     var level = 1
     var type: type = .warrior
     var primaryAttribute: attribute = .constitution
     var secondaryAttribute: attribute = .strength
-    var constitution: CGFloat = 10 // health
-    var strength: CGFloat = 10 // melee damage
-    var agility: CGFloat = 10 // movement speed
-    var dexterity: CGFloat = 10 // ranged damage
-    var wisdom: CGFloat = 10 // mana
-    var intelligence: CGFloat = 10 // magic damage
-    
+    var constitution: CGFloat = 10
+    var strength: CGFloat = 10
+    var agility: CGFloat = 10
+    var dexterity: CGFloat = 10
+    var wisdom: CGFloat = 10
+    var intelligence: CGFloat = 10
     var backpack: Backpack?
     var armor: Armor?
     var shield: Shield?
@@ -58,6 +45,10 @@ class PlayableCharacter: NonPlayableCharacter {
         super.init(coder: aDecoder)
     }
     
+    override func movementSpeed() -> CGFloat {
+        return GameMath.movementSpeed(character: self)
+    }
+    
     func updateAttributes() {
         self.constitution = GameMath.constitution(character: self)
         self.strength = GameMath.strength(character: self)
@@ -70,10 +61,6 @@ class PlayableCharacter: NonPlayableCharacter {
         self.health = self.maxHealth
         self.maxMana = GameMath.mana(character: self)
         self.mana = self.maxMana
-    }
-    
-    override func movementSpeed() -> CGFloat {
-        return GameMath.movementSpeed(character: self)
     }
     
     func updateMana(with value: CGFloat) {
@@ -135,5 +122,13 @@ class PlayableCharacter: NonPlayableCharacter {
             "\(self.weapon?.description ?? "")",
             "\(self.arrow?.description ?? "")"
             ].joined(separator: "\n")
+    }
+    
+    enum attribute: Int {
+        case none, constitution, strength, agility, dexterity, wisdom, intelligence
+    }
+    
+    enum type: Int {
+        case none, warrior, mage, ranger
     }
 }

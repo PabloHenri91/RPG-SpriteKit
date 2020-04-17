@@ -50,6 +50,29 @@ class Item: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    func loadTexture(texture: SKTexture) {
+        self.texture = texture
+        self.size = texture.size()
+        self.setScaleToFit(width: Item.diameter, height: Item.diameter)
+    }
+    
+    func skinTexture(skin: Int) -> SKTexture {
+        return SKTexture(imageNamed: "itemNull", filteringMode: GameScene.defaultFilteringMode)
+    }
+    
+    func icon() -> SKSpriteNode {
+        let icon = SKSpriteNode(texture: self.skinTexture(skin: self.skin), color: self.color, size: self.size)
+        icon.blendMode = .add
+        icon.colorBlendFactor = 1
+        return icon
+    }
+    
+    private func load() {
+        self.element = Element.element(color: self.color)
+        let texture = self.skinTexture(skin: self.skin)
+        self.loadTexture(texture: texture)
+    }
+    
     static func create(itemData: ItemData?) -> Item? {
         guard let itemData = itemData else { return nil }
         switch itemData {
@@ -66,29 +89,6 @@ class Item: SKSpriteNode {
         default:
             return nil
         }
-    }
-    
-    func icon() -> SKSpriteNode {
-        let icon = SKSpriteNode(texture: self.skinTexture(skin: self.skin), color: self.color, size: self.size)
-        icon.blendMode = .add
-        icon.colorBlendFactor = 1
-        return icon
-    }
-    
-    func skinTexture(skin: Int) -> SKTexture {
-        return SKTexture(imageNamed: "itemNull", filteringMode: GameScene.defaultFilteringMode)
-    }
-    
-    func loadTexture(texture: SKTexture) {
-        self.texture = texture
-        self.size = texture.size()
-        self.setScaleToFit(width: Item.diameter, height: Item.diameter)
-    }
-    
-    private func load() {
-        self.element = Element.element(color: self.color)
-        let texture = self.skinTexture(skin: self.skin)
-        self.loadTexture(texture: texture)
     }
     
     static func randomRarity() -> rarity {

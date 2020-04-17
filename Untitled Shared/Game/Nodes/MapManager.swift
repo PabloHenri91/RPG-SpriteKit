@@ -12,29 +12,10 @@ class MapManager: NSObject, TiledMapDelegate {
     
     var lastUpdate: TimeInterval = 0
     var loading = false
-    
     var loadedRegionList = [Int: CGPoint]()
-    
-    var loadedRegion = CGPoint.zero {
-        didSet {
-            self.loadedRegionList = [
-                0 : self.loadedRegion + CGPoint(x:-1, y: 1),
-                1 : self.loadedRegion + CGPoint(x:0, y: 1),
-                2 : self.loadedRegion + CGPoint(x:1, y: 1),
-                3 : self.loadedRegion + CGPoint(x:-1, y: 0),
-                4 : self.loadedRegion + CGPoint(x:0, y: 0),
-                5 : self.loadedRegion + CGPoint(x:1, y: 0),
-                6 : self.loadedRegion + CGPoint(x:-1, y:-1),
-                7 : self.loadedRegion + CGPoint(x:0, y:-1),
-                8 : self.loadedRegion + CGPoint(x:1, y:-1),
-            ]
-        }
-    }
-    
+    var loadedRegion = CGPoint.zero { didSet { self.didSetLoadedRegion() } }
     var playerRegion = CGPoint.zero
-    
     var chunks = [TiledMap]()
-    
     var mapType = "world"
     
     weak var delegate: MapManagerDelegate?
@@ -70,26 +51,6 @@ class MapManager: NSObject, TiledMapDelegate {
         self.loadedRegion = self.playerRegion
     }
     
-    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool {
-        if let delegate = self.delegate {
-            return delegate.addTile(self, tiledMap, id: id, texture: texture, x: x, y: y)
-        }
-        return false
-    }
-    
-    func addObjectGroup(_ tiledMap: TiledMap, objectGroup: TiledObjectGroup) {
-        self.delegate?.addObjectGroup(self, tiledMap, objectGroup: objectGroup)
-    }
-    
-    func addTiledMaps() {
-        guard let gameWorld = GameWorld.current else { return }
-        for chunk in self.chunks {
-            if chunk.parent == nil {
-                gameWorld.addChild(chunk)
-            }
-        }
-    }
-    
     func update(position: CGPoint) {
         
         if self.loading {
@@ -111,7 +72,6 @@ class MapManager: NSObject, TiledMapDelegate {
         guard let map = TiledMap.current else {
             return
         }
-        
         self.playerRegion.x = (position.x / map.size.width).rounded()
         self.playerRegion.y = (position.y / map.size.height).rounded()
     }
@@ -221,6 +181,40 @@ class MapManager: NSObject, TiledMapDelegate {
         self.chunks[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
         
         self.addTiledMaps()
+    }
+    
+    func addTile(_ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool {
+        if let delegate = self.delegate {
+            return delegate.addTile(self, tiledMap, id: id, texture: texture, x: x, y: y)
+        }
+        return false
+    }
+    
+    func addObjectGroup(_ tiledMap: TiledMap, objectGroup: TiledObjectGroup) {
+        self.delegate?.addObjectGroup(self, tiledMap, objectGroup: objectGroup)
+    }
+    
+    func addTiledMaps() {
+        guard let gameWorld = GameWorld.current else { return }
+        for chunk in self.chunks {
+            if chunk.parent == nil {
+                gameWorld.addChild(chunk)
+            }
+        }
+    }
+    
+    func didSetLoadedRegion() {
+        self.loadedRegionList = [
+            0 : self.loadedRegion + CGPoint(x:-1, y: 1),
+            1 : self.loadedRegion + CGPoint(x:0, y: 1),
+            2 : self.loadedRegion + CGPoint(x:1, y: 1),
+            3 : self.loadedRegion + CGPoint(x:-1, y: 0),
+            4 : self.loadedRegion + CGPoint(x:0, y: 0),
+            5 : self.loadedRegion + CGPoint(x:1, y: 0),
+            6 : self.loadedRegion + CGPoint(x:-1, y:-1),
+            7 : self.loadedRegion + CGPoint(x:0, y:-1),
+            8 : self.loadedRegion + CGPoint(x:1, y:-1),
+        ]
     }
 }
 

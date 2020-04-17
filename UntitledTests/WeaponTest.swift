@@ -79,13 +79,13 @@ class WeaponTest: XCTestCase {
         
         weapon = Weapon(type: .melee, level: 1, rarity: .common)
         character = PlayableCharacter(type: .warrior, level: 30, primaryAttribute: .none, secondaryAttribute: .none)
-        XCTAssertEqual(71, character.strength)
-        XCTAssertEqual(710, GameMath.damage(weapon: weapon, character: character))
+        XCTAssertEqual(70, character.strength)
+        XCTAssertEqual(700, GameMath.damage(weapon: weapon, character: character))
         
         weapon = Weapon(type: .melee, level: 1, rarity: .common)
         character = PlayableCharacter(type: .warrior, level: 30, primaryAttribute: .none, secondaryAttribute: .strength)
-        XCTAssertEqual(86, character.strength)
-        XCTAssertEqual(860, GameMath.damage(weapon: weapon, character: character))
+        XCTAssertEqual(85, character.strength)
+        XCTAssertEqual(850, GameMath.damage(weapon: weapon, character: character))
         
         weapon = Weapon(type: .melee, level: 1, rarity: .common)
         character = PlayableCharacter(type: .warrior, level: 30, primaryAttribute: .strength, secondaryAttribute: .none)
@@ -161,11 +161,11 @@ class WeaponTest: XCTestCase {
         
         character.weapon = Weapon(type: .magic, level: 10, rarity: .supreme, color: Element.randomColor(type: .fire))
         targer.armor = Armor(level: 10, rarity: .legendary, color: Element.randomColor(type: .fire))
-        XCTAssertEqual(133, GameMath.damage(character: character, target: targer).rounded())
+        XCTAssertEqual(160, GameMath.damage(character: character, target: targer).rounded())
         
         character.weapon = Weapon(type: .magic, level: 10, rarity: .supreme, color: Element.randomColor(type: .fire))
         targer.armor = Armor(level: 10, rarity: .supreme, color: Element.randomColor(type: .fire))
-        XCTAssertEqual(91, GameMath.damage(character: character, target: targer).rounded())
+        XCTAssertEqual(109, GameMath.damage(character: character, target: targer).rounded())
     }
 
 }

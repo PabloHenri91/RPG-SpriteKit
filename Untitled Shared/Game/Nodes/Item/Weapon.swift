@@ -10,13 +10,6 @@ import SpriteKit
 
 class Weapon: Item {
     
-    enum type: Int {
-        case none
-        case melee
-        case magic
-        case ranged
-    }
-    
     var type: type = .none
     
     static var skinListMelee: [String] = [
@@ -80,8 +73,6 @@ class Weapon: Item {
         return texture ?? super.skinTexture(skin: skin)
     }
     
-    
-    
     override var description: String {
         let weaponName = Weapon.nameList[self.skinName(index: self.skin) ?? ""] ?? "null"
         return "\(Item.description(rarity: self.rarity)) \(self.element) \(weaponName) Lvl. \(self.level)"
@@ -89,5 +80,12 @@ class Weapon: Item {
     
     static func randomType() -> type {
         return [.melee, .magic, .ranged].randomElement() ?? .none
+    }
+    
+    enum type: Int {
+        case none
+        case melee
+        case magic
+        case ranged
     }
 }

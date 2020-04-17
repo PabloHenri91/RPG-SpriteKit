@@ -35,7 +35,6 @@ extension MemoryCard {
         }
         return itemData
     }
-    
 }
 
 extension ItemData {

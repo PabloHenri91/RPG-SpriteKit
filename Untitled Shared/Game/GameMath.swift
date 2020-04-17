@@ -10,6 +10,11 @@ import SpriteKit
 
 class GameMath: NSObject {
     
+    static func xp(level: Int) -> Int {
+        let value = pow(2.0, Double(level) - 1.0) * 1000.0
+        return Int(value)
+    }
+    
     static func blockChance(shield: Shield?) -> CGFloat {
         guard let shield = shield else { return 0 }
         var value = 1.0 * CGFloat(pow(1.1, 4.0 * Double(shield.rarity.rawValue)))

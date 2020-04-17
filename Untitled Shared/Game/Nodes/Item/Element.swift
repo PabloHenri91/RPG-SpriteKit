@@ -27,6 +27,17 @@ class Element: NSObject {
     var weakness: type
     var color: SKColor
     
+    static var types: [type: Element] = [
+        .fire: Element(type: .fire, strength: .ice, weakness: .water),
+        .ice: Element(type: .ice, strength: .wind, weakness: .fire),
+        .wind: Element(type: .wind, strength: .earth, weakness: .ice),
+        .earth: Element(type: .earth, strength: .thunder, weakness: .wind),
+        .thunder: Element(type: .thunder, strength: .water, weakness: .earth),
+        .water: Element(type: .water, strength: .fire, weakness: .thunder),
+        .light: Element(type: .light, strength: .light, weakness: .darkness),
+        .darkness: Element(type: .darkness, strength: .darkness, weakness: .light)
+    ]
+    
     init(type: type, strength: type, weakness: type) {
         
         self.type = type
@@ -186,17 +197,6 @@ class Element: NSObject {
     static func none() -> Element {
         return Element(type: .none, strength: .none, weakness: .none)
     }
-    
-    static var types: [type: Element] = [
-        .fire: Element(type: .fire, strength: .ice, weakness: .water),
-        .ice: Element(type: .ice, strength: .wind, weakness: .fire),
-        .wind: Element(type: .wind, strength: .earth, weakness: .ice),
-        .earth: Element(type: .earth, strength: .thunder, weakness: .wind),
-        .thunder: Element(type: .thunder, strength: .water, weakness: .earth),
-        .water: Element(type: .water, strength: .fire, weakness: .thunder),
-        .light: Element(type: .light, strength: .light, weakness: .darkness),
-        .darkness: Element(type: .darkness, strength: .darkness, weakness: .light)
-    ]
     
     override var description: String {
         switch self.type {
