@@ -17,6 +17,7 @@ class PlayableCharacter: NonPlayableCharacter {
     var maxMana: CGFloat = 0
     var mana: CGFloat = 0
     var level = 1
+    var xp = 0
     var type: type = .warrior
     var primaryAttribute: attribute = .constitution
     var secondaryAttribute: attribute = .strength
@@ -63,7 +64,17 @@ class PlayableCharacter: NonPlayableCharacter {
         self.mana = self.maxMana
     }
     
-    func updateMana(with value: CGFloat) {
+    func update(xp value: Int) {
+        var xp = GameMath.xp(level: self.level)
+        self.xp = self.xp + value
+        while self.xp >= xp {
+            self.xp = self.xp - xp
+            self.level = self.level + 1
+            xp = GameMath.xp(level: self.level)
+        }
+    }
+    
+    func update(mana value: CGFloat) {
         guard self.dead == false else { return }
         
         self.mana += value
@@ -73,7 +84,7 @@ class PlayableCharacter: NonPlayableCharacter {
         if mana >= maxMana { mana = maxMana }
     }
     
-    func updateHealth(with value: CGFloat) {
+    func update(health value: CGFloat) {
         guard self.dead == false else { return }
         
         self.health += value

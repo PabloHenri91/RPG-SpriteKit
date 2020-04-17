@@ -68,13 +68,13 @@ class PlayerCharacter: PlayableCharacter {
         super.move()
     }
     
-    override func updateMana(with value: CGFloat) {
-        super.updateMana(with: value)
+    override func update(mana value: CGFloat) {
+        super.update(mana: value)
         self.statusBar.manaBar.update(with: self.mana, from: self.maxMana)
     }
     
-    override func updateHealth(with value: CGFloat) {
-        super.updateHealth(with: value)
+    override func update(health value: CGFloat) {
+        super.update(health: value)
         self.statusBar.healthBar.update(with: self.health, from: self.maxHealth)
     }
     
@@ -103,7 +103,7 @@ class PlayerCharacter: PlayableCharacter {
             self.stop()
             
             if let enemy = self.touchedEnemy(on: touchLocation) {
-                enemy.updateHealth(with: -CGFloat.random(in: 90...150))
+                enemy.update(health: -CGFloat.random(in: 90...150))
             } else {
                 touchLocation = CGPoint(
                     x: ((touchLocation.x) / TiledMap.tileWidth).rounded() * TiledMap.tileWidth,

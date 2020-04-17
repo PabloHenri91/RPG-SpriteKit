@@ -11,7 +11,7 @@ import SpriteKit
 class GameMath: NSObject {
     
     static func xp(level: Int) -> Int {
-        let value = pow(2.0, Double(level) - 1.0) * 1000.0
+        let value =  pow(1.4, Double(level - 1)) * 1000
         return Int(value)
     }
     
