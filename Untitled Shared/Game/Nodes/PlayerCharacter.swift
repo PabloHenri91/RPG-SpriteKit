@@ -9,10 +9,6 @@
 import SpriteKit
 
 class PlayerCharacter: PlayableCharacter {
-
-    init() {
-        super.init(type: .none, level: 1, primaryAttribute: .none, secondaryAttribute: .none)
-    }
     
     init(characterData: CharacterData) {
         let type = PlayableCharacter.type(rawValue: Int(characterData.type)) ?? .none
@@ -20,6 +16,7 @@ class PlayerCharacter: PlayableCharacter {
         let primaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.primaryAttribute)) ?? .none
         let secondaryAttribute = PlayableCharacter.attribute(rawValue: Int(characterData.secondaryAttribute)) ?? .none
         super.init(type: type, level: level, primaryAttribute: primaryAttribute, secondaryAttribute: secondaryAttribute)
+        self.xp = Int(characterData.xp)
         self.backpack = Backpack(itemData: characterData.backpack)
         self.armor = Armor(itemData: characterData.chest)
         self.shield = Shield(itemData: characterData.leftHand)

@@ -11,8 +11,8 @@ import SpriteKit
 class GameMath: NSObject {
     
     static func xp(level: Int) -> Int {
-        let value =  pow(1.4, Double(level - 1)) * 1000
-        return Int(value)
+        let value =  1000 * pow(1.4, Double(level - 1))
+        return Int(value.rounded())
     }
     
     static func blockChance(shield: Shield?) -> CGFloat {

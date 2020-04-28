@@ -33,8 +33,8 @@ class LoadScene: GameScene {
     override func load() {
         super.load()
         #if DEBUG
-//        self.view?.showsFPS = true
-//        self.view?.showsPhysics = true
+        self.view?.showsFPS = true
+        self.view?.showsPhysics = true
         self.view?.showsNodeCount = true
         #endif
         

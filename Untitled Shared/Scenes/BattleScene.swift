@@ -192,6 +192,11 @@ class BattleScene: GameScene, MapManagerDelegate {
 
 extension BattleScene {
     
+    func randomCharacter(random: GKMersenneTwisterRandomSource, distance: CGFloat) -> PlayableCharacter {
+        let playableCharacter = PlayableCharacter(type: .none, level: 1, primaryAttribute: .none, secondaryAttribute: .none)
+        return playableCharacter
+    }
+    
     func randomTile(random: GKMersenneTwisterRandomSource, distance: CGFloat) -> Int {
         var id = 0
         let distance = Float(distance)
@@ -244,6 +249,18 @@ extension BattleScene {
                 tiledMap.addChild(Wall(object: object))
                 break
             }
+        }
+    }
+    
+    func addMap(_ mapManagerDelegate: MapManager, tiledMap: TiledMap) {
+        guard let mapManager = self.mapManager  else { return }
+        let distance = CGPoint(x: tiledMap.region.x, y: tiledMap.region.y).length()
+        if distance > 2.0 {
+            guard let random = tiledMap.random else { return }
+            let character = self.randomCharacter(random: random, distance: distance)
+            character.configure(mapManager: mapManager)
+            character.position = tiledMap.position + TiledTile.position(x: 15, y: 15)
+            self.gameWorld.addChild(character)
         }
     }
 }

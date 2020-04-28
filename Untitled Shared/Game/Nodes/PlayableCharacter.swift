@@ -65,12 +65,13 @@ class PlayableCharacter: NonPlayableCharacter {
     }
     
     func update(xp value: Int) {
-        var xp = GameMath.xp(level: self.level)
+        var xpNeeded = GameMath.xp(level: self.level)
         self.xp = self.xp + value
-        while self.xp >= xp {
-            self.xp = self.xp - xp
+        
+        while self.xp >= xpNeeded {
             self.level = self.level + 1
-            xp = GameMath.xp(level: self.level)
+            self.xp = self.xp - xpNeeded
+            xpNeeded = GameMath.xp(level: self.level)
         }
     }
     
@@ -79,9 +80,13 @@ class PlayableCharacter: NonPlayableCharacter {
         
         self.mana += value
         
-        if mana <= 0 { mana = 0 }
+        if mana <= 0 {
+            mana = 0
+        }
         
-        if mana >= maxMana { mana = maxMana }
+        if mana >= maxMana {
+            mana = maxMana
+        }
     }
     
     func update(health value: CGFloat) {

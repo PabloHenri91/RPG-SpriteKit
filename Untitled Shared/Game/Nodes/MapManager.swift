@@ -15,7 +15,7 @@ class MapManager: NSObject, TiledMapDelegate {
     var loadedRegionList = [Int: CGPoint]()
     var loadedRegion = CGPoint.zero { didSet { self.didSetLoadedRegion() } }
     var playerRegion = CGPoint.zero
-    var chunks = [TiledMap]()
+    var tiledMapList = [TiledMap]()
     var mapType = "world"
     
     weak var delegate: MapManagerDelegate?
@@ -33,7 +33,7 @@ class MapManager: NSObject, TiledMapDelegate {
         self.updatePlayerRegion(position: position)
         self.loadedRegion = self.playerRegion
         
-        for chunk in self.chunks {
+        for chunk in self.tiledMapList {
             chunk.destroy()
         }
         
@@ -42,7 +42,7 @@ class MapManager: NSObject, TiledMapDelegate {
             for _ in [self.playerRegion.x - 1, self.playerRegion.x, self.playerRegion.x + 1] {
                 let chunk = TiledMap(mapType: self.mapType, position: self.loadedRegionList[i], delegate: self)
                 i = i + 1
-                self.chunks.append(chunk)
+                self.tiledMapList.append(chunk)
             }
         }
         
@@ -104,81 +104,81 @@ class MapManager: NSObject, TiledMapDelegate {
     }
     
     func loadA() {
-        self.chunks[2].destroy();
-        self.chunks[5].destroy();
-        self.chunks[8].destroy();
+        self.tiledMapList[2].destroy();
+        self.tiledMapList[5].destroy();
+        self.tiledMapList[8].destroy();
 
-        self.chunks[2] = self.chunks[1];
-        self.chunks[5] = self.chunks[4];
-        self.chunks[8] = self.chunks[7];
+        self.tiledMapList[2] = self.tiledMapList[1];
+        self.tiledMapList[5] = self.tiledMapList[4];
+        self.tiledMapList[8] = self.tiledMapList[7];
 
-        self.chunks[1] = self.chunks[0];
-        self.chunks[4] = self.chunks[3];
-        self.chunks[7] = self.chunks[6];
+        self.tiledMapList[1] = self.tiledMapList[0];
+        self.tiledMapList[4] = self.tiledMapList[3];
+        self.tiledMapList[7] = self.tiledMapList[6];
 
-        self.chunks[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
-        self.chunks[3] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[3], delegate: self)
-        self.chunks[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
+        self.tiledMapList[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
+        self.tiledMapList[3] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[3], delegate: self)
+        self.tiledMapList[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
 
         self.addTiledMaps();
     }
     
     func loadS() {
-        self.chunks[0].destroy();
-        self.chunks[1].destroy();
-        self.chunks[2].destroy();
+        self.tiledMapList[0].destroy();
+        self.tiledMapList[1].destroy();
+        self.tiledMapList[2].destroy();
 
-        self.chunks[0] = self.chunks[3];
-        self.chunks[1] = self.chunks[4];
-        self.chunks[2] = self.chunks[5];
+        self.tiledMapList[0] = self.tiledMapList[3];
+        self.tiledMapList[1] = self.tiledMapList[4];
+        self.tiledMapList[2] = self.tiledMapList[5];
 
-        self.chunks[3] = self.chunks[6];
-        self.chunks[4] = self.chunks[7];
-        self.chunks[5] = self.chunks[8];
+        self.tiledMapList[3] = self.tiledMapList[6];
+        self.tiledMapList[4] = self.tiledMapList[7];
+        self.tiledMapList[5] = self.tiledMapList[8];
 
-        self.chunks[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
-        self.chunks[7] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[7], delegate: self)
-        self.chunks[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
+        self.tiledMapList[6] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[6], delegate: self)
+        self.tiledMapList[7] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[7], delegate: self)
+        self.tiledMapList[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
 
         self.addTiledMaps();
     }
     
     func loadD() {
-        self.chunks[0].destroy()
-        self.chunks[3].destroy()
-        self.chunks[6].destroy()
+        self.tiledMapList[0].destroy()
+        self.tiledMapList[3].destroy()
+        self.tiledMapList[6].destroy()
         
-        self.chunks[0] = self.chunks[1]
-        self.chunks[3] = self.chunks[4]
-        self.chunks[6] = self.chunks[7]
+        self.tiledMapList[0] = self.tiledMapList[1]
+        self.tiledMapList[3] = self.tiledMapList[4]
+        self.tiledMapList[6] = self.tiledMapList[7]
         
-        self.chunks[1] = self.chunks[2]
-        self.chunks[4] = self.chunks[5]
-        self.chunks[7] = self.chunks[8]
+        self.tiledMapList[1] = self.tiledMapList[2]
+        self.tiledMapList[4] = self.tiledMapList[5]
+        self.tiledMapList[7] = self.tiledMapList[8]
         
-        self.chunks[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
-        self.chunks[5] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[5], delegate: self)
-        self.chunks[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
+        self.tiledMapList[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
+        self.tiledMapList[5] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[5], delegate: self)
+        self.tiledMapList[8] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[8], delegate: self)
         
         self.addTiledMaps()
     }
     
     func loadW() {
-        self.chunks[6].destroy()
-        self.chunks[7].destroy()
-        self.chunks[8].destroy()
+        self.tiledMapList[6].destroy()
+        self.tiledMapList[7].destroy()
+        self.tiledMapList[8].destroy()
         
-        self.chunks[6] = self.chunks[3]
-        self.chunks[7] = self.chunks[4]
-        self.chunks[8] = self.chunks[5]
+        self.tiledMapList[6] = self.tiledMapList[3]
+        self.tiledMapList[7] = self.tiledMapList[4]
+        self.tiledMapList[8] = self.tiledMapList[5]
         
-        self.chunks[3] = self.chunks[0]
-        self.chunks[4] = self.chunks[1]
-        self.chunks[5] = self.chunks[2]
+        self.tiledMapList[3] = self.tiledMapList[0]
+        self.tiledMapList[4] = self.tiledMapList[1]
+        self.tiledMapList[5] = self.tiledMapList[2]
         
-        self.chunks[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
-        self.chunks[1] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[1], delegate: self)
-        self.chunks[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
+        self.tiledMapList[0] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[0], delegate: self)
+        self.tiledMapList[1] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[1], delegate: self)
+        self.tiledMapList[2] = TiledMap(mapType: self.mapType, position: self.loadedRegionList[2], delegate: self)
         
         self.addTiledMaps()
     }
@@ -196,9 +196,10 @@ class MapManager: NSObject, TiledMapDelegate {
     
     func addTiledMaps() {
         guard let gameWorld = GameWorld.current else { return }
-        for chunk in self.chunks {
+        for chunk in self.tiledMapList {
             if chunk.parent == nil {
                 gameWorld.addChild(chunk)
+                self.delegate?.addMap(self, tiledMap: chunk)
             }
         }
     }
@@ -219,6 +220,7 @@ class MapManager: NSObject, TiledMapDelegate {
 }
 
 protocol MapManagerDelegate: class {
+    func addMap(_ mapManagerDelegate: MapManager, tiledMap: TiledMap)
     func addTile(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, id: Int, texture: SKTexture?, x: Int, y: Int) -> Bool // handled ?
     func addObjectGroup(_ mapManagerDelegate: MapManager, _ tiledMap: TiledMap, objectGroup: TiledObjectGroup)
 }

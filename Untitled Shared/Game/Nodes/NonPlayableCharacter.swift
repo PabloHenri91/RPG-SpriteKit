@@ -36,7 +36,7 @@ class NonPlayableCharacter: SKSpriteNode {
     }
     
     func configure(mapManager: MapManager) {
-        if let map = TiledMap.current ?? mapManager.chunks.first {
+        if let map = TiledMap.current ?? mapManager.tiledMapList.first {
             self.tileWidth = map.tileWidth
             self.tileHeight = map.tileHeight
             self.loadPhysics()

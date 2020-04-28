@@ -78,11 +78,12 @@ class MemoryCard {
     
     lazy var applicationSupportDirectory: URL = {
         
-        let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        let fileManager = FileManager.default
+        
+        let urls = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         
         let url = urls.last!.appendingPathComponent(Bundle.main.bundleIdentifier!)
         
-        let fileManager = FileManager.default
         if !fileManager.fileExists(atPath: url.path) {
             try? fileManager.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
         }
