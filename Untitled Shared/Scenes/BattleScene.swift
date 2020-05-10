@@ -18,6 +18,7 @@ class BattleScene: GameScene, MapManagerDelegate {
     weak var playerHUD: PlayerHUD!
     
     var mapManager: MapManager!
+    var playableCharacterManager: PlayableCharacterManager!
     
     enum state: String {
         
